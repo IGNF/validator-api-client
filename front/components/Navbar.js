@@ -6,7 +6,7 @@ import {
 
 const Navbar = ({ routes }) => (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <a className="navbar-brand" href="#">IGNF/demo-validator</a>
+        <Link className="navbar-brand" to="/">IGNF/demo-validator</Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav mr-auto">
                 {routes.map((route, index) => (

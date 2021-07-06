@@ -28,7 +28,7 @@ class ValidationForm extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div class="alert alert-warning" role="alert">
+                <div className="alert alert-warning" role="alert">
                     Attention, les documents validés par ce démonstrateur ne sont pas forcément valides pour le Géoportail de l'urbanisme, qui réalise des controles supplémentaires.
                 </div>
 
@@ -36,7 +36,7 @@ class ValidationForm extends React.Component {
 
                     <div className="form-group">
                         <label htmlFor="standardSelect">Standard</label>
-                        <select className="form-control" id="standardSelect">
+                        <select className="form-control" name="standard" id="standardSelect">
                             {this.state.standards.map((standard, index) => (
                                 <option key={index} value={standard.url}>{standard.name}</option>
                             ))}
