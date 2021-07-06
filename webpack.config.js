@@ -2,9 +2,9 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    entry: ['@babel/polyfill','./front/index.js'],
+    entry: ['@babel/polyfill','./demo/index.js'],
     output: {
-        filename: 'main.js',
+        filename: 'demo.js',
         path: path.resolve(__dirname, 'public/js'),
     },
     module: {
