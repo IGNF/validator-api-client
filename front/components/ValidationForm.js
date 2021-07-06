@@ -16,7 +16,7 @@ class ValidationForm extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://www.geoportail-urbanisme.gouv.fr/standard.json")
+        fetch("/samples/gpu-standards.json")
             .then(res => res.json())
             .then((result) => {
                 this.setState({
