@@ -16,31 +16,41 @@ class ValidationForm extends React.Component {
     }
 
     componentDidMount() {
-        let gpuStandards = [
-            {
-                "name": "cnig_CC_2013",
-                "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2013.json"
-            },
-            {
-                "name": "cnig_CC_2014",
-                "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2014.json"
-            }
-        ];
-        // TODO charger les standards disponibles à partir de https://www.geoportail-urbanisme.gouv.fr/standard.json
-        this.setState({
-            standards: gpuStandards
-        })
+        fetch("https://www.geoportail-urbanisme.gouv.fr/standard.json")
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({
+                    standards: result
+                });
+            })
     }
 
-
     render() {
-        // TODO : bootstrapifier le form (attention : mettre className pour class avec react)
         return (
-            <form className="tutu" onSubmit={this.handleSubmit}>
-                <input type="text" name="standard" />
-                <input type="file" name="archive" accept="application/zip"></input>
-                <input type="submit" value="Submit" />
-            </form>
+            <div className="container-fluid">
+                <div class="alert alert-warning" role="alert">
+                    Attention, les documents validés par ce démonstrateur ne sont pas forcément valides pour le Géoportail de l'urbanisme, qui réalise des controles supplémentaires.
+                </div>
+
+                <form onSubmit={this.handleSubmit}>
+
+                    <div className="form-group">
+                        <label htmlFor="standardSelect">Standard</label>
+                        <select className="form-control" id="standardSelect">
+                            {this.state.standards.map((standard, index) => (
+                                <option key={index} value={standard.url}>{standard.name}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="fileInput">Archive</label>
+                        <input type="file" className="form-control-file" id="fileInput" accept="application/zip" />
+                    </div>
+
+                    <button type="submit" className="btn btn-primary">Valider</button>
+                </form>
+            </div>
         );
     }
 }
