@@ -3,12 +3,12 @@ import React from 'react';
 import {
     HashRouter as Router,
     Switch,
-    Route,
-    useParams
+    Route
 } from 'react-router-dom';
 
 import Home from './Home';
 import About from './About';
+import Validation from './Validation';
 import Navbar from './Navbar';
 
 const routes = [
@@ -22,6 +22,11 @@ const routes = [
         path: "/about",
         component: About,
         nav: "A propos"
+    },
+    {
+        path: "/validation/:id",
+        component: Validation,
+        nav: "Validation"
     }
 
     // TODO /validation/{id} <- status, rapport si disponible,...
