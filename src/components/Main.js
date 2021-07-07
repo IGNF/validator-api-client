@@ -23,6 +23,8 @@ const routes = [
         component: About,
         nav: "A propos"
     }
+
+    // TODO /validation/{id} <- status, rapport si disponible,...
 ];
 
 /**

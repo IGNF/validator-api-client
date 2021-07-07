@@ -1,10 +1,11 @@
 import React from 'react';
 
+import standards from '../standards';
 class ValidationForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            standards: []
+            standards: standards
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,16 +14,6 @@ class ValidationForm extends React.Component {
     handleSubmit(event) {
         alert("TODO : Créer une validation via POST /api/validations ...")
         event.preventDefault();
-    }
-
-    componentDidMount() {
-        fetch("/samples/gpu-standards.json")
-            .then(res => res.json())
-            .then((result) => {
-                this.setState({
-                    standards: result
-                });
-            })
     }
 
     render() {

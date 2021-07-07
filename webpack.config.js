@@ -2,10 +2,10 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    entry: ['@babel/polyfill','./demo/index.js'],
+    entry: ['@babel/polyfill','./src/index.js'],
     output: {
-        filename: 'demo.js',
-        path: path.resolve(__dirname, 'public/js'),
+        filename: 'validator-client.js',
+        path: path.resolve(__dirname, 'dist'),
     },
     module: {
         rules: [{
