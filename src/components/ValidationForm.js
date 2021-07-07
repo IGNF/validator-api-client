@@ -1,6 +1,9 @@
 import React from 'react';
 
 import standards from '../standards';
+
+import config from '../config';
+
 class ValidationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -12,7 +15,8 @@ class ValidationForm extends React.Component {
     }
 
     handleSubmit(event) {
-        alert("TODO : Créer une validation via POST /api/validations ...")
+        const url = `${config.validatorApiUrl}/validations`;
+        alert(`TODO : Créer une validation via POST sur ${url}...`)
         event.preventDefault();
     }
 

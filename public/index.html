@@ -36,10 +36,10 @@
          * Valeur par défaut correspondant à IGNF/validator-api lancée séparément
          * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
          */
-        var VALIDATOR_API_URL = 'http://localhost:9000/api/validations';
+        validator.setValidatorApiUrl("http://127.0.0.1:8000/validator/");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
-            validatorApiUrl: VALIDATOR_API_URL
+            targetElement: document.getElementById('main')
         });
     </script>
 </body>
