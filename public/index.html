@@ -12,6 +12,10 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
 
+    <!-- <link rel="stylesheet"
+        type="text/css" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.css"> -->
+
+
 </head>
 
 <body>
@@ -30,16 +34,18 @@
         integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg=="
         crossorigin="anonymous"></script>
 
+    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.js"></script> -->
+
     <script src="/dist/validator-client.js"></script>
     <script>
         /*
          * Valeur par défaut correspondant à IGNF/validator-api lancée séparément
          * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
          */
-        var VALIDATOR_API_URL = 'http://localhost:9000/api/validations';
+        validator.setValidatorApiUrl("http://127.0.0.1:8000/validator");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
-            validatorApiUrl: VALIDATOR_API_URL
+            targetElement: document.getElementById('main')
         });
     </script>
 </body>

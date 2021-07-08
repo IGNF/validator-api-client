@@ -31,5 +31,11 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "datatables.net": "^1.10.25",
+    "datatables.net-dt": "^1.1.0",
+    "react-data-table-component": "^7.0.0-rc2",
+    "react-json-to-table": "^0.1.7",
+    "styled-components": "^5.3.0"
+  }
 }

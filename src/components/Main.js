@@ -24,12 +24,10 @@ const routes = [
         nav: "A propos"
     },
     {
-        path: "/validation/:id",
+        path: "/validation/:uid",
         component: Validation,
         nav: "Validation"
     }
-
-    // TODO /validation/{id} <- status, rapport si disponible,...
 ];
 
 /**

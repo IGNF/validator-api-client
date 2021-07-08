@@ -4,8 +4,20 @@ const ReactDOM = require('react-dom');
 import Main from './components/Main';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
+/**
+     * Global configuration
+     */
+import config from './config';
 
 const validator = {
+
+    /**
+     * @param {string} validatorApiUrl
+     */
+    setValidatorApiUrl(validatorApiUrl){
+        config.validatorApiUrl = validatorApiUrl;
+    },
+
     /**
      * Create full react application.
      * @param {object} options
@@ -13,6 +25,7 @@ const validator = {
      */
     createDemoApplication: function(options){
         options.targetElement = options.targetElement || document.getElementById('main');
+
         ReactDOM.render(
             <BrowserRouter>
                 <Main />
