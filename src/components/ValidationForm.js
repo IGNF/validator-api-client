@@ -3,15 +3,18 @@ import React from 'react';
 import config from '../config';
 import standards from '../standards';
 
-class FileUploadForm extends React.Component {
+import { Redirect } from "react-router-dom";
+
+class ValidationForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             args: {
                 "srs": "EPSG:2154",
-                "model": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLU_2017.json"
-            }
+                "model": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2013.json"
+            },
+            uid: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,21 +25,20 @@ class FileUploadForm extends React.Component {
 
     handleSubmit(event) {
 
-        event.preventDefault()
+        event.preventDefault();
 
         var uid = "";
 
         this.postFile()
             .then((response) => response.json())
             .then((result) => {
-                console.log('Success:', result);
                 uid = result.uid;
             }).then(() => {
                 return this.patchValidation(uid);
-            }).then((result) => {
-                console.log('Success:', result);
-                alert(`/validation/${uid}`);
-                //TODO : redirect to `/validation/${uid}`
+            }).then(() => {
+                this.setState({
+                    uid: uid
+                });
             })
             .catch((error) => {
                 console.error('Error:', error);
@@ -62,8 +64,7 @@ class FileUploadForm extends React.Component {
         const formData = new FormData();
         formData.append('dataset', this.state.file)
 
-        return fetch(url,
-            {
+        return fetch(url, {
                 method: 'POST',
                 body: formData,
             }
@@ -85,9 +86,15 @@ class FileUploadForm extends React.Component {
 
     render() {
 
+        if ( this.state.uid !== null ){
+            return (
+                <Redirect push to={`/validation/${this.state.uid}`} />
+            );
+        }
+
         var srsList = [
-            'EPSG:4326',
             'EPSG:2154',
+            'EPSG:4326',
             'EPSG:32620',
             'EPSG:4559',
             'EPSG:5490',
@@ -134,8 +141,8 @@ class FileUploadForm extends React.Component {
                     <button type="submit" name="archive" className="btn btn-primary">Valider</button>
                 </form>
             </div>
-        );
+        )
     }
 }
 
-export default FileUploadForm;
+export default ValidationForm;

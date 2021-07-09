@@ -1,11 +1,12 @@
 import React from 'react';
 
-import FileUploadForm from './FileUploadForm';
+import FileUploadForm from './ValidationForm';
 
 class Home extends React.Component {
     render() {
         return (
-            <div className="home">
+            <div>
+                <h1>Validator</h1>
                 <FileUploadForm />
             </div>
         )

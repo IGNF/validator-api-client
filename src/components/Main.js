@@ -6,29 +6,10 @@ import {
     Route
 } from 'react-router-dom';
 
+import Navbar from './Navbar';
 import Home from './Home';
 import About from './About';
 import Validation from './Validation';
-import Navbar from './Navbar';
-
-const routes = [
-    {
-        path: "/",
-        exact: true,
-        component: Home,
-        nav: "Accueil"
-    },
-    {
-        path: "/about",
-        component: About,
-        nav: "A propos"
-    },
-    {
-        path: "/validation/:uid",
-        component: Validation,
-        nav: "Validation"
-    }
-];
 
 /**
  * Application router.
@@ -38,20 +19,15 @@ class Main extends React.Component {
     render() {
         return (
             <Router>
-                <Navbar routes={routes} />
+                <Navbar />
                 <Switch>
-                    {routes.map((route, index) => (
-                        <Route key={index}
-                            exact={route.exact}
-                            path={route.path}
-                            component={route.component}
-                        />
-                    ))}
+                    <Route exact path="/" component={Home} />
+                    <Route path="/about" component={About} />
+                    <Route path="/validation/:uid" component={Validation} />
                 </Switch>
             </Router>
-        );
+        )
     }
-
 }
 
 export default Main;
