@@ -1,3 +1,6 @@
+import expStandards from './exp-standards.json';
 import gpuStandards from './gpu-standards.json';
 
-export default gpuStandards;
+const standards = [...expStandards,...gpuStandards];
+
+export default standards;

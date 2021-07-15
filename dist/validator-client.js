@@ -225,7 +225,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _com
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _gpu_standards_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./gpu-standards.json */ \"./src/standards/gpu-standards.json\");\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_gpu_standards_json__WEBPACK_IMPORTED_MODULE_0__);\n\n//# sourceURL=webpack://@ignf/validator-client/./src/standards/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n/* harmony import */ var _exp_standards_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./exp-standards.json */ \"./src/standards/exp-standards.json\");\n/* harmony import */ var _gpu_standards_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./gpu-standards.json */ \"./src/standards/gpu-standards.json\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\"); }\n\nfunction _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === \"string\") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === \"Object\" && o.constructor) n = o.constructor.name; if (n === \"Map\" || n === \"Set\") return Array.from(o); if (n === \"Arguments\" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }\n\nfunction _iterableToArray(iter) { if (typeof Symbol !== \"undefined\" && iter[Symbol.iterator] != null || iter[\"@@iterator\"] != null) return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }\n\nfunction _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }\n\n\n\nvar standards = [].concat(_toConsumableArray(_exp_standards_json__WEBPACK_IMPORTED_MODULE_0__), _toConsumableArray(_gpu_standards_json__WEBPACK_IMPORTED_MODULE_1__));\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (standards);\n\n//# sourceURL=webpack://@ignf/validator-client/./src/standards/index.js?");
 
 /***/ }),
 
@@ -3689,6 +3689,17 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
 
 "use strict";
 eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\nfunction valueOf(obj) {\n  return obj.valueOf ? obj.valueOf() : Object.prototype.valueOf.call(obj);\n}\n\nfunction valueEqual(a, b) {\n  // Test for strict equality first.\n  if (a === b) return true;\n\n  // Otherwise, if either of them == null they are not equal.\n  if (a == null || b == null) return false;\n\n  if (Array.isArray(a)) {\n    return (\n      Array.isArray(b) &&\n      a.length === b.length &&\n      a.every(function(item, index) {\n        return valueEqual(item, b[index]);\n      })\n    );\n  }\n\n  if (typeof a === 'object' || typeof b === 'object') {\n    var aValue = valueOf(a);\n    var bValue = valueOf(b);\n\n    if (aValue !== a || bValue !== b) return valueEqual(aValue, bValue);\n\n    return Object.keys(Object.assign({}, a, b)).every(function(key) {\n      return valueEqual(a[key], b[key]);\n    });\n  }\n\n  return false;\n}\n\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (valueEqual);\n\n\n//# sourceURL=webpack://@ignf/validator-client/./node_modules/value-equal/esm/value-equal.js?");
+
+/***/ }),
+
+/***/ "./src/standards/exp-standards.json":
+/*!******************************************!*\
+  !*** ./src/standards/exp-standards.json ***!
+  \******************************************/
+/***/ ((module) => {
+
+"use strict";
+eval("module.exports = JSON.parse('[{\"name\":\"CNIG_PCRS_v2.0\",\"url\":\"https://mborne.github.io/validator/validator-core/src/test/resources/config-json/CNIG_PCRS_v2.0/document.json\"}]');\n\n//# sourceURL=webpack://@ignf/validator-client/./src/standards/exp-standards.json?");
 
 /***/ }),
 
