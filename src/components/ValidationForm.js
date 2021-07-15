@@ -12,7 +12,7 @@ class ValidationForm extends React.Component {
         this.state = {
             args: {
                 "srs": "EPSG:2154",
-                "model": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2013.json"
+                "model": standards[0].url
             },
             uid: null
         };
@@ -46,6 +46,7 @@ class ValidationForm extends React.Component {
     }
 
     onChangeArgs(event) {
+        console.log(`${event.target.name} : ${event.target.value}`)
         var args = this.state.args;
         args[event.target.name] = event.target.value;
         this.setState({
