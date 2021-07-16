@@ -6,6 +6,7 @@ Démonstrateur pour appel à [IGNF/validator-api](https://github.com/IGNF/valida
 
 * Lancer une validation sur une archive ZIP en choisissant un standard
 * Visualiser le résultat d'une validation en connaissant son identifiant
+
 ## Développement
 
 ```bash
@@ -15,6 +16,4 @@ npm run watch
 # lancement du back
 npm run start
 ```
-## Remarques
 
-On intégrera par la suite ce client au niveau de [IGNF/validator-api](https://github.com/IGNF/validator-api).
