@@ -1,6 +1,6 @@
 
 const config = {
-    validatorApiUrl: 'https://api.ign.fr/validator-api'
+    validatorApiUrl: 'https://validator-api-v1.ign.fr/api'
 }
 
 export default config;
