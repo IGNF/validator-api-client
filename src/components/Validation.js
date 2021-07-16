@@ -5,7 +5,9 @@ import config from '../config';
 
 import ValidationReport from './ValidationReport';
 
-const STATUS_COMPLETED = ['finished','error'];
+import getValidationById from '../api/getDeliveryById';
+
+const STATUS_COMPLETED = ['finished', 'error'];
 
 class Validation extends React.Component {
     constructor(props) {
@@ -29,33 +31,27 @@ class Validation extends React.Component {
      */
     updateData() {
         const uid = this.getValidationId();
-        console.log(`Get data for validation ${uid} ...`)
-        const url = `${config.validatorApiUrl}/validations/${uid}`;
 
-        fetch(url)
-            .then(function(response){
-                return response.json();
-            }).then((result) => {
-                console.log(result);
-                if (!STATUS_COMPLETED.includes(result.status)) {
-                    setTimeout(this.updateData.bind(this), 1000);
-                }
-                this.setState({
-                    validation: result
-                });
-            })
-            .catch((error) => {
-                this.setState({
-                    error: error
-                });
+        getValidationById(uid).then((validation) => {
+            if (!STATUS_COMPLETED.includes(validation.status)) {
+                setTimeout(this.updateData.bind(this), 1000);
+            }
+            this.setState({
+                validation: validation
             });
+        }).catch((error) => {
+            console.log(error);
+            this.setState({
+                error: error
+            });
+        });
     }
 
 
     render() {
-        if ( this.state.error != null ){
+        if (this.state.error != null) {
             return (
-                <div className="alert alert-error">
+                <div className="alert alert-danger">
                     {this.state.error.message}
                 </div>
             );
