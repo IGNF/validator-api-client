@@ -2,9 +2,30 @@ import React from 'react';
 
 import DataTable from 'react-data-table-component';
 
+import ValidationError from './ValidationError';
+
 class ValidationReport extends React.Component {
     constructor(props) {
         super(props);
+
+        this.state = {
+            selected: null
+        };
+
+        this.onRowClicked = this.onRowClicked.bind(this);
+        this.closeErrorPopup = this.closeErrorPopup.bind(this);
+    }
+
+    onRowClicked(row) {
+        this.setState({
+            selected: row
+        });
+    }
+
+    closeErrorPopup() {
+        this.setState({
+            selected: null
+        })
     }
 
     render() {
@@ -15,27 +36,22 @@ class ValidationReport extends React.Component {
 
         const columns = [
             {
-                name: 'level',
-                selector: 'level',
-                sortable: true
-            },
-            {
-                name: 'scope',
-                selector: 'scope',
+                name: 'file',
+                selector: 'file',
                 sortable: true,
-                compact: true
+                grow: 2
             },
             {
                 name: 'code',
                 selector: 'code',
                 sortable: true,
-                compact: true
+                grow: 2
             },
             {
                 name: 'message',
                 selector: 'message',
                 sortable: true,
-                grow: 10
+                grow: 7
             }
         ];
 
@@ -55,12 +71,17 @@ class ValidationReport extends React.Component {
         ];
 
         return (
-            <div className="card">
-                <DataTable title="Rapport de validation"
-                    data={this.props.validation.results}
-                    columns={columns}
-                    conditionalRowStyles={conditionalRowStyles}
-                    striped="true" />
+            <div>
+                <ValidationError error={this.state.selected} closeErrorPopup={this.closeErrorPopup} />
+                <div className="card">
+                    <DataTable title="Rapport de validation"
+                        data={this.props.validation.results}
+                        columns={columns}
+                        conditionalRowStyles={conditionalRowStyles}
+                        striped="true"
+                        onRowClicked={this.onRowClicked}
+                    />
+                </div>
             </div>
         )
     }

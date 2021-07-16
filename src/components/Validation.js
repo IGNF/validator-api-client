@@ -5,11 +5,14 @@ import config from '../config';
 
 import ValidationReport from './ValidationReport';
 
+const STATUS_COMPLETED = ['finished','error'];
+
 class Validation extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            validation: {}
+            validation: {},
+            error: null
         }
     }
 
@@ -21,14 +24,20 @@ class Validation extends React.Component {
         return this.props.match.params.uid;
     }
 
+    /**
+     * Upload validation data.
+     */
     updateData() {
         const uid = this.getValidationId();
+        console.log(`Get data for validation ${uid} ...`)
         const url = `${config.validatorApiUrl}/validations/${uid}`;
 
         fetch(url)
-            .then(res => res.json())
-            .then((result) => {
-                if (result.status != 'finished') {
+            .then(function(response){
+                return response.json();
+            }).then((result) => {
+                console.log(result);
+                if (!STATUS_COMPLETED.includes(result.status)) {
                     setTimeout(this.updateData.bind(this), 1000);
                 }
                 this.setState({
@@ -36,11 +45,22 @@ class Validation extends React.Component {
                 });
             })
             .catch((error) => {
-                console.error('Error:', error)
+                this.setState({
+                    error: error
+                });
             });
     }
 
+
     render() {
+        if ( this.state.error != null ){
+            return (
+                <div className="alert alert-error">
+                    {this.state.error.message}
+                </div>
+            );
+        }
+
         if (!this.state.validation.hasOwnProperty('arguments')) {
             return null
         }

@@ -6,7 +6,7 @@ class Home extends React.Component {
     render() {
         return (
             <div>
-                <h1>Validator</h1>
+                <h1>Validation d'une archive</h1>
                 <FileUploadForm />
             </div>
         )

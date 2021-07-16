@@ -10,11 +10,13 @@ class ValidationForm extends React.Component {
         super(props);
 
         this.state = {
+            file: null,
             args: {
                 "srs": "EPSG:2154",
                 "model": standards[0].url
             },
-            uid: null
+            uid: null,
+            error: null
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,30 +25,44 @@ class ValidationForm extends React.Component {
         this.onChangeArgs = this.onChangeArgs.bind(this);
     }
 
-    handleSubmit(event) {
-
+    async handleSubmit(event) {
         event.preventDefault();
 
-        var uid = "";
-
-        this.postFile()
-            .then((response) => response.json())
-            .then((result) => {
-                uid = result.uid;
-            }).then(() => {
-                return this.patchValidation(uid);
-            }).then(() => {
-                this.setState({
-                    uid: uid
-                });
-            })
-            .catch((error) => {
-                console.error('Error:', error);
+        if ( this.state.file == null ){
+            this.setState({
+                error: 'Fichier non sélectionné'
             });
+            return;
+        }
+
+        let uid = null;
+        try {
+            let response = await this.postFile();
+            let validation = await response.json();
+            uid = validation.uid;
+        } catch (e) {
+            this.setState({
+                error: "Problème dans l'envoi du fichier!"
+            })
+            return;
+        }
+
+        console.log(`Validation created with uid=${uid}`);
+        try {
+            await this.patchValidation(uid);
+            this.setState({
+                uid: uid,
+                error: null
+            });
+        } catch (e) {
+            this.setState({
+                error: "Problème dans l'envoi des paramètres!"
+            })
+            return;
+        }
     }
 
     onChangeArgs(event) {
-        console.log(`${event.target.name} : ${event.target.value}`)
         var args = this.state.args;
         args[event.target.name] = event.target.value;
         this.setState({
@@ -58,22 +74,31 @@ class ValidationForm extends React.Component {
         this.setState({ file: event.target.files[0] })
     }
 
+    /**
+     * Create the validation sending the file.
+     * @returns {Promise<Response>}
+     */
     postFile() {
-
         const url = `${config.validatorApiUrl}/validations/`;
 
         const formData = new FormData();
         formData.append('dataset', this.state.file)
 
         return fetch(url, {
-                method: 'POST',
-                body: formData,
-            }
+            method: 'POST',
+            body: formData,
+        }
         )
     }
 
+    /**
+     * Send validation parameters.
+     *
+     * @param {string} uid
+     *
+     * @returns {Promise<Response>}
+     */
     patchValidation(uid) {
-
         const url = `${config.validatorApiUrl}/validations/${uid}`;
 
         return fetch(url, {
@@ -86,8 +111,7 @@ class ValidationForm extends React.Component {
     }
 
     render() {
-
-        if ( this.state.uid !== null ){
+        if (this.state.uid !== null) {
             return (
                 <Redirect push to={`/validation/${this.state.uid}`} />
             );
@@ -106,18 +130,20 @@ class ValidationForm extends React.Component {
             'CRS:84'
         ];
 
+        /*
+         * display form error.
+         */
+        let error = <span />
+        if (this.state.error) {
+            error = <div className="alert alert-danger">{this.state.error}</div>;
+        }
+
         return (
             <div className="container-fluid">
-                <div className="alert alert-warning" role="alert">
-                    Attention, les documents validés par ce démonstrateur ne sont pas forcément valides pour le Géoportail de l'urbanisme, qui réalise des controles supplémentaires.
-                </div>
+
+                {error}
 
                 <form onSubmit={this.handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="fileInput">Archive</label>
-                        <input type="file" className="form-control-file" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
-                    </div>
-
                     <div className="form-group row">
                         <label htmlFor="standardSelect" className="col-sm-2 col-form-label">Standard</label>
                         <div className="col-sm-10">
@@ -137,6 +163,11 @@ class ValidationForm extends React.Component {
                                 ))}
                             </select>
                         </div>
+                    </div>
+
+                    <div className="input-group">
+                        <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
+                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">Archive</label>
                     </div>
 
                     <button type="submit" name="archive" className="btn btn-primary">Valider</button>
