@@ -147,7 +147,7 @@ class ValidationForm extends React.Component {
                         <div className="col-sm-10">
                             <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeArgs}>
                                 {projections.map((projection, index) => (
-                                    <option key={index} value={projection.code} title={projection.title}>{projection.code}</option>
+                                    <option key={index} value={projection.code}>{projection.code} - {projection.title}</option>
                                 ))}
                             </select>
                         </div>
