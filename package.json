@@ -1,6 +1,6 @@
 {
   "name": "@ignf/validator-client",
-  "version": "0.1.2-pre",
+  "version": "0.1.2",
   "description": "",
   "main": "index.js",
   "scripts": {
