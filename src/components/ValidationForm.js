@@ -1,7 +1,8 @@
 import React from 'react';
 
 import config from '../config';
-import standards from '../standards';
+import standards from '../data/standards';
+import projections from '../data/projection.json';
 
 import { Redirect } from "react-router-dom";
 
@@ -12,7 +13,7 @@ class ValidationForm extends React.Component {
         this.state = {
             file: null,
             args: {
-                "srs": "EPSG:2154",
+                "srs": "CRS:84",
                 "model": standards[0].url
             },
             uid: null,
@@ -117,19 +118,6 @@ class ValidationForm extends React.Component {
             );
         }
 
-        var srsList = [
-            'EPSG:2154',
-            'EPSG:4326',
-            'EPSG:32620',
-            'EPSG:4559',
-            'EPSG:5490',
-            'EPSG:2972',
-            'EPSG:2975',
-            'EPSG:4467',
-            'EPSG:4471',
-            'CRS:84'
-        ];
-
         /*
          * display form error.
          */
@@ -145,7 +133,7 @@ class ValidationForm extends React.Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
-                        <label htmlFor="standardSelect" className="col-sm-2 col-form-label">Standard</label>
+                        <label htmlFor="standardSelect" className="col-sm-2 col-form-label">Modèle de données</label>
                         <div className="col-sm-10">
                             <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeArgs}>
                                 {standards.map((standard, index) => (
@@ -155,11 +143,11 @@ class ValidationForm extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="srsSelect" className="col-sm-2 col-form-label">SRS</label>
+                        <label htmlFor="srsSelect" className="col-sm-2 col-form-label">Projection des données</label>
                         <div className="col-sm-10">
                             <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeArgs}>
-                                {srsList.map((srsItem, index) => (
-                                    <option key={index} value={srsItem}>{srsItem}</option>
+                                {projections.map((projection, index) => (
+                                    <option key={index} value={projection.code} title={projection.title}>{projection.code}</option>
                                 ))}
                             </select>
                         </div>
