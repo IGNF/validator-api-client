@@ -4,22 +4,31 @@ import { Link } from 'react-router-dom';
 import config from '../config';
 
 const Navbar = () => (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-        <Link className="navbar-brand" to="/">IGNF/demo-validator</Link>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav mr-auto">
-                <li className="nav-item">
-                    <Link className="nav-link" to="/">Accueil</Link>
-                </li>
-                <li className="nav-item">
-                    <a className="nav-link" href={config.validatorApiUrl+'/'}>API</a>
-                </li>
-                <li className="nav-item">
-                    <Link className="nav-link" to="/about">A propos</Link>
-                </li>
-            </ul>
+    <header className="header header-principal" role="banner">
+        <div className="header-principal--left">
+            <div class="header-principal__logo">
+                <Link className="header-principal__logo-link" title="Démo Validator" to="/">
+                    <img src="img/logo_IGN.png" alt="Logo IGN"/>
+                    <span className="header-principal__name">Démo Validator</span>
+                </Link>
+            </div>
         </div>
-    </nav>
+        <div className="header-principal--right">
+            <nav className="navbar--desktop" role="navigation" aria-label="Menu principal">
+                <ul className="navbar-nav navbar-nav--portails">
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/">Accueil</Link>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href={config.validatorApiUrl+'/'}>API</a>
+                    </li>
+                    <li className="nav-item">
+                        <Link className="nav-link" to="/about">A propos</Link>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 )
 
 export default Navbar;

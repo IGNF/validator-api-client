@@ -153,12 +153,14 @@ class ValidationForm extends React.Component {
                         </div>
                     </div>
 
-                    <div className="input-group">
+                    <div className="input-group form-group">
                         <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
                         <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">Archive</label>
                     </div>
 
-                    <button type="submit" name="archive" className="btn btn-primary">Valider</button>
+                    <div className="form-group text-center">
+                        <button type="submit" name="archive" className="btn btn--plain btn--primary btn-width--lg">Valider</button>
+                    </div>
                 </form>
             </div>
         )

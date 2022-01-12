@@ -1,14 +1,17 @@
 import React from 'react';
 
+import PageTitle from './PageTitle';
 import FileUploadForm from './ValidationForm';
 
 class Home extends React.Component {
     render() {
         return (
-            <div>
-                <h1>Validation d'une archive</h1>
-                <FileUploadForm />
-            </div>
+            <main className="main" role="main" tabindex="-1">
+                <PageTitle title="Validation d'une archive"/>
+                <div className="container-content">
+                    <FileUploadForm />
+                </div>
+            </main>
         )
     }
 }
