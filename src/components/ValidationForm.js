@@ -133,8 +133,8 @@ class ValidationForm extends React.Component {
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
-                        <label htmlFor="standardSelect" className="col-sm-2 col-form-label">Modèle de données</label>
-                        <div className="col-sm-10">
+                        <label htmlFor="standardSelect" className="col-sm-4 col-form-label">Sélectionnez un modèle de données</label>
+                        <div className="col-sm-8">
                             <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeArgs}>
                                 {standards.map((standard, index) => (
                                     <option key={index} value={standard.url}>{standard.name}</option>
@@ -143,8 +143,8 @@ class ValidationForm extends React.Component {
                         </div>
                     </div>
                     <div className="form-group row">
-                        <label htmlFor="srsSelect" className="col-sm-2 col-form-label">Projection des données</label>
-                        <div className="col-sm-10">
+                        <label htmlFor="srsSelect" className="col-sm-4 col-form-label">Sélectionnez la projection de vos données</label>
+                        <div className="col-sm-8">
                             <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeArgs}>
                                 {projections.map((projection, index) => (
                                     <option key={index} value={projection.code}>{projection.code} - {projection.title}</option>
@@ -153,9 +153,10 @@ class ValidationForm extends React.Component {
                         </div>
                     </div>
 
+                    
                     <div className="input-group form-group">
                         <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
-                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">Archive</label>
+                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">Choisissez une archive sur votre ordinateur...</label>
                     </div>
 
                     <div className="form-group text-center">

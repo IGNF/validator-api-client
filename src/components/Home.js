@@ -6,7 +6,7 @@ import FileUploadForm from './ValidationForm';
 class Home extends React.Component {
     render() {
         return (
-            <main className="main" role="main" tabindex="-1">
+            <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="Validation d'une archive"/>
                 <div className="container-content">
                     <FileUploadForm />

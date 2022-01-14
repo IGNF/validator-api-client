@@ -1,7 +1,7 @@
 {
   "name": "@ignf/validator-client",
-  "version": "0.1.4-pre",
-  "description": "",
+  "version": "0.2.0-pre",
+  "description": "Démonstrateur React pour IGNF/validator-api",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://gogs.quadtreeworld.net/experiments/my-circle.git"
+    "url": "https://github.com/IGNF/validator-api-client.git"
   },
   "author": "IGNF",
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-or-later",
   "private": true,
   "devDependencies": {
     "@babel/core": "^7.14.6",
@@ -33,6 +33,7 @@
   },
   "dependencies": {
     "react-data-table-component": "^7.0.0-rc2",
-    "styled-components": "^5.3.0"
+    "styled-components": "^5.3.0",
+    "swagger-ui": "^4.1.3"
   }
 }

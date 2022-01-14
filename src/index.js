@@ -18,6 +18,17 @@ const validator = {
         config.validatorApiUrl = validatorApiUrl;
     },
 
+    getValidatorApiUrl() {
+        return config.validatorApiUrl;
+    },
+
+     /**
+     * @param {string} validatorSpecsUrl
+     */
+    setValidatorSpecsUrl(validatorSpecsUrl){
+        config.validatorSpecsUrl = validatorSpecsUrl;
+    },
+
     /**
      * Create full react application.
      * @param {object} options

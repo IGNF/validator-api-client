@@ -43,6 +43,7 @@
          * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
          */
         validator.setValidatorApiUrl("http://localhost:8000/api");
+        validator.setValidatorSpecsUrl("http://localhost:8000/api/validator-api.yml");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
             targetElement: document.getElementById('main')
