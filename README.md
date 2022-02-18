@@ -34,7 +34,7 @@ Créez un élément pour contenir le démonstrateur
 
 Ajoutez le script `dist/validator-client.js` (disponible directement dans les releases)
 
-Puis instanciés le `validator` en le configurant avec les URL de votre déploiement de l'API et de sa documentation swagger.
+Puis instanciez le `validator` en le configurant avec les URL de votre déploiement de l'API et de sa documentation swagger.
 
 ```javascript
 validator.setValidatorApiUrl("https://yourinstance/api");
@@ -43,3 +43,5 @@ validator.createDemoApplication({
     targetElement: document.getElementById('demo-wrapper');
 });
 ```
+
+Pensez à copier également les dossiers css, img et font.
