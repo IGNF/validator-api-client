@@ -13,7 +13,7 @@ class LegalNotice extends React.Component {
     render() {
         const url = "demo-validator.ign.fr";
         return (
-            <main className="main" role="main" tabindex="-1">
+            <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="Mentions légales"/>
                 <div className="container-content container-content--smaller">
                     <div className="wysiwyg">

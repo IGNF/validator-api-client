@@ -1,8 +1,10 @@
 .validator-error {
     background-color: #EEE;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 5px 10px;
+    left: 50%;
+    max-width: 90%;
     position: fixed;
-    width: 90%;
-    top: 10px;
-    left: 5%;
+    top: 6em;
+    transform: translateX(-50%);
     z-index: 10;
 }

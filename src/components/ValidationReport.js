@@ -36,21 +36,22 @@ class ValidationReport extends React.Component {
 
         const columns = [
             {
-                name: 'file',
-                selector: 'file',
+                name: 'Fichier',
+                selector: row => row.file,
                 sortable: true,
                 grow: 2
             },
             {
-                name: 'code',
-                selector: 'code',
+                name: 'Code',
+                selector: row => row.code,
                 sortable: true,
                 grow: 2
             },
             {
-                name: 'message',
-                selector: 'message',
+                name: 'Message',
+                selector: row => row.message,
                 sortable: true,
+                wrap: true,
                 grow: 7
             }
         ];
@@ -73,11 +74,14 @@ class ValidationReport extends React.Component {
         return (
             <div>
                 <ValidationError error={this.state.selected} closeErrorPopup={this.closeErrorPopup} />
-                <div className="card">
+                <div className="card mb-2">
                     <DataTable title="Rapport de validation"
                         data={this.props.validation.results}
                         columns={columns}
                         conditionalRowStyles={conditionalRowStyles}
+                        responsive="true"
+                        pointerOnHover="true"
+                        highlightOnHover="true"
                         striped="true"
                         onRowClicked={this.onRowClicked}
                     />

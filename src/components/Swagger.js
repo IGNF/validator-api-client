@@ -18,7 +18,7 @@ class Swagger extends React.Component {
 
     render() {
         return (
-            <main className="main" role="main" tabindex="-1">
+            <main className="main" role="main" tabIndex="-1">
                 <div id="swagger-ui-container" />
             </main>
         )

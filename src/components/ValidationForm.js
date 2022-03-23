@@ -6,6 +6,7 @@ import projections from '../data/projection.json';
 
 import { Redirect } from "react-router-dom";
 
+import "./ValidationForm.css";
 class ValidationForm extends React.Component {
     constructor(props) {
         super(props);
@@ -72,7 +73,8 @@ class ValidationForm extends React.Component {
     }
 
     onChangeFile(event) {
-        this.setState({ file: event.target.files[0] })
+        this.setState({ file: event.target.files[0] });
+        $('.custom-file-label').html(event.target.files[0].name);
     }
 
     /**
@@ -156,7 +158,9 @@ class ValidationForm extends React.Component {
                     
                     <div className="input-group form-group">
                         <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
-                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">Choisissez une archive sur votre ordinateur...</label>
+                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
+                            Choisissez une archive sur votre ordinateur...
+                        </label>
                     </div>
 
                     <div className="form-group text-center">

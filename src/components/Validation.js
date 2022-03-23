@@ -7,6 +7,9 @@ import ValidationReport from './ValidationReport';
 
 import getValidationById from '../api/getDeliveryById';
 
+import PageTitle from './PageTitle';
+import StatusBadge from './StatusBadge';
+
 const STATUS_COMPLETED = ['finished', 'error'];
 
 class Validation extends React.Component {
@@ -51,8 +54,10 @@ class Validation extends React.Component {
     render() {
         if (this.state.error != null) {
             return (
-                <div className="alert alert-danger">
-                    {this.state.error.message}
+                <div className="container-content pt-1">
+                    <div className="alert alert-danger">
+                        {this.state.error.message}
+                    </div>
                 </div>
             );
         }
@@ -66,25 +71,31 @@ class Validation extends React.Component {
                 return null;
             } else {
                 return <ul>
-                    <li>srs: {this.state.validation.arguments.srs}</li>
-                    <li>model: {this.state.validation.arguments.model}</li>
+                    <li>
+                        <strong>Modèle :</strong>&nbsp;
+                        <a className="external-link"
+                            target="_blank"
+                            href={this.state.validation.arguments.model}>
+                                {this.state.validation.arguments.model}
+                                <span className="icon-external-link" aria-hidden="true"></span>
+                        </a>
+                    </li>
+                    <li><strong>Projection :</strong> {this.state.validation.arguments.srs}</li>
                 </ul>
             }
         }
 
         return (
-            <div>
-                <div className="jumbotron jumbotron-fluid">
-                    <div className="container">
-                        <h1 className="display-4">Validation de {this.state.validation.dataset_name}</h1>
+            <div className="container-content">
+                <PageTitle title={"Validation de " + this.state.validation.dataset_name}/>
+                <div className="container-content">
+                    <div className="wysiwyg">
+                        <p>
+                            <strong>Statut : </strong>
+                            <StatusBadge status={this.state.validation.status}/>
+                        </p>
+                        {renderArguments()}
                     </div>
-                </div>
-
-                <div>
-                    <ul>
-                        <li>Statut: {this.state.validation.status}</li>
-                        <li>Arguments : {renderArguments()}</li>
-                    </ul>
                     <ValidationReport validation={this.state.validation} />
                 </div>
             </div>

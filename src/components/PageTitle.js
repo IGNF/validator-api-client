@@ -7,9 +7,9 @@ class PageTitle extends React.Component {
 
     render() {
         return (
-            <header class="o-page-title ">
-                <div class="o-page-title__inner">
-                    <div class="container-content container-content--smaller">
+            <header className="o-page-title ">
+                <div className="o-page-title__inner">
+                    <div className="container-content container-content--smaller">
                         <h1>{this.props.title}</h1>
                     </div>
                 </div>

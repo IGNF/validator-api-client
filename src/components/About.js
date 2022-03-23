@@ -12,7 +12,7 @@ class About extends React.Component {
 
     render() {
         return (
-            <main className="main" role="main" tabindex="-1">
+            <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="A propos"/>
                 <div class="container-content">
                     <div className="wysiwyg">

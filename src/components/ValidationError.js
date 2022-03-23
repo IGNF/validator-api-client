@@ -29,28 +29,23 @@ class ValidationError extends React.Component {
                 continue;
             }
             rows.push(
-                <tr key={index++}>
-                    <td>{key}</td>
-                    <td>{value}</td>
-                </tr>
+                <li key={index++}><strong>{key} :</strong> {value}</li>
             );
         }
 
         return (
             <div className="validator-error">
-                <button type="button" className="btn btn-primary float-right" onClick={this.onClose}>X</button>
+                <button type="button"
+                    className="btn float-right"
+                    onClick={this.onClose}>
+                    <span className="icon-close"></span>
+                </button>
 
-                <table className="table table-striped">
-                    <thead>
-                        <tr>
-                            <th className="col-2">Propriété</th>
-                            <th className="col-10">Valeur</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+                <div className="wysiwyg px-2">
+                    <ul>
                         {rows}
-                    </tbody>
-                </table>
+                    </ul>
+                </div>
             </div>
         );
     }
