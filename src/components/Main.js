@@ -2,8 +2,9 @@ import React from 'react';
 
 import {
     HashRouter as Router,
-    Switch,
-    Route
+    Redirect,
+    Route,
+    Switch
 } from 'react-router-dom';
 
 import About from './About';
@@ -28,6 +29,7 @@ class Main extends React.Component {
                     <Route path="/about" component={About} />
                     <Route path="/legal-notice" component={LegalNotice} />
                     <Route path="/api" component={Swagger} />
+                    <Redirect path='/validation/' to='/' exact />
                     <Route path="/validation/:uid" component={Validation} />
                 </Switch>
                 <Footer />
