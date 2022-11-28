@@ -1,7 +1,9 @@
-
+/**
+ * Default DEV values to use with "symfony server:start" in validator-api
+ */
 const config = {
-    validatorApiUrl: 'https://validator-api-v1.ign.fr/api',
-    validatorSpecsUrl: 'http://petstore.swagger.io/v2/swagger.json'
+    validatorApiUrl: 'http://localhost:8000/api',
+    validatorSpecsUrl: 'http://localhost:8000/api/validator-api.yml'
 }
 
 export default config;

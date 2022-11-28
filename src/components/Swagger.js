@@ -1,5 +1,5 @@
 import React from 'react';
-import SwaggerUi, {presets} from 'swagger-ui';
+import SwaggerUi from 'swagger-ui';
 import 'swagger-ui/dist/swagger-ui.css';
 import config from '../config';
 
@@ -12,7 +12,7 @@ class Swagger extends React.Component {
         SwaggerUi({
             dom_id: '#swagger-ui-container',
             url: `${config.validatorSpecsUrl}`,
-            presets: [presets.apis],
+            presets: [SwaggerUi.presets.apis],
         });
     }
 
