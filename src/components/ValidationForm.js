@@ -7,16 +7,18 @@ import projections from '../data/projection.json';
 import { Redirect } from "react-router-dom";
 
 import "./ValidationForm.css";
+
+/**
+ * Formulaire de création d'une nouvelle validation.
+ */
 class ValidationForm extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
             file: null,
-            args: {
-                "srs": "CRS:84",
-                "model": standards[0].url
-            },
+            srs: "CRS:84",
+            standardIndex: 0,
             uid: null,
             error: null
         };
@@ -24,7 +26,8 @@ class ValidationForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.postFile = this.postFile.bind(this);
         this.onChangeFile = this.onChangeFile.bind(this);
-        this.onChangeArgs = this.onChangeArgs.bind(this);
+        this.onChangeStandard = this.onChangeStandard.bind(this);
+        this.onChangeSrs = this.onChangeSrs.bind(this);
     }
 
     async handleSubmit(event) {
@@ -64,13 +67,18 @@ class ValidationForm extends React.Component {
         }
     }
 
-    onChangeArgs(event) {
-        var args = this.state.args;
-        args[event.target.name] = event.target.value;
+    onChangeStandard(event) {
         this.setState({
-            args: args
+            standardIndex: event.target.value
         });
     }
+
+    onChangeSrs(event){
+        this.setState({
+            srs: event.target.value
+        });
+    }
+
 
     onChangeFile(event) {
         this.setState({ file: event.target.files[0] });
@@ -104,9 +112,16 @@ class ValidationForm extends React.Component {
     patchValidation(uid) {
         const url = `${config.validatorApiUrl}/validations/${uid}`;
 
+        const standard = standards[this.state.standardIndex];
+        let args = {
+            srs: this.state.srs,
+            model: standard.url,
+            plugins: standard.plugins
+        };
+
         return fetch(url, {
             method: 'PATCH',
-            body: JSON.stringify(this.state.args),
+            body: JSON.stringify(args),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -130,16 +145,15 @@ class ValidationForm extends React.Component {
 
         return (
             <div className="container-fluid">
-
                 {error}
 
                 <form onSubmit={this.handleSubmit}>
                     <div className="form-group row">
                         <label htmlFor="standardSelect" className="col-sm-4 col-form-label">Sélectionnez un modèle de données</label>
                         <div className="col-sm-8">
-                            <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeArgs}>
+                            <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeStandard}>
                                 {standards.map((standard, index) => (
-                                    <option key={index} value={standard.url}>{standard.name}</option>
+                                    <option key={index} value={index}>{standard.name}</option>
                                 ))}
                             </select>
                         </div>
@@ -147,7 +161,7 @@ class ValidationForm extends React.Component {
                     <div className="form-group row">
                         <label htmlFor="srsSelect" className="col-sm-4 col-form-label">Sélectionnez la projection de vos données</label>
                         <div className="col-sm-8">
-                            <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeArgs}>
+                            <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeSrs}>
                                 {projections.map((projection, index) => (
                                     <option key={index} value={projection.code}>{projection.code} - {projection.title}</option>
                                 ))}
@@ -155,7 +169,6 @@ class ValidationForm extends React.Component {
                         </div>
                     </div>
 
-                    
                     <div className="input-group form-group">
                         <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
                         <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
