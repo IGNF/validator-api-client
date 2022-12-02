@@ -1,14 +1,12 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-
-import config from '../config';
-
 import ValidationReport from './ValidationReport';
 
-import getValidationById from '../api/getDeliveryById';
+import getValidationById from '../api/getValidationById';
 
 import PageTitle from './PageTitle';
-import StatusBadge from './StatusBadge';
+import ValidationActions from './ValidationActions';
+import ValidationProperties from './ValidationProperties';
 
 const STATUS_COMPLETED = ['finished', 'error'];
 
@@ -66,36 +64,12 @@ class Validation extends React.Component {
             return null
         }
 
-        const renderArguments = () => {
-            if (this.state.validation.arguments === null) {
-                return null;
-            } else {
-                return <ul>
-                    <li>
-                        <strong>Modèle :</strong>&nbsp;
-                        <a className="external-link"
-                            target="_blank"
-                            href={this.state.validation.arguments.model}>
-                                {this.state.validation.arguments.model}
-                                <span className="icon-external-link" aria-hidden="true"></span>
-                        </a>
-                    </li>
-                    <li><strong>Projection :</strong> {this.state.validation.arguments.srs}</li>
-                </ul>
-            }
-        }
-
         return (
             <div className="container-content">
-                <PageTitle title={"Validation de " + this.state.validation.dataset_name}/>
+                <PageTitle title={"Validation de " + this.state.validation.dataset_name} />
                 <div className="container-content">
-                    <div className="wysiwyg">
-                        <p>
-                            <strong>Statut : </strong>
-                            <StatusBadge status={this.state.validation.status}/>
-                        </p>
-                        {renderArguments()}
-                    </div>
+                    <ValidationProperties validation={this.state.validation} />
+                    <ValidationActions validation={this.state.validation} />
                     <ValidationReport validation={this.state.validation} />
                 </div>
             </div>

@@ -5,8 +5,8 @@ import Main from './components/Main';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 /**
-     * Global configuration
-     */
+ * Global configuration
+ */
 import config from './config';
 
 const validator = {
@@ -14,7 +14,7 @@ const validator = {
     /**
      * @param {string} validatorApiUrl
      */
-    setValidatorApiUrl(validatorApiUrl){
+    setValidatorApiUrl(validatorApiUrl) {
         config.validatorApiUrl = validatorApiUrl;
     },
 
@@ -22,10 +22,10 @@ const validator = {
         return config.validatorApiUrl;
     },
 
-     /**
-     * @param {string} validatorSpecsUrl
-     */
-    setValidatorSpecsUrl(validatorSpecsUrl){
+    /**
+    * @param {string} validatorSpecsUrl
+    */
+    setValidatorSpecsUrl(validatorSpecsUrl) {
         config.validatorSpecsUrl = validatorSpecsUrl;
     },
 
@@ -34,7 +34,7 @@ const validator = {
      * @param {object} options
      * @param {HTMLElement} options.targetElement
      */
-    createDemoApplication: function(options){
+    createDemoApplication: function (options) {
         options.targetElement = options.targetElement || document.getElementById('main');
 
         ReactDOM.render(

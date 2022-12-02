@@ -5,12 +5,13 @@
 
 Démonstrateur pour appel à l'API [IGNF/validator-api](https://github.com/IGNF/validator-api).
 
-> :warning: ce démonstrateur contient des éléments éditoriaux et une charte graphique propres à l'IGN. Il vous appartient de surcharger ces éléments si vous envisagez un déploiement public.
+> :warning: **ce démonstrateur contient des éléments éditoriaux et une charte graphique propres à l'IGN**. Il vous appartient de surcharger ces éléments si vous envisagez un déploiement public.
 
 ## Fonctionnalités
 
 * Lancer une validation sur une archive ZIP en choisissant un standard
 * Visualiser le résultat d'une validation en connaissant son identifiant
+* Télécharger les résultats
 
 ## Développement
 
@@ -24,24 +25,5 @@ npm run start
 
 ## Usage
 
-Ce démonstrateur est inclus dans [IGNF/validator-api](https://github.com/IGNF/validator-api). Si toutefois vous souhaitez déployer séparément l'API et le démonstrateur, suivez les instructions ci-dessous.
+Ce démonstrateur est inclus dans [IGNF/validator-api](https://github.com/IGNF/validator-api). Si toutefois vous souhaitez déployer séparément l'API et le démonstrateur, suivez les instructions dans la fiche [intégration dans une application existante](docs/integration-application.md)
 
-Créez un élément pour contenir le démonstrateur
-
-```html
-<div id="demo-wrapper"></div>
-```
-
-Ajoutez le script `dist/validator-client.js` (disponible directement dans les releases)
-
-Puis instanciez le `validator` en le configurant avec les URL de votre déploiement de l'API et de sa documentation swagger.
-
-```javascript
-validator.setValidatorApiUrl("https://yourinstance/api");
-validator.setValidatorSpecsUrl("https://yourinstance/api/validator-api.yml");
-validator.createDemoApplication({
-    targetElement: document.getElementById('demo-wrapper');
-});
-```
-
-Pensez à copier également les dossiers css, img et font.

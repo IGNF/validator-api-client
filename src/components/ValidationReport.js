@@ -86,6 +86,7 @@ class ValidationReport extends React.Component {
                         onRowClicked={this.onRowClicked}
                     />
                 </div>
+
             </div>
         )
     }

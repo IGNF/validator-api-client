@@ -1,6 +1,3 @@
-
-
-
 import config from '../config';
 
 async function getValidationById(uid){
