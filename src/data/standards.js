@@ -8,5 +8,11 @@ gpuStandards.forEach(function(standard){
     standard.plugins = 'CNIG';
 });
 
-const standards = [...expStandards,...gpuStandards];
+import expressStandards from './express-standards.json';
+
+const standards = [
+    ...expStandards,
+    ...expressStandards, 
+    ...gpuStandards
+];
 export default standards;
