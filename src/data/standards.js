@@ -1,5 +1,5 @@
-import expStandards from './pcrs-standard.json';
-expStandards.forEach(function(standard){
+import pcrsStandards from './pcrs-standard.json';
+pcrsStandards.forEach(function(standard){
     standard.plugins = 'PCRS';
 });
 
@@ -8,11 +8,11 @@ gpuStandards.forEach(function(standard){
     standard.plugins = 'CNIG';
 });
 
-import expressStandards from './express-standards.json';
+import naviforestStandards from './naviforest-standards.json';
 
 const standards = [
-    ...expStandards,
-    ...expressStandards, 
+    ...pcrsStandards,
+    ...naviforestStandards,
     ...gpuStandards
 ];
 export default standards;
