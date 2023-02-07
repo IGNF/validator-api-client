@@ -1,0 +1,566 @@
+[
+    {
+        "name": "cnig_CC_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2013.json"
+    },
+    {
+        "name": "cnig_CC_2014",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2014.json"
+    },
+    {
+        "name": "cnig_CC_2017",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_CC_2017.json"
+    },
+    {
+        "name": "cnig_PLU_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLU_2013.json"
+    },
+    {
+        "name": "cnig_PLU_2014",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLU_2014.json"
+    },
+    {
+        "name": "cnig_PLU_2017",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLU_2017.json"
+    },
+    {
+        "name": "cnig_PLUi_2014",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLUi_2014.json"
+    },
+    {
+        "name": "cnig_PLUi_2017",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PLUi_2017.json"
+    },
+    {
+        "name": "cnig_POS_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_POS_2013.json"
+    },
+    {
+        "name": "cnig_POS_2014",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_POS_2014.json"
+    },
+    {
+        "name": "cnig_POS_2017",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_POS_2017.json"
+    },
+    {
+        "name": "cnig_PSMV_2014",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PSMV_2014.json"
+    },
+    {
+        "name": "cnig_PSMV_2017",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_PSMV_2017.json"
+    },
+    {
+        "name": "cnig_SCoT_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SCoT_2013.json"
+    },
+    {
+        "name": "cnig_SCoT_2018",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SCoT_2018.json"
+    },
+    {
+        "name": "cnig_SUP_A10_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A10_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A6_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A6_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A7_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A7_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A7_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A7_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A8_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A8_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A8_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A8_2016.json"
+    },
+    {
+        "name": "cnig_SUP_A9_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A9_2013.json"
+    },
+    {
+        "name": "cnig_SUP_A9_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_A9_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AC1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AC1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AC2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AC2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AC3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AC3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AC4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AC4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AC4bis_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AC4bis_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AR6_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR6_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AR6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AR6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AS1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AS1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AS1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AS1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_AS2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AS2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_AS2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_AS2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL10_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL10_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL10_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL10_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL11_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL11_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL11_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL11_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL12_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL12_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL2bis_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL2bis_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL2bis_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL2bis_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL6_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL6_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL7_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL7_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL7_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL7_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL8_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL8_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL8_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL8_2016.json"
+    },
+    {
+        "name": "cnig_SUP_EL9_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL9_2013.json"
+    },
+    {
+        "name": "cnig_SUP_EL9_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_EL9_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I1bis_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I1bis_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I6_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I6_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I7_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I7_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I7_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I7_2016.json"
+    },
+    {
+        "name": "cnig_SUP_I8_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I8_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I9_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I9_2013.json"
+    },
+    {
+        "name": "cnig_SUP_I9_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_I9_2016.json"
+    },
+    {
+        "name": "cnig_SUP_INT1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_INT1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_INT1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_INT1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_JS1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_JS1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_JS1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_JS1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM1bis_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM1bis_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM1bis_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM1bis_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PM5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PM6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PM6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PT1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PT1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PT2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PT2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PT3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_PT3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_PT4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_PT4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T1_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T1_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T1_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T1_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T2_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T2_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T2_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T2_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T3_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T3_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T3_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T3_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T4_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T4_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T4_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T4_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T5_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T5_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T5_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T5_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T6_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T6_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T6_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T6_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T7_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T7_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T7_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T7_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T8_2013",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T8_2013.json"
+    },
+    {
+        "name": "cnig_SUP_T8_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T8_2016.json"
+    },
+    {
+        "name": "cnig_SUP_T9_2016",
+        "url": "https://www.geoportail-urbanisme.gouv.fr/standard/cnig_SUP_T9_2016.json"
+    }
+]

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import config from '../config';
-import standards from '../data/standards';
+import standards from '../data/standards/standards';
 import projections from '../data/projection.json';
 
 import { Redirect } from "react-router-dom";
