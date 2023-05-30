@@ -11,11 +11,15 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
         },
         {
             test: /\.css$/i,
-            use: ["style-loader", "css-loader"],
+            use: ['style-loader', 'css-loader'],
+        },
+        {
+            test: /\.md$/i,
+            use: ['raw-loader'],
         }]
     },
     optimization: {

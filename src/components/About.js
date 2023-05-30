@@ -1,6 +1,12 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
 import PageTitle from './PageTitle';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
+import remarkDirective from 'remark-directive';
+import remarkEmoji from 'remark-emoji';
+import rehypeRaw from 'rehype-raw';
+import aboutContent from '../data/content/about.md';
 
 /**
  * Page providing informations
@@ -14,22 +20,12 @@ class About extends React.Component {
         return (
             <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="A propos"/>
-                <div className="container-content">
-                    <div className="wysiwyg">
-                        <p className="lead" >Cette application permet de tester IGNF/validator-api.</p>
-
-                        <p>Les modèles proposés sont ceux des documents d'urbanisme provenant du <a href="https://www.geoportail-urbanisme.gouv.fr">Géoportail de l'urbanisme</a>* et un modèle de PCRS (Plan Corps de Rue Simplifié). </p>
-                        
-                        <p>Ce service ne nécessite aucune authentification et ne collecte donc aucune donnée personnelle.</p>
-
-                        <p>Toutes les validations sont publiques et consultables par quiconque en possède le lien.</p>
-
-                        <p>Les données ne sont pas conservées au delà d'un délai d'un mois sur le serveur, et ce quel que soit le résultat de la validation qui les concerne.</p>
-
-                        <p className="alert alert-warning" role="alert">
-                            *Attention, les documents validés par ce démonstrateur ne sont pas forcément valides pour le Géoportail de l'urbanisme, qui réalise des contrôles supplémentaires.
-                        </p>
-                    </div>
+                <div className="container-content container-content--smaller">
+                    <ReactMarkdown
+                        children={aboutContent}
+                        className="wysiwyg"
+                        remarkPlugins={[gfm, remarkDirective, remarkEmoji]}
+                        rehypePlugins={[rehypeRaw]} />
                 </div>
             </main>
         )
