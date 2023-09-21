@@ -23,6 +23,12 @@ npm run watch
 npm run start
 ```
 
+Pour une nouvelle version, penser à **mettre à jour le numéro de version** dans le `package.json` et à reconstruire `dist/validator-client.js` :
+
+```bash
+npm run build
+```
+
 ## Usage
 
 Ce démonstrateur est inclus dans [IGNF/validator-api](https://github.com/IGNF/validator-api). Si toutefois vous souhaitez déployer séparément l'API et le démonstrateur, suivez les instructions dans la fiche [intégration dans une application existante](docs/integration-application.md)

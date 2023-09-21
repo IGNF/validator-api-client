@@ -27,7 +27,7 @@ class LegalNotice extends React.Component {
                     
                         <h3>Hébergeur</h3>
 
-                        <p>Le site {url} est hébergé par Cegedim S.A., 137 rue d'Aguesseau, 92641 Boulogne-Billancourt Cedex, France.</p>
+                        <p>Le site {url} est hébergé par OVH SAS, 2 rue Kellermann, 59100 Roubaix, Fance.</p>
 
                         <h3>Droit de propriété intellectuelle</h3>
 
