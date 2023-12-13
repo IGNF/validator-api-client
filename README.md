@@ -1,6 +1,7 @@
 # IGNF/validator-api-client
 
 [![License: AGPL-3.0](https://img.shields.io/badge/License-AGPL--3.0-blue.svg)](LICENSE)
+
 ## Description
 
 Démonstrateur pour appel à l'API [IGNF/validator-api](https://github.com/IGNF/validator-api).
@@ -32,4 +33,3 @@ npm run build
 ## Usage
 
 Ce démonstrateur est inclus dans [IGNF/validator-api](https://github.com/IGNF/validator-api). Si toutefois vous souhaitez déployer séparément l'API et le démonstrateur, suivez les instructions dans la fiche [intégration dans une application existante](docs/integration-application.md)
-

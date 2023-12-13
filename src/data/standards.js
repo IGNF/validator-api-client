@@ -10,7 +10,10 @@ gpuStandards.forEach(function(standard){
 
 import naviforestStandards from './naviforest-standards.json';
 
+import planPreventionRisqueStandards from './ppr-standards.json';
+
 const standards = [
+    ...planPreventionRisqueStandards,
     ...pcrsStandards,
     ...naviforestStandards,
     ...gpuStandards
