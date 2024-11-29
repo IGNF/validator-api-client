@@ -12,9 +12,15 @@ import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
 
+import dgprStandards from './dgpr-standard.json';
+dgprStandards.forEach(function(standard){
+    standard.plugins = 'DGPR';
+});
+
 const standards = [
-    ...planPreventionRisqueStandards,
+    ...dgprStandards,
     ...pcrsStandards,
+    ...planPreventionRisqueStandards,
     ...naviforestStandards,
     ...gpuStandards
 ];
