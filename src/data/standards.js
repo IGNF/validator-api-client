@@ -15,6 +15,11 @@ import planPreventionRisqueStandards from './ppr-standards.json';
 import dgprStandards from './dgpr-standard.json';
 dgprStandards.forEach(function(standard){
     standard.plugins = 'DGPR';
+    standard.defaultArguments = {
+        'dgpr-tolerance': 10,
+        'dgpr-simplify': 2,
+        'dgpr-safe-simplify': true
+    };
 });
 
 const standards = [
