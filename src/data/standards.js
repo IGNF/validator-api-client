@@ -18,7 +18,8 @@ dgprStandards.forEach(function(standard){
     standard.defaultArguments = {
         'dgpr-tolerance': 10,
         'dgpr-simplify': 2,
-        'dgpr-safe-simplify': true
+        'dgpr-safe-simplify': true,
+        'encoding': 'LATIN1'
     };
 });
 
