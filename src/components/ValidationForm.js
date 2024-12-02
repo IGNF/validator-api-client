@@ -17,7 +17,7 @@ class ValidationForm extends React.Component {
 
         this.state = {
             file: null,
-            srs: "CRS:84",
+            srs: "EPSG:2154",
             standardIndex: 0,
             uid: null,
             error: null,

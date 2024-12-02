@@ -7,9 +7,9 @@ const Navbar = () => (
     <header className="header header-principal" role="banner">
         <div className="header-principal--left">
             <div className="header-principal__logo">
-                <Link className="header-principal__logo-link" title="Démo Validator" to="/">
+                <Link className="header-principal__logo-link" title="Validateur TRI" to="/">
                     <img src="img/logo_IGN.png" alt="Logo IGN"/>
-                    <span className="header-principal__name">Démo Validator</span>
+                    <span className="header-principal__name">Validateur TRI</span>
                 </Link>
             </div>
         </div>
