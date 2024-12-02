@@ -20,7 +20,8 @@ class ValidationForm extends React.Component {
             srs: "CRS:84",
             standardIndex: 0,
             uid: null,
-            error: null
+            error: null,
+            patience: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,10 +31,11 @@ class ValidationForm extends React.Component {
         this.onChangeSrs = this.onChangeSrs.bind(this);
     }
 
+
     async handleSubmit(event) {
         event.preventDefault();
 
-        if ( this.state.file == null ){
+        if (this.state.file == null) {
             this.setState({
                 error: 'Fichier non sélectionné'
             });
@@ -41,14 +43,18 @@ class ValidationForm extends React.Component {
         }
 
         let uid = null;
+        this.setState({
+            patience: true
+        });
         try {
             let response = await this.postFile();
             let validation = await response.json();
             uid = validation.uid;
         } catch (e) {
             this.setState({
-                error: "Problème dans l'envoi du fichier!"
-            })
+                error: "Problème dans l'envoi du fichier !",
+                patience: false
+            });
             return;
         }
 
@@ -61,8 +67,9 @@ class ValidationForm extends React.Component {
             });
         } catch (e) {
             this.setState({
-                error: "Problème dans l'envoi des paramètres!"
-            })
+                error: "Problème dans l'envoi des paramètres !",
+                patience: false
+            });
             return;
         }
     }
@@ -73,7 +80,7 @@ class ValidationForm extends React.Component {
         });
     }
 
-    onChangeSrs(event){
+    onChangeSrs(event) {
         this.setState({
             srs: event.target.value
         });
@@ -93,13 +100,12 @@ class ValidationForm extends React.Component {
         const url = `${config.validatorApiUrl}/validations/`;
 
         const formData = new FormData();
-        formData.append('dataset', this.state.file)
+        formData.append('dataset', this.state.file);
 
         return fetch(url, {
             method: 'POST',
             body: formData,
-        }
-        )
+        });
     }
 
     /**
@@ -129,7 +135,7 @@ class ValidationForm extends React.Component {
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
+        });
     }
 
     render() {
@@ -147,6 +153,10 @@ class ValidationForm extends React.Component {
             error = <div className="alert alert-danger">{this.state.error}</div>;
         }
 
+        if (this.state.patience) {
+            console.log("patience");
+        }
+
         return (
             <div className="container-fluid">
                 {error}
@@ -155,7 +165,7 @@ class ValidationForm extends React.Component {
                     <div className="form-group row">
                         <label htmlFor="standardSelect" className="col-sm-4 col-form-label">Sélectionnez un modèle de données</label>
                         <div className="col-sm-8">
-                            <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeStandard}>
+                            <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeStandard} disabled={this.state.patience}>
                                 {standards.map((standard, index) => (
                                     <option key={index} value={index}>{standard.name}</option>
                                 ))}
@@ -165,7 +175,7 @@ class ValidationForm extends React.Component {
                     <div className="form-group row">
                         <label htmlFor="srsSelect" className="col-sm-4 col-form-label">Sélectionnez la projection de vos données</label>
                         <div className="col-sm-8">
-                            <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeSrs}>
+                            <select className="form-control" name="srs" id="srsSelect" onChange={this.onChangeSrs} disabled={this.state.patience}>
                                 {projections.map((projection, index) => (
                                     <option key={index} value={projection.code}>{projection.code} - {projection.title}</option>
                                 ))}
@@ -174,14 +184,16 @@ class ValidationForm extends React.Component {
                     </div>
 
                     <div className="input-group form-group">
-                        <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} />
+                        <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} disabled={this.state.patience} />
                         <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
                             Choisissez une archive sur votre ordinateur...
                         </label>
                     </div>
 
                     <div className="form-group text-center">
-                        <button type="submit" name="archive" className="btn btn--plain btn--primary btn-width--lg">Valider</button>
+                        <button type="submit" name="archive" className="btn btn--plain btn--primary btn-width--lg" disabled={this.state.patience}>
+                            {this.state.patience ? 'Téléversement en cours...' : 'Valider'}
+                        </button>
                     </div>
                 </form>
             </div>
