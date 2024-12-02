@@ -113,7 +113,11 @@ class ValidationForm extends React.Component {
         const url = `${config.validatorApiUrl}/validations/${uid}`;
 
         const standard = standards[this.state.standardIndex];
-        let args = Object.assign(standard.defaultArguments, {
+        let args = {};
+        if (standard && standard.defaultArguments) {
+            args = standard.defaultArguments;
+        }
+        args = Object.assign(args, {
             srs: this.state.srs,
             model: standard.url,
             plugins: standard.plugins
