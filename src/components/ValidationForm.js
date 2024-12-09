@@ -167,7 +167,9 @@ class ValidationForm extends React.Component {
                         <div className="col-sm-8">
                             <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeStandard} disabled={this.state.patience}>
                                 {standards.map((standard, index) => (
-                                    <option key={index} value={index}>{standard.name}</option>
+                                    <option key={index} value={index}>
+                                        {standard.title || standard.name}
+                                    </option>
                                 ))}
                             </select>
                         </div>
