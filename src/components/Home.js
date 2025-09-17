@@ -2,14 +2,20 @@ import React from 'react';
 
 import PageTitle from './PageTitle';
 import FileUploadForm from './ValidationForm';
+import Dashboard from './Dashboard.js';
 
 class Home extends React.Component {
     render() {
         return (
             <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="Validation d'une archive"/>
-                <div className="container-content">
-                    <FileUploadForm />
+                <div className="row">
+                    <div className="col-sm-6">
+                        <FileUploadForm />
+                    </div>
+                    <div className="col-sm-6">
+                        <Dashboard />
+                    </div>
                 </div>
             </main>
         )

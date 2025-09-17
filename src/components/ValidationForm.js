@@ -21,7 +21,8 @@ class ValidationForm extends React.Component {
             standardIndex: 0,
             uid: null,
             error: null,
-            patience: false
+            patience: false,
+            keepData: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -29,6 +30,7 @@ class ValidationForm extends React.Component {
         this.onChangeFile = this.onChangeFile.bind(this);
         this.onChangeStandard = this.onChangeStandard.bind(this);
         this.onChangeSrs = this.onChangeSrs.bind(this);
+        this.onChangeKeepData = this.onChangeKeepData.bind(this);
     }
 
 
@@ -59,19 +61,6 @@ class ValidationForm extends React.Component {
         }
 
         console.log(`Validation created with uid=${uid}`);
-        try {
-            await this.patchValidation(uid);
-            this.setState({
-                uid: uid,
-                error: null
-            });
-        } catch (e) {
-            this.setState({
-                error: "Problème dans l'envoi des paramètres !",
-                patience: false
-            });
-            return;
-        }
     }
 
     onChangeStandard(event) {
@@ -92,31 +81,16 @@ class ValidationForm extends React.Component {
         $('.custom-file-label').html(event.target.files[0].name);
     }
 
+    onChangeKeepData(event) {
+        this.setState({ keepData: event.target.value });
+    }
+
     /**
      * Create the validation sending the file.
      * @returns {Promise<Response>}
      */
     postFile() {
-        const url = `${config.validatorApiUrl}/validations/`;
-
-        const formData = new FormData();
-        formData.append('dataset', this.state.file);
-
-        return fetch(url, {
-            method: 'POST',
-            body: formData,
-        });
-    }
-
-    /**
-     * Send validation parameters.
-     *
-     * @param {string} uid
-     *
-     * @returns {Promise<Response>}
-     */
-    patchValidation(uid) {
-        const url = `${config.validatorApiUrl}/validations/${uid}`;
+        const url = `${config.validatorApiUrl}/validation/create/`;
 
         const standard = standards[this.state.standardIndex];
         let args = {};
@@ -129,22 +103,18 @@ class ValidationForm extends React.Component {
             plugins: standard.plugins
         });
 
+        const formData = new FormData();
+        formData.append('dataset', this.state.file);
+        formData.append('keepData', this.state.keepData);
+        formData.append('args', args)
+
         return fetch(url, {
-            method: 'PATCH',
-            body: JSON.stringify(args),
-            headers: {
-                'Content-Type': 'application/json'
-            }
+            method: 'POST',
+            body: formData,
         });
     }
 
     render() {
-        if (this.state.uid !== null) {
-            return (
-                <Redirect push to={`/validation/${this.state.uid}`} />
-            );
-        }
-
         /*
          * display form error.
          */
@@ -190,6 +160,13 @@ class ValidationForm extends React.Component {
                         <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
                             Choisissez une archive sur votre ordinateur...
                         </label>
+                    </div>
+
+                    <div className="form-group-row">
+                        <label htmlFor="keepData" className="col-sm-4 col-form-label">Conserver les données</label>
+                        <div className='col-sm-8'>
+                            <input type="checkbox" className="form-control" name="keepData" id="keepData" onChange={this.onChangeKeepData} disabled={this.state.patience} />
+                        </div>
                     </div>
 
                     <div className="form-group text-center">
