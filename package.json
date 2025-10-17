@@ -1,7 +1,7 @@
 {
   "name": "@ignf/validator-client",
-  "version": "0.5.3",
-  "description": "Démonstrateur React pour IGNF/validator-api",
+  "version": "0.5.4",
+  "description": "Démonstrateur React pour IGNF/validator-publi",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode=production",
