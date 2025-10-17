@@ -2,7 +2,7 @@ import config from '../config';
 
 async function getValidationById(uid){
     console.log(`Get data for validation ${uid} ...`);
-    const url = `${config.validatorApiUrl}/validations/${uid}`;
+    const url = `${config.validatorApiUrl}/validation/${uid}`;
     let response = await fetch(url);
     let data = await response.json();
     if ( response.status != 200 ){

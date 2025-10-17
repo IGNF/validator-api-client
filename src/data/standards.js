@@ -24,9 +24,9 @@ dgprStandards.forEach(function(standard){
 });
 
 const standards = [
+    ...planPreventionRisqueStandards,
     ...dgprStandards,
     ...pcrsStandards,
-    ...planPreventionRisqueStandards,
     ...naviforestStandards,
     ...gpuStandards
 ];

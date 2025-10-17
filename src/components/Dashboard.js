@@ -30,14 +30,15 @@ class Dashboard extends React.Component {
     }
 
     async getValidations(user) {
-        const url = `${config.validatorPubliUrl}/user/validations/`;
+        const url = `${config.validatorPubliUrl}/validation/by-user/${user}`;
 
         try {
             const response = await fetch(url);
             if (!response.ok) {
                 this.state.error = `Response status: ${response.status}`;
             }
-            return await response.json();
+            const jsonResponse = await response.json();
+            return jsonResponse;
         } catch (error) {
             this.state.error = error.message;
             return []
@@ -57,8 +58,7 @@ class Dashboard extends React.Component {
             console.log("patience");
         }
 
-        console.log(this.state.validationArray)
-        const listComps = this.state.validationArray.map(validation => <ValidationLine {...validation}/>);
+        const listComps = this.state.validationArray.forEach(validation => <ValidationLine validation={validation}/>);
 
         return (
             <div className="container-fluid">
@@ -67,6 +67,7 @@ class Dashboard extends React.Component {
                 <table>
                     <thead>
                         <tr>
+                            <th scope="col">ID</th>
                             <th scope="col">Nom</th>
                             <th scope="col">Statut</th>
                         </tr>

@@ -22,7 +22,7 @@ class ValidationForm extends React.Component {
             uid: null,
             error: null,
             patience: false,
-            keepData: false
+            keepData: false,
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -51,7 +51,10 @@ class ValidationForm extends React.Component {
         try {
             let response = await this.postFile();
             let validation = await response.json();
-            uid = validation.uid;
+            this.setState({
+                uid: validation.uid
+            });
+
         } catch (e) {
             this.setState({
                 error: "Problème dans l'envoi du fichier !",
@@ -90,7 +93,7 @@ class ValidationForm extends React.Component {
      * @returns {Promise<Response>}
      */
     postFile() {
-        const url = `${config.validatorApiUrl}/validation/create/`;
+        const url = `${config.validatorPubliUrl}/validation/create`;
 
         const standard = standards[this.state.standardIndex];
         let args = {};
@@ -100,21 +103,27 @@ class ValidationForm extends React.Component {
         args = Object.assign(args, {
             srs: this.state.srs,
             model: standard.url,
-            plugins: standard.plugins
+            plugins: standard.plugins,
+            keepData: this.state.keepData
         });
 
         const formData = new FormData();
         formData.append('dataset', this.state.file);
-        formData.append('keepData', this.state.keepData);
-        formData.append('args', args)
+        formData.append('args', JSON.stringify(args))
 
         return fetch(url, {
             method: 'POST',
-            body: formData,
+            body: formData
         });
     }
 
     render() {
+
+        if (this.state.uid !== null) {
+            return (
+                <Redirect push to={`/validation/${this.state.uid}`} />
+            );
+        }
         /*
          * display form error.
          */
@@ -162,7 +171,7 @@ class ValidationForm extends React.Component {
                         </label>
                     </div>
 
-                    <div className="form-group-row">
+                    <div className="form-group-row" hidden>
                         <label htmlFor="keepData" className="col-sm-4 col-form-label">Conserver les données</label>
                         <div className='col-sm-8'>
                             <input type="checkbox" className="form-control" name="keepData" id="keepData" onChange={this.onChangeKeepData} disabled={this.state.patience} />

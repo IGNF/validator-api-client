@@ -1,5 +1,9 @@
 [
     {
+        "name": "Canalisations",
+        "url": "https://ignf.github.io/validator-config-dgpr/config/Canalisations/files.json"
+    },
+    {
         "name": "cnig_PPR_v1.0 - Géopackage",
         "url": "https://ignf.github.io/validator-config-ppr/config/cnig_PPR_v1.0_geopackage/files.json"
     },

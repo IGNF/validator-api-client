@@ -8,7 +8,7 @@ import PageTitle from './PageTitle';
 import ValidationActions from './ValidationActions';
 import ValidationProperties from './ValidationProperties';
 
-const STATUS_COMPLETED = ['finished', 'error'];
+const STATUS_COMPLETED = ['finished', 'error', 'archived'];
 
 class Validation extends React.Component {
     constructor(props) {
@@ -35,7 +35,7 @@ class Validation extends React.Component {
 
         getValidationById(uid).then((validation) => {
             if (!STATUS_COMPLETED.includes(validation.status)) {
-                setTimeout(this.updateData.bind(this), 1000);
+                setTimeout(this.updateData.bind(this), 2000);
             }
             this.setState({
                 validation: validation
@@ -58,10 +58,6 @@ class Validation extends React.Component {
                     </div>
                 </div>
             );
-        }
-
-        if (!this.state.validation.hasOwnProperty('arguments')) {
-            return null
         }
 
         return (

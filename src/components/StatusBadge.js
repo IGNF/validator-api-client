@@ -13,15 +13,19 @@ class StatusBadge extends React.Component {
                 badgeClass += "badge-warning";
                 badgeText = "En attente de paramètres";
                 break;
-            case "pending":
+            case "uploadable":
                 badgeClass += "badge-primary";
-                badgeText = "En attente";
+                badgeText = "En attente de l'API : transfert";
                 break;
-            case "processing":
+            case "patchable":
                 badgeClass += "badge-primary";
-                badgeText = "En cours";
+                badgeText = "En cours de l'API : attente";
                 break;
-            case "finished":
+            case "waiting_valid":
+                badgeClass += "badge-primary";
+                badgeText = "Traitement API : en cours";
+                break;
+            case "validated":
                 badgeClass += "badge-success";
                 badgeText = "Terminée";
                 break;

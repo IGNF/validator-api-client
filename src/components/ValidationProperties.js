@@ -25,8 +25,8 @@ class ValidationProperties extends React.Component {
                         <td>
                             <a className="external-link"
                                 target="_blank"
-                                href={this.props.validation.arguments.model}>
-                                {this.props.validation.arguments.model}
+                                href={this.props.validation.model}>
+                                {this.props.validation.model}
                                 <span className="icon-external-link" aria-hidden="true"></span>
                             </a>
                         </td>
@@ -34,7 +34,7 @@ class ValidationProperties extends React.Component {
                     <tr>
                         <td>Projection</td>
                         <td>
-                            {this.props.validation.arguments.srs}
+                            {this.props.validation.srs}
                         </td>
                     </tr>
                 </tbody>

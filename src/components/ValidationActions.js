@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom';
 import config from '../config';
 
 import deleteValidationById from '../api/deleteValidationById';
-
+import downloadValidationById from '../api/downloadValidationById';
 
 /**
  * Affichage des actions possibles sur la validation
@@ -17,15 +17,11 @@ class ValidationActions extends React.Component {
     }
 
     render() {
-        if ( this.props.validation.status !== 'finished' ){
+        if ( this.props.validation.status !== 'archived' ){
             return null;
         }
 
         const uid = this.props.validation.uid;
-
-        const csvLink = `${config.validatorApiUrl}/validations/${uid}/results.csv`;
-        const sourceLink = `${config.validatorApiUrl}/validations/${uid}/files/source`;
-        const normalizedLink = `${config.validatorApiUrl}/validations/${uid}/files/normalized`;
 
         return (
             <table className="table table-striped">
@@ -33,13 +29,13 @@ class ValidationActions extends React.Component {
                     <tr>
                         <td className="col-2">Actions</td>
                         <td>
-                            <a href={csvLink}>Télécharger le rapport au format CSV</a><br />
-                            <a href={sourceLink}>Télécharger les fichiers sources</a><br />
-                            <a href={normalizedLink}>Télécharger les fichiers normalisés</a><br />
-
                             <a href="#" onClick={this.onClickDelete}>
-                                <span className="icon-trash"></span>
-                                Supprimer la validation
+                                Supprimer le rapport de validation
+                            </a>
+                        </td>
+                        <td>
+                            <a href="#" onClick={this.onClickDownloadCSV(uid)}>
+                                Télécharger le rapport de validation en csv
                             </a>
                         </td>
                     </tr>
@@ -57,6 +53,27 @@ class ValidationActions extends React.Component {
         }).catch((error) => {
             console.log(error);
         });
+    }
+
+    onClickDownloadCSV(uid) {
+        return () => {
+            downloadValidationById(uid)
+                .then((blob) => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+
+                    a.download = 'results.csv';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch((error) => {
+                    console.log("error")
+                    console.log(error);
+            });
+        }
     }
 }
 
