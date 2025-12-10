@@ -24,10 +24,10 @@ dgprStandards.forEach(function(standard){
 });
 
 const standards = [
-    ...dgprStandards,
-    ...pcrsStandards,
+    //...dgprStandards,
+    //...pcrsStandards,
     ...planPreventionRisqueStandards,
-    ...naviforestStandards,
-    ...gpuStandards
+    //...naviforestStandards,
+    //...gpuStandards
 ];
 export default standards;
