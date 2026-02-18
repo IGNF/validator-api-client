@@ -11,8 +11,8 @@ gpuStandards.forEach(function (standard) {
 import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
-planPreventionRisqueStandards.forEach((standard) => {
-    standard.defaultArguments = { 'delete-data': true }
+planPreventionRisqueStandards.forEach(function (standard) {
+    standard.defaultArguments = { 'delete-data': true };
 })
 
 import dgprStandards from './dgpr-standard.json';
