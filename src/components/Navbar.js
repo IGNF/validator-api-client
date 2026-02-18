@@ -10,7 +10,7 @@ const Navbar = () => (
         <div className="header-principal--left">
             <div className="header-principal__logo">
                 <Link className="header-principal__logo-link" title="Démo Validateur" to="/">
-                    <img src="img/logo_IGN.png" alt="Logo IGN"/>
+                    <img src="img/logo_IGN.png" alt="Logo IGN" />
                     <span className="header-principal__name">Démo Validateur</span>
                 </Link>
             </div>

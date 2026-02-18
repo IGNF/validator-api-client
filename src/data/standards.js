@@ -1,19 +1,22 @@
 import pcrsStandards from './pcrs-standard.json';
-pcrsStandards.forEach(function(standard){
+pcrsStandards.forEach(function (standard) {
     standard.plugins = 'PCRS';
 });
 
 import gpuStandards from './gpu-standards.json';
-gpuStandards.forEach(function(standard){
+gpuStandards.forEach(function (standard) {
     standard.plugins = 'CNIG';
 });
 
 import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
+planPreventionRisqueStandards.forEach((standard) => {
+    standard.deleteData = true
+})
 
 import dgprStandards from './dgpr-standard.json';
-dgprStandards.forEach(function(standard){
+dgprStandards.forEach(function (standard) {
     standard.plugins = 'DGPR';
     standard.defaultArguments = {
         'dgpr-tolerance': 10,
@@ -24,10 +27,10 @@ dgprStandards.forEach(function(standard){
 });
 
 const standards = [
-    //...dgprStandards,
-    //...pcrsStandards,
     ...planPreventionRisqueStandards,
-    //...naviforestStandards,
-    //...gpuStandards
+    ...dgprStandards,
+    ...pcrsStandards,
+    ...naviforestStandards,
+    ...gpuStandards
 ];
 export default standards;
