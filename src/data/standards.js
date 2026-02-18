@@ -12,7 +12,7 @@ import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
 planPreventionRisqueStandards.forEach((standard) => {
-    standard.deleteData = true
+    standard.defaultArguments = { 'delete-data': true }
 })
 
 import dgprStandards from './dgpr-standard.json';
