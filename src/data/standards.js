@@ -12,7 +12,9 @@ import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
 planPreventionRisqueStandards.forEach(function (standard) {
-    standard.defaultArguments = { 'delete-data': true };
+    if (standard.name == "Canalisations") {
+        standard.defaultArguments = { 'delete-data': true };
+    }
 })
 
 import dgprStandards from './dgpr-standard.json';
@@ -28,7 +30,7 @@ dgprStandards.forEach(function (standard) {
 
 const standards = [
     ...planPreventionRisqueStandards,
-    ...dgprStandards,
+    // ...dgprStandards,
     ...pcrsStandards,
     ...naviforestStandards,
     ...gpuStandards
