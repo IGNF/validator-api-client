@@ -1,6 +1,5 @@
 import React from 'react';
-import SwaggerUi from 'swagger-ui';
-import 'swagger-ui/dist/swagger-ui.css';
+// Lazy-load swagger-ui bundle and css to reduce initial bundle size
 import config from '../config';
 
 class Swagger extends React.Component {
@@ -9,10 +8,19 @@ class Swagger extends React.Component {
     }
 
     componentDidMount() {
-        SwaggerUi({
-            dom_id: '#swagger-ui-container',
-            url: `${config.validatorSpecsUrl}`,
-            presets: [SwaggerUi.presets.apis],
+        // Dynamically import bundle and css so webpack code-splits them
+        Promise.all([
+            import('swagger-ui-dist/swagger-ui-bundle.js'),
+            import('swagger-ui-dist/swagger-ui.css')
+        ]).then(([mod]) => {
+            const SwaggerUI = mod.default || mod;
+            SwaggerUI({
+                dom_id: '#swagger-ui-container',
+                url: `${config.validatorSpecsUrl}`,
+                presets: [SwaggerUI.presets.apis],
+            });
+        }).catch(err => {
+            console.error('Failed to load Swagger UI bundle', err);
         });
     }
 

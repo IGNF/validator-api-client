@@ -9,9 +9,9 @@ const Navbar = () => (
     <header className="header header-principal" role="banner">
         <div className="header-principal--left">
             <div className="header-principal__logo">
-                <Link className="header-principal__logo-link" title="Démo Validateur" to="/">
+                <Link className="header-principal__logo-link" title="Validateur" to="/">
                     <img src="img/logo_IGN.png" alt="Logo IGN" />
-                    <span className="header-principal__name">Démo Validateur</span>
+                    <span className="header-principal__name">Validateur</span>
                 </Link>
             </div>
         </div>

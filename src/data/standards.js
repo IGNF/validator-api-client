@@ -30,7 +30,7 @@ dgprStandards.forEach(function (standard) {
 
 const standards = [
     ...planPreventionRisqueStandards,
-    // ...dgprStandards,
+    ...dgprStandards,
     ...pcrsStandards,
     ...naviforestStandards,
     ...gpuStandards

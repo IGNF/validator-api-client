@@ -1,0 +1,5 @@
+/* Matches bootstrap's .lead style, applied to the intro paragraph of about.md */
+.wysiwyg > p:first-of-type {
+    font-size: 1.25rem;
+    font-weight: 300;
+}

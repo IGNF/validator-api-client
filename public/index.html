@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie-edge">
 
     <!-- TODO: Définir le nom de l'application selon une variable d'environnement. -->
-    <title>IGN - Démo Validator</title>
+    <title>IGN - Validateur</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
         integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
@@ -36,6 +36,8 @@
         integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg=="
         crossorigin="anonymous"></script>
 
+    <script src="/dist/runtime.validator-client.js"></script>
+    <script src="/dist/vendors.validator-client.js"></script>
     <script src="/dist/validator-client.js"></script>
     <script>
         /*
@@ -43,7 +45,7 @@
          * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
          */
         validator.setValidatorApiUrl("http://localhost:8000/api");
-        validator.setValidatorSpecsUrl("http://localhost:8000/api/validator-api.yml");
+        validator.setValidatorSpecsUrl("/proxy/spec");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
             targetElement: document.getElementById('main')

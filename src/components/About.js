@@ -1,9 +1,18 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import { marked } from 'marked';
 import PageTitle from './PageTitle';
+import aboutContent from '../data/about.md';
+import './About.css';
+
+// Render blockquotes ("> ...") as bootstrap warning callouts, matching the demo's style.
+const renderer = new marked.Renderer();
+renderer.blockquote = ({ tokens }) => `<p class="alert alert-warning" role="alert">${marked.parser(tokens).replace(/^<p>|<\/p>\n?$/g, '')}</p>`;
+
+const aboutHtml = marked.parse(aboutContent, { renderer });
 
 /**
- * Page providing informations
+ * Page providing informations, content editable in src/data/about.md
  */
 class About extends React.Component {
     constructor(props) {
@@ -15,21 +24,7 @@ class About extends React.Component {
             <main className="main" role="main" tabIndex="-1">
                 <PageTitle title="A propos"/>
                 <div className="container-content">
-                    <div className="wysiwyg">
-                        <p className="lead" >Cette application permet de tester IGNF/validator-api.</p>
-
-                        <p>Les modèles proposés sont ceux des documents d'urbanisme provenant du <a href="https://www.geoportail-urbanisme.gouv.fr">Géoportail de l'urbanisme</a>* et un modèle de PCRS (Plan Corps de Rue Simplifié). </p>
-                        
-                        <p>Ce service ne nécessite aucune authentification et ne collecte donc aucune donnée personnelle.</p>
-
-                        <p>Toutes les validations sont publiques et consultables par quiconque en possède le lien.</p>
-
-                        <p>Les données ne sont pas conservées au delà d'un délai d'un mois sur le serveur, et ce quel que soit le résultat de la validation qui les concerne.</p>
-
-                        <p className="alert alert-warning" role="alert">
-                            *Attention, les documents validés par ce démonstrateur ne sont pas forcément valides pour le Géoportail de l'urbanisme, qui réalise des contrôles supplémentaires.
-                        </p>
-                    </div>
+                    <div className="wysiwyg" dangerouslySetInnerHTML={{ __html: aboutHtml }} />
                 </div>
             </main>
         )

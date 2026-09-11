@@ -25,6 +25,7 @@ class ValidationProperties extends React.Component {
                         <td>
                             <a className="external-link"
                                 target="_blank"
+                                rel="noopener noreferrer"
                                 href={this.props.validation.arguments.model}>
                                 {this.props.validation.arguments.model}
                                 <span className="icon-external-link" aria-hidden="true"></span>

@@ -16,7 +16,7 @@ class Footer extends React.Component {
                                     <Link to="/legal-notice" >Mentions légales</Link>
                                 </li>
                                 <li className="footer-list-item">
-                                    <a href="https://github.com/IGNF/validator-api" target="_blank">Code source</a>
+                                    <a href="https://github.com/IGNF/validator-api" target="_blank" rel="noopener noreferrer">Code source</a>
                                 </li>
                             </ul>
                         </footer>

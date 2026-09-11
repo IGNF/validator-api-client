@@ -27,6 +27,7 @@ class ValidationForm extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.postFile = this.postFile.bind(this);
         this.onChangeFile = this.onChangeFile.bind(this);
+        this.fileLabelRef = React.createRef();
         this.onChangeStandard = this.onChangeStandard.bind(this);
         this.onChangeSrs = this.onChangeSrs.bind(this);
     }
@@ -89,7 +90,9 @@ class ValidationForm extends React.Component {
 
     onChangeFile(event) {
         this.setState({ file: event.target.files[0] });
-        $('.custom-file-label').html(event.target.files[0].name);
+        if (this.fileLabelRef && this.fileLabelRef.current) {
+            this.fileLabelRef.current.textContent = event.target.files[0].name;
+        }
     }
 
     /**
@@ -187,7 +190,7 @@ class ValidationForm extends React.Component {
 
                     <div className="input-group form-group">
                         <input type="file" className="custom-file-input" id="fileInput" accept="application/zip" onChange={this.onChangeFile} disabled={this.state.patience} />
-                        <label className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
+                        <label ref={this.fileLabelRef} className="custom-file-label" htmlFor="fileInput" placeholder="Ouvrir...">
                             Choisissez une archive sur votre ordinateur...
                         </label>
                     </div>
