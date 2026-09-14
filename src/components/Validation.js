@@ -1,5 +1,5 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import ValidationReport from './ValidationReport';
 
 import getValidationById from '../api/getValidationById';
@@ -10,72 +10,61 @@ import ValidationProperties from './ValidationProperties';
 
 const STATUS_COMPLETED = ['finished', 'error'];
 
-class Validation extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            validation: {},
-            error: null
-        }
-    }
+function Validation() {
+    const { uid } = useParams();
+    const [validation, setValidation] = useState({});
+    const [error, setError] = useState(null);
 
-    componentDidMount() {
-        this.updateData();
-    }
+    useEffect(() => {
+        let cancelled = false;
+        let timeoutId;
 
-    getValidationId() {
-        return this.props.match.params.uid;
-    }
-
-    /**
-     * Upload validation data.
-     */
-    updateData() {
-        const uid = this.getValidationId();
-
-        getValidationById(uid).then((validation) => {
-            if (!STATUS_COMPLETED.includes(validation.status)) {
-                setTimeout(this.updateData.bind(this), 1000);
-            }
-            this.setState({
-                validation: validation
+        function updateData() {
+            getValidationById(uid).then((data) => {
+                if (cancelled) return;
+                if (!STATUS_COMPLETED.includes(data.status)) {
+                    timeoutId = setTimeout(updateData, 1000);
+                }
+                setValidation(data);
+            }).catch((err) => {
+                if (cancelled) return;
+                console.log(err);
+                setError(err);
             });
-        }).catch((error) => {
-            console.log(error);
-            this.setState({
-                error: error
-            });
-        });
-    }
-
-
-    render() {
-        if (this.state.error != null) {
-            return (
-                <div className="container-content pt-1">
-                    <div className="alert alert-danger">
-                        {this.state.error.message}
-                    </div>
-                </div>
-            );
         }
 
-        if (!this.state.validation.hasOwnProperty('arguments')) {
-            return null
-        }
+        updateData();
 
+        return () => {
+            cancelled = true;
+            clearTimeout(timeoutId);
+        };
+    }, [uid]);
+
+    if (error != null) {
         return (
-            <div className="container-content">
-                <PageTitle title={"Validation de " + this.state.validation.dataset_name} />
-                <div className="container-content">
-                    <ValidationProperties validation={this.state.validation} />
-                    <ValidationActions validation={this.state.validation} />
-                    <ValidationReport validation={this.state.validation} />
+            <div className="container-content pt-1">
+                <div className="alert alert-danger">
+                    {error.message}
                 </div>
             </div>
-        )
+        );
     }
 
+    if (!validation.hasOwnProperty('arguments')) {
+        return null
+    }
+
+    return (
+        <div className="container-content">
+            <PageTitle title={"Validation de " + validation.dataset_name} />
+            <div className="container-content">
+                <ValidationProperties validation={validation} />
+                <ValidationActions validation={validation} />
+                <ValidationReport validation={validation} />
+            </div>
+        </div>
+    )
 }
 
-export default withRouter(Validation);
+export default Validation;

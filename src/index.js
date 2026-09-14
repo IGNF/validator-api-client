@@ -1,10 +1,9 @@
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 const React = require('react');
-const ReactDOM = require('react-dom');
+const { createRoot } = require('react-dom/client');
 
 import Main from './components/Main';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 /**
  * Global configuration
@@ -39,12 +38,7 @@ const validator = {
     createDemoApplication: function (options) {
         options.targetElement = options.targetElement || document.getElementById('main');
 
-        ReactDOM.render(
-            <BrowserRouter>
-                <Main />
-            </BrowserRouter>,
-            options.targetElement
-        );
+        createRoot(options.targetElement).render(<Main />);
     }
 };
 

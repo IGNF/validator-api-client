@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import { marked } from 'marked';
 import PageTitle from './PageTitle';
 import aboutContent from '../data/about.md';
@@ -31,4 +30,4 @@ class About extends React.Component {
     }
 }
 
-export default withRouter(About);
+export default About;

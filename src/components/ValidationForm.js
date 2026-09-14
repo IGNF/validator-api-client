@@ -4,7 +4,7 @@ import config from '../config';
 import standards from '../data/standards';
 import projections from '../data/projection.json';
 
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import "./ValidationForm.css";
 
@@ -144,7 +144,7 @@ class ValidationForm extends React.Component {
     render() {
         if (this.state.uid !== null) {
             return (
-                <Redirect push to={`/validation/${this.state.uid}`} />
+                <Navigate to={`/validation/${this.state.uid}`} />
             );
         }
 

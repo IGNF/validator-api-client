@@ -1,5 +1,4 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
 import PageTitle from './PageTitle';
 
 /**
@@ -45,4 +44,4 @@ class LegalNotice extends React.Component {
     }
 }
 
-export default withRouter(LegalNotice);
+export default LegalNotice;
