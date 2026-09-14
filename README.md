@@ -33,3 +33,7 @@ npm run build
 ## Usage
 
 Ce démonstrateur est inclus dans [IGNF/validator-api](https://github.com/IGNF/validator-api). Si toutefois vous souhaitez déployer séparément l'API et le démonstrateur, suivez les instructions dans la fiche [intégration dans une application existante](docs/integration-application.md)
+
+## Licence
+
+Ce paquet est publié sous licence [AGPL-3.0-or-later](LICENSE). Lorsqu'il est intégré comme dépendance d'une application tierce (par exemple le backend d'IGNF/validator-api), la compatibilité de cette licence avec le mode de distribution de l'application hôte est à valider par les équipes concernées.
