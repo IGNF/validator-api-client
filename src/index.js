@@ -1,5 +1,3 @@
-import 'core-js/stable';
-import 'regenerator-runtime/runtime';
 const React = require('react');
 const { createRoot } = require('react-dom/client');
 

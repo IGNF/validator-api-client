@@ -8,14 +8,14 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Security and performance middlewares
-const VALIDATOR_API_ORIGIN = process.env.VALIDATOR_API_URL || 'http://localhost:8000';
+const VALIDATOR_API_ORIGIN = process.env.VALIDATOR_API_URL || 'https://127.0.0.1:8001';
 app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
             scriptSrc: ["'self'", "'unsafe-inline'", 'https://cdnjs.cloudflare.com'],
             styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
-            connectSrc: ["'self'", 'http://localhost:8000', 'https://localhost:8000'],
+            connectSrc: ["'self'", VALIDATOR_API_ORIGIN],
         },
     },
 }));

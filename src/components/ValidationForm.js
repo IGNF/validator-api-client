@@ -2,11 +2,25 @@ import React from 'react';
 
 import config from '../config';
 import standards from '../data/standards';
+
 import projections from '../data/projection.json';
 
 import { Navigate } from "react-router-dom";
 
 import "./ValidationForm.css";
+
+/*
+ * Standards grouped by category, keeping their index in `standards` as option value.
+ */
+const standardGroups = standards.reduce(function (groups, standard, index) {
+    let group = groups.find((g) => g.label === standard.category);
+    if (!group) {
+        group = { label: standard.category, options: [] };
+        groups.push(group);
+    }
+    group.options.push({ standard, index });
+    return groups;
+}, []);
 
 /**
  * Formulaire de création d'une nouvelle validation.
@@ -169,10 +183,14 @@ class ValidationForm extends React.Component {
                         <label htmlFor="standardSelect" className="col-sm-4 col-form-label">Sélectionnez un modèle de données</label>
                         <div className="col-sm-8">
                             <select className="form-control" name="model" id="standardSelect" onChange={this.onChangeStandard} disabled={this.state.patience}>
-                                {standards.map((standard, index) => (
-                                    <option key={index} value={index}>
-                                        {standard.title || standard.name}
-                                    </option>
+                                {standardGroups.map((group) => (
+                                    <optgroup key={group.label} label={group.label}>
+                                        {group.options.map(({ standard, index }) => (
+                                            <option key={index} value={index}>
+                                                {standard.title || standard.name}
+                                            </option>
+                                        ))}
+                                    </optgroup>
                                 ))}
                             </select>
                         </div>

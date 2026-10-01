@@ -1,0 +1,10 @@
+/* Sticky footer: the wrapper fills the viewport (minus its navbar offset) and pushes the footer down */
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 7.1rem);
+}
+
+.body-wrapper > .footer {
+    margin-top: auto;
+}

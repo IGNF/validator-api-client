@@ -19,6 +19,7 @@
         href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
 
     <link rel="stylesheet" href="css/style-carto.css"/>
+    <link rel="stylesheet" href="css/app.css"/>
 
 </head>
 
@@ -46,7 +47,8 @@
          * Valeur par défaut correspondant à IGNF/validator-api lancée séparément
          * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
          */
-        validator.setValidatorApiUrl("http://localhost:8000/api");
+        validator.setValidatorApiUrl("https://127.0.0.1:8001/api");
+        // Spec servie via le proxy de server.js (évite CORS et le certificat auto-signé)
         validator.setValidatorSpecsUrl("/proxy/spec");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({

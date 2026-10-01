@@ -15,6 +15,7 @@
     "build": "NODE_ENV=production webpack --mode=production",
     "build-dev": "NODE_ENV=development webpack --mode=development",
     "watch": "NODE_ENV=development webpack --mode=development --watch",
+    "start": "node server.js",
     "test": "jest"
   },
   "repository": {
@@ -25,35 +26,31 @@
   "license": "AGPL-3.0-or-later",
   "private": true,
   "devDependencies": {
-    "@babel/core": "^8.0.5",
+    "@babel/core": "^8.0.6",
     "@babel/plugin-transform-modules-commonjs": "^8.0.1",
     "@babel/preset-react": "^8.0.1",
-    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/dom": "^10.4.2",
+    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
-    "babel-jest": "^30.5.1",
+    "babel-jest": "^30.5.2",
     "babel-loader": "^10.1.1",
     "css-loader": "^7.1.5",
-    "express": "^5.2.1",
-    "jest": "^30.5.1",
-    "jest-environment-jsdom": "^30.5.1",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
-    "react-router-dom": "^7.18.3",
+    "react-router-dom": "^7.18.4",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.44.0",
+    "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3"
   },
   "dependencies": {
     "compression": "^1.8.2",
-    "core-js": "^3.50.0",
+    "express": "^5.2.1",
     "helmet": "^8.3.0",
-    "js-yaml": "^5.4.1",
-    "marked": "^18.0.12",
-    "qs": "^6.16.0",
-    "react-data-table-component": "^8.10.0",
-    "regenerator-runtime": "^0.14.1",
-    "styled-components": "^6.5.3",
-    "swagger-ui-dist": "^5.32.15"
+    "marked": "^18.0.14",
+    "react-data-table-component": "^8.11.0",
+    "swagger-ui-dist": "^5.33.1"
   }
 }
