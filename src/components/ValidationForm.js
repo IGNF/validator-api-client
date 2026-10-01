@@ -1,6 +1,8 @@
 import React from 'react';
 
 import config from '../config';
+import readJsonResponse from '../api/readJsonResponse';
+import { getFilenameError } from '../data/datasetName';
 import standards from '../data/standards';
 
 import projections from '../data/projection.json';
@@ -57,17 +59,24 @@ class ValidationForm extends React.Component {
             return;
         }
 
+        const filenameError = getFilenameError(this.state.file.name);
+        if (filenameError) {
+            this.setState({
+                error: filenameError
+            });
+            return;
+        }
+
         let uid = null;
         this.setState({
             patience: true
         });
         try {
-            let response = await this.postFile();
-            let validation = await response.json();
+            const validation = await readJsonResponse(await this.postFile());
             uid = validation.uid;
         } catch (e) {
             this.setState({
-                error: "Problème dans l'envoi du fichier !",
+                error: `Problème dans l'envoi du fichier : ${e.message}`,
                 patience: false
             });
             return;
@@ -75,14 +84,14 @@ class ValidationForm extends React.Component {
 
         console.log(`Validation created with uid=${uid}`);
         try {
-            await this.patchValidation(uid);
+            await readJsonResponse(await this.patchValidation(uid));
             this.setState({
                 uid: uid,
                 error: null
             });
         } catch (e) {
             this.setState({
-                error: "Problème dans l'envoi des paramètres !",
+                error: `Problème dans l'envoi des paramètres : ${e.message}`,
                 patience: false
             });
             return;
@@ -103,9 +112,14 @@ class ValidationForm extends React.Component {
 
 
     onChangeFile(event) {
-        this.setState({ file: event.target.files[0] });
+        const file = event.target.files[0];
+        // warn as soon as the file is selected if its name will be rejected by the API
+        this.setState({
+            file: file,
+            error: file ? getFilenameError(file.name) : null
+        });
         if (this.fileLabelRef && this.fileLabelRef.current) {
-            this.fileLabelRef.current.textContent = event.target.files[0].name;
+            this.fileLabelRef.current.textContent = file ? file.name : 'Choisissez une archive sur votre ordinateur...';
         }
     }
 

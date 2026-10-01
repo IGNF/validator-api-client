@@ -1,15 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import config from '../config';
 
 import deleteValidationById from '../api/deleteValidationById';
+import getAvailableDownloads from '../api/getAvailableDownloads';
 
 /**
  * Affichage des actions possibles sur la validation
  */
 function ValidationActions({ validation }) {
     const navigate = useNavigate();
+    // source and normalized data downloads can be disabled by the API
+    const [downloads, setDownloads] = useState({ source: false, normalized: false });
+
+    useEffect(() => {
+        let cancelled = false;
+        getAvailableDownloads().then((available) => {
+            if (!cancelled) {
+                setDownloads(available);
+            }
+        });
+        return () => {
+            cancelled = true;
+        };
+    }, []);
 
     if (validation.status !== 'finished') {
         return null;
@@ -39,8 +54,12 @@ function ValidationActions({ validation }) {
                     <td className="col-2">Actions</td>
                     <td>
                         <a href={csvLink}>Télécharger le rapport au format CSV</a><br />
-                        <a href={sourceLink}>Télécharger les fichiers sources</a><br />
-                        <a href={normalizedLink}>Télécharger les fichiers normalisés</a><br />
+                        {downloads.source && (
+                            <><a href={sourceLink}>Télécharger les fichiers sources</a><br /></>
+                        )}
+                        {downloads.normalized && (
+                            <><a href={normalizedLink}>Télécharger les fichiers normalisés</a><br /></>
+                        )}
 
                         <a href="#" onClick={onClickDelete}>
                             <span className="icon-trash"></span>

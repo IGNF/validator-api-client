@@ -56,17 +56,20 @@ class ValidationReport extends React.Component {
             }
         ];
 
+        // zip pre-validation errors (file, code, message) have no level : they are errors
+        const levelOf = row => row.level || 'ERROR';
+
         const conditionalRowStyles = [
             {
-                when: row => row.level === 'WARNING',
+                when: row => levelOf(row) === 'WARNING',
                 style: { backgroundColor: '#fcf8e3' },
             },
             {
-                when: row => row.level === 'ERROR',
+                when: row => levelOf(row) === 'ERROR',
                 style: { backgroundColor: '#f2dede' },
             },
             {
-                when: row => row.level === 'INFO',
+                when: row => levelOf(row) === 'INFO',
                 style: { backgroundColor: '#eeeeee' },
             },
         ];
