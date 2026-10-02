@@ -31,7 +31,13 @@ function ValidationActions({ validation }) {
     const [deleteError, setDeleteError] = useState(null);
     const [deleting, setDeleting] = useState(false);
 
+    const finished = validation.status === 'finished';
+
+    // data downloads are only offered for finished validations
     useEffect(() => {
+        if (!finished) {
+            return;
+        }
         let cancelled = false;
         getAvailableDownloads().then((available) => {
             if (!cancelled) {
@@ -41,9 +47,8 @@ function ValidationActions({ validation }) {
         return () => {
             cancelled = true;
         };
-    }, []);
+    }, [finished]);
 
-    const finished = validation.status === 'finished';
     if (!finished && validation.status !== 'error') {
         return null;
     }

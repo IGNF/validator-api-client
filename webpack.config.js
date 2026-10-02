@@ -1,7 +1,7 @@
 const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: './src/index.js',
     output: {
         filename: 'validator-client.js',
@@ -13,7 +13,10 @@ module.exports = {
         rules: [{
             test: /\.js$/,
             exclude: /node_modules/,
-            loader: 'babel-loader'
+            loader: 'babel-loader',
+            // Babel follows the webpack mode (otherwise, without NODE_ENV, the JSX is compiled for
+            // development and calls jsxDEV, which is missing from the production build of React)
+            options: { envName: argv.mode },
         },
         {
             test: /\.css$/i,
@@ -40,4 +43,4 @@ module.exports = {
         maxAssetSize: 600 * 1024,
         maxEntrypointSize: 600 * 1024,
     },
-};
+});
