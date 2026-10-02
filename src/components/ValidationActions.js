@@ -60,7 +60,7 @@ function ValidationActions({ validation }) {
         deleteValidationById(uid).then(() => {
             navigate('/');
         }).catch((error) => {
-            console.log(error);
+            console.error(error);
             setDeleteError(error.message || 'La suppression a échoué');
             setDeleting(false);
         });

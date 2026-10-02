@@ -29,7 +29,7 @@ function Validation() {
                 setValidation(data);
             }).catch((err) => {
                 if (cancelled) return;
-                console.log(err);
+                console.error(err);
                 setError(err);
             });
         }

@@ -77,7 +77,7 @@ describe('ValidationActions', () => {
         getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
         deleteValidationById.mockRejectedValue(new Error('Validation is being processed, retry later'));
         jest.spyOn(window, 'confirm').mockReturnValue(true);
-        jest.spyOn(console, 'log').mockImplementation(() => {});
+        jest.spyOn(console, 'error').mockImplementation(() => {});
 
         renderActions();
         fireEvent.click(await screen.findByText('Supprimer'));

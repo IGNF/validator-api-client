@@ -34,7 +34,7 @@ describe('getAvailableDownloads', () => {
     beforeEach(() => {
         resetAvailableDownloads();
         global.fetch = jest.fn();
-        jest.spyOn(console, 'log').mockImplementation(() => {});
+        jest.spyOn(console, 'warn').mockImplementation(() => {});
     });
 
     it('enables downloads listed in the API specification', async () => {

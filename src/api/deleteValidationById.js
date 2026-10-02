@@ -5,7 +5,6 @@ import config from '../config';
  * (ex : 409 if the validation is being processed).
  */
 async function deleteValidationById(uid){
-    console.log(`Delete validation ${uid} ...`);
     const url = `${config.validatorApiUrl}/validations/${uid}`;
     let response = await fetch(url,{
         method: 'DELETE'

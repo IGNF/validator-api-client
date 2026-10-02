@@ -21,7 +21,6 @@ function renderForm() {
 describe('ValidationForm', () => {
     beforeEach(() => {
         global.fetch = jest.fn();
-        jest.spyOn(console, 'log').mockImplementation(() => {});
     });
 
     it('warns as soon as a file with an invalid name is selected', () => {

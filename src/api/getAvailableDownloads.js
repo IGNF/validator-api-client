@@ -38,7 +38,7 @@ function getAvailableDownloads() {
                 };
             })
             .catch((error) => {
-                console.log('Fail to read API specification, downloads are disabled', error);
+                console.warn('Fail to read API specification, downloads are disabled', error);
                 return NO_DOWNLOAD;
             });
     }

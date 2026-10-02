@@ -3,8 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta http-equiv="x-ua-compatible" content="ie-edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- TODO: Définir le nom de l'application selon une variable d'environnement. -->
     <title>IGN - Validateur</title>
@@ -29,12 +28,11 @@
     <script>
         /*
          * Valeur par défaut correspondant à IGNF/validator-api lancée séparément
-         * (à adapter à l'aide d'une template twig dans IGNF/validator-api)
+         * (IGNF/validator-api utilise sa propre template twig)
          */
         validator.setValidatorApiUrl("https://127.0.0.1:8001/api");
         // Spec servie via le proxy de server.js (évite CORS et le certificat auto-signé)
         validator.setValidatorSpecsUrl("/api/validator-api.yml");
-        // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
             targetElement: document.getElementById('main'),
             // URLs sans "#" : server.js renvoie index.html pour toutes les routes

@@ -3,7 +3,6 @@ import deleteValidationById from '../deleteValidationById';
 describe('deleteValidationById', () => {
     beforeEach(() => {
         global.fetch = jest.fn();
-        jest.spyOn(console, 'log').mockImplementation(() => {});
     });
 
     it('resolves when the API confirms deletion with a 204', async () => {

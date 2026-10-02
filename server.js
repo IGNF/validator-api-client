@@ -14,7 +14,8 @@ app.use(helmet({
         directives: {
             defaultSrc: ["'self'"],
             scriptSrc: ["'self'", "'unsafe-inline'"],
-            styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
+            // 'unsafe-inline' : styles injected by style-loader and swagger-ui
+            styleSrc: ["'self'", "'unsafe-inline'"],
             connectSrc: ["'self'", VALIDATOR_API_ORIGIN],
         },
     },

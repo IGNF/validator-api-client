@@ -1,6 +1,6 @@
 {
   "name": "@ignf/validator-client",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "Démonstrateur React pour IGNF/validator-api",
   "main": "dist/validator-client.js",
   "files": [
@@ -12,9 +12,9 @@
     "README.md"
   ],
   "scripts": {
-    "build": "NODE_ENV=production webpack --mode=production",
-    "build-dev": "NODE_ENV=development webpack --mode=development",
-    "watch": "NODE_ENV=development webpack --mode=development --watch",
+    "build": "webpack --mode=production",
+    "build-dev": "webpack --mode=development",
+    "watch": "webpack --mode=development --watch",
     "start": "node server.js",
     "test": "jest"
   },
@@ -25,6 +25,9 @@
   "author": "IGNF",
   "license": "AGPL-3.0-or-later",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "devDependencies": {
     "@babel/core": "^8.0.6",
     "@babel/plugin-transform-dynamic-import": "^8.0.1",

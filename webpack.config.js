@@ -2,7 +2,7 @@ const path = require('path');
 const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
-    entry: ['./src/index.js'],
+    entry: './src/index.js',
     output: {
         filename: 'validator-client.js',
         chunkFilename: '[name].validator-client.js',
@@ -32,5 +32,12 @@ module.exports = {
         minimizer: [new TerserPlugin({
             extractComments: false,
         })],
-    }
+    },
+    // The single bundle (React included) and the lazy-loaded swagger-ui chunk exceed webpack's
+    // default 244 KiB budget by design : warn only if the main bundle grows significantly.
+    performance: {
+        assetFilter: (assetFilename) => assetFilename === 'validator-client.js',
+        maxAssetSize: 600 * 1024,
+        maxEntrypointSize: 600 * 1024,
+    },
 };

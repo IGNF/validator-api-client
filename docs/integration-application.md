@@ -6,7 +6,13 @@
 <div id="demo-wrapper"></div>
 ```
 
-* Ajoutez le script `dist/validator-client.js` (disponible directement dans les releases)
+* Copiez le dossier `dist` et ajoutez le script `dist/validator-client.js`. Les autres fichiers de `dist` (swagger-ui, js-yaml) sont chargés à la demande depuis le même dossier.
+
+* Copiez les dossiers `public/css`, `public/img` et `public/font`, et ajoutez la feuille de style :
+
+```html
+<link rel="stylesheet" href="css/style-carto.css">
+```
 
 * Instanciez l'application en configurant l'URL de l'API et de la documentation swagger :
 
@@ -14,11 +20,9 @@
 validator.setValidatorApiUrl("https://yourinstance/api");
 validator.setValidatorSpecsUrl("https://yourinstance/api/validator-api.yml");
 validator.createDemoApplication({
-    targetElement: document.getElementById('demo-wrapper');
+    targetElement: document.getElementById('demo-wrapper')
 });
 ```
-
-* Pensez à copier également les dossiers css, img et font.
 
 * Optionnel : pour des URLs sans `#` (ex : `/validation/xxx` au lieu de `/#/validation/xxx`), passez le chemin de base de l'application :
 

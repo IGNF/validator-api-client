@@ -16,15 +16,29 @@ Démonstrateur pour appel à l'API [IGNF/validator-api](https://github.com/IGNF/
 
 ## Développement
 
+Prérequis : Node.js 22 ou plus, et une instance de [IGNF/validator-api](https://github.com/IGNF/validator-api) (par défaut sur `https://127.0.0.1:8001`).
+
 ```bash
 npm install
 # build en continu du front
 npm run watch
-# lancement du back
+# serveur de démo sur http://localhost:3000
 npm run start
+# tests
+npm test
 ```
 
-Pour une nouvelle version, penser à **mettre à jour le numéro de version** dans le `package.json` et à reconstruire `dist/validator-client.js` :
+Le serveur de démo (`server.js`) relaie la spécification OpenAPI de l'API (`/api/validator-api.yml` et `/api/schema/*`) pour éviter les problèmes de CORS et de certificat auto-signé. Il se configure par variables d'environnement :
+
+| Variable | Défaut | Description |
+|----------|--------|-------------|
+| `PORT` | `3000` | Port d'écoute |
+| `VALIDATOR_API_URL` | `https://127.0.0.1:8001` | Origine de validator-api (proxy de la spec et CSP) |
+| `VALIDATOR_SPECS_URL` | `$VALIDATOR_API_URL/api/validator-api.yml` | URL de la spécification OpenAPI |
+
+L'URL de l'API appelée par le navigateur est définie dans `public/index.html`.
+
+Pour une nouvelle version, penser à **mettre à jour le numéro de version** dans le `package.json` et à reconstruire `dist/` (la CI vérifie qu'il est à jour) :
 
 ```bash
 npm run build

@@ -82,7 +82,6 @@ class ValidationForm extends React.Component {
             return;
         }
 
-        console.log(`Validation created with uid=${uid}`);
         try {
             await readJsonResponse(await this.patchValidation(uid));
             this.setState({
@@ -179,10 +178,6 @@ class ValidationForm extends React.Component {
         let error = <span />
         if (this.state.error) {
             error = <div className="alert alert-danger">{this.state.error}</div>;
-        }
-
-        if (this.state.patience) {
-            console.log("patience");
         }
 
         return (
