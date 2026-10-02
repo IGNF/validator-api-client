@@ -1,0 +1,32 @@
+.validation-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .8rem;
+}
+
+.validation-actions .btn [class^="icon-"] {
+    margin-right: .6rem;
+}
+
+/* Deletion set apart on the right */
+.validation-actions__delete {
+    margin-left: auto;
+}
+
+/* No danger variant in the IGN theme */
+.btn--ghost.btn--danger {
+    color: #dc3545;
+    background-color: transparent;
+    border-color: #dc3545;
+}
+
+.btn--ghost.btn--danger:focus, .btn--ghost.btn--danger:hover {
+    color: #fff;
+    background-color: #dc3545;
+}
+
+.btn--ghost.btn--danger:disabled {
+    opacity: .65;
+    cursor: default;
+}
