@@ -1,10 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import ValidationActions from '../ValidationActions';
+import deleteValidationById from '../../api/deleteValidationById';
 import getAvailableDownloads from '../../api/getAvailableDownloads';
 
+jest.mock('../../api/deleteValidationById');
 jest.mock('../../api/getAvailableDownloads');
 
 const validation = { uid: 'abc', status: 'finished' };
@@ -23,9 +25,9 @@ describe('ValidationActions', () => {
 
         renderActions();
 
-        expect(await screen.findByText('Télécharger le rapport au format CSV')).toBeInTheDocument();
-        expect(screen.queryByText('Télécharger les fichiers sources')).not.toBeInTheDocument();
-        expect(screen.queryByText('Télécharger les fichiers normalisés')).not.toBeInTheDocument();
+        expect(await screen.findByText('Rapport CSV')).toBeInTheDocument();
+        expect(screen.queryByText('Fichiers sources')).not.toBeInTheDocument();
+        expect(screen.queryByText('Fichiers normalisés')).not.toBeInTheDocument();
     });
 
     it('shows the data downloads enabled by the API', async () => {
@@ -33,10 +35,10 @@ describe('ValidationActions', () => {
 
         renderActions();
 
-        expect(await screen.findByText('Télécharger les fichiers sources')).toHaveAttribute(
+        expect(await screen.findByText('Fichiers sources')).toHaveAttribute(
             'href', expect.stringContaining('/validations/abc/files/source')
         );
-        expect(screen.getByText('Télécharger les fichiers normalisés')).toBeInTheDocument();
+        expect(screen.getByText('Fichiers normalisés')).toBeInTheDocument();
     });
 
     it('renders nothing for unfinished validations', () => {
@@ -45,5 +47,41 @@ describe('ValidationActions', () => {
         const { container } = renderActions({ validation: { uid: 'abc', status: 'pending' } });
 
         expect(container).toBeEmptyDOMElement();
+    });
+
+    it('offers the reports and the logs of a finished validation', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+
+        renderActions();
+
+        expect(await screen.findByText('Rapport PDF')).toHaveAttribute(
+            'href', expect.stringContaining('/validations/abc/results.pdf')
+        );
+        expect(screen.getByText('Logs du validateur')).toHaveAttribute(
+            'href', expect.stringContaining('/validations/abc/logs')
+        );
+    });
+
+    it('offers only the logs and the deletion of a failed validation', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: true, normalized: true });
+
+        renderActions({ validation: { uid: 'abc', status: 'error' } });
+
+        expect(await screen.findByText('Logs du validateur')).toBeInTheDocument();
+        expect(screen.getByText('Supprimer')).toBeInTheDocument();
+        expect(screen.queryByText('Rapport CSV')).not.toBeInTheDocument();
+        expect(screen.queryByText('Fichiers sources')).not.toBeInTheDocument();
+    });
+
+    it('displays the deletion error returned by the API', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+        deleteValidationById.mockRejectedValue(new Error('Validation is being processed, retry later'));
+        jest.spyOn(window, 'confirm').mockReturnValue(true);
+        jest.spyOn(console, 'log').mockImplementation(() => {});
+
+        renderActions();
+        fireEvent.click(await screen.findByText('Supprimer'));
+
+        expect(await screen.findByText('Validation is being processed, retry later')).toBeInTheDocument();
     });
 });

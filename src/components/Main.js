@@ -1,7 +1,8 @@
 import React from 'react';
 
 import {
-    HashRouter as Router,
+    BrowserRouter,
+    HashRouter,
     Navigate,
     Route,
     Routes
@@ -17,12 +18,16 @@ import Validation from './Validation';
 
 /**
  * Application router.
+ *
+ * Uses clean URLs (/validation/xxx) when a basename is given, hash URLs (#/validation/xxx) otherwise.
  */
 class Main extends React.Component {
 
     render() {
+        const { basename } = this.props;
+        const Router = basename ? BrowserRouter : HashRouter;
         return (
-            <Router>
+            <Router basename={basename}>
                 <Navbar />
                 <Routes>
                     <Route path="/" element={<Home />} />

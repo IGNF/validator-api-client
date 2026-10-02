@@ -34,23 +34,21 @@
     "@testing-library/react": "^16.3.3",
     "babel-jest": "^30.5.2",
     "babel-loader": "^10.1.1",
+    "compression": "^1.8.2",
     "css-loader": "^7.1.5",
+    "express": "^5.2.1",
+    "helmet": "^8.3.0",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
+    "marked": "^18.0.14",
     "react": "^19.3.0",
+    "react-data-table-component": "^8.11.0",
     "react-dom": "^19.3.0",
     "react-router-dom": "^7.18.4",
     "style-loader": "^4.0.0",
+    "swagger-ui-dist": "^5.33.1",
     "terser-webpack-plugin": "^5.6.1",
     "webpack": "^5.111.1",
     "webpack-cli": "^7.2.3"
-  },
-  "dependencies": {
-    "compression": "^1.8.2",
-    "express": "^5.2.1",
-    "helmet": "^8.3.0",
-    "marked": "^18.0.14",
-    "react-data-table-component": "^8.11.0",
-    "swagger-ui-dist": "^5.33.1"
   }
 }

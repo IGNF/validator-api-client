@@ -32,11 +32,20 @@ const validator = {
      * Create full react application.
      * @param {object} options
      * @param {HTMLElement} options.targetElement
+     * @param {string} [options.basename] base path of the application (ex : "/") to use URLs
+     *   without "#". The server must then return the page for every application route.
      */
     createDemoApplication: function (options) {
         options.targetElement = options.targetElement || document.getElementById('main');
 
-        createRoot(options.targetElement).render(<Main />);
+        const basename = options.basename;
+        if (basename && window.location.hash.startsWith('#/')) {
+            // Redirect legacy hash URLs (ex : "/#/validation/xxx" -> "/validation/xxx")
+            const path = basename.replace(/\/$/, '') + window.location.hash.substring(1);
+            window.history.replaceState(null, '', path);
+        }
+
+        createRoot(options.targetElement).render(<Main basename={basename} />);
     }
 };
 

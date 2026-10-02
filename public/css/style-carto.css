@@ -8,7 +8,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-extrabold.woff2) format("woff2"), url(../font/opensans/opensans-extrabold.woff) format("woff"), url(../font/opensans/opensans-extrabold.ttf) format("truetype");
+    src: url(../font/opensans/opensans-extrabold.woff2) format("woff2");
     font-weight: 800;
     font-style: normal;
     font-display: swap
@@ -16,7 +16,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-extrabolditalic.woff2) format("woff2"), url(../font/opensans/opensans-extrabolditalic.woff) format("woff"), url(../font/opensans/opensans-extrabolditalic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-extrabolditalic.woff2) format("woff2");
     font-weight: 800;
     font-style: italic;
     font-display: swap
@@ -24,7 +24,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-bold.woff2) format("woff2"), url(../font/opensans/opensans-bold.woff) format("woff"), url(../font/opensans/opensans-bold.ttf) format("truetype");
+    src: url(../font/opensans/opensans-bold.woff2) format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap
@@ -32,7 +32,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-bolditalic.woff2) format("woff2"), url(../font/opensans/opensans-bolditalic.woff) format("woff"), url(../font/opensans/opensans-bolditalic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-bolditalic.woff2) format("woff2");
     font-weight: 700;
     font-style: italic;
     font-display: swap
@@ -40,7 +40,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-semibold.woff2) format("woff2"), url(../font/opensans/opensans-semibold.woff) format("woff"), url(../font/opensans/opensans-semibold.ttf) format("truetype");
+    src: url(../font/opensans/opensans-semibold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap
@@ -48,7 +48,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-semibolditalic.woff2) format("woff2"), url(../font/opensans/opensans-semibolditalic.woff) format("woff"), url(../font/opensans/opensans-semibolditalic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-semibolditalic.woff2) format("woff2");
     font-weight: 600;
     font-style: italic;
     font-display: swap
@@ -56,7 +56,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-bold.woff2) format("woff2"), url(../font/opensans/opensans-bold.woff) format("woff"), url(../font/opensans/opensans-bold.ttf) format("truetype");
+    src: url(../font/opensans/opensans-bold.woff2) format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap
@@ -64,7 +64,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-bolditalic.woff2) format("woff2"), url(../font/opensans/opensans-bolditalic.woff) format("woff"), url(../font/opensans/opensans-bolditalic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-bolditalic.woff2) format("woff2");
     font-weight: 500;
     font-style: italic;
     font-display: swap
@@ -72,7 +72,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-regular.woff2) format("woff2"), url(../font/opensans/opensans-regular.woff) format("woff"), url(../font/opensans/opensans-regular.ttf) format("truetype");
+    src: url(../font/opensans/opensans-regular.woff2) format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap
@@ -80,7 +80,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-italic.woff2) format("woff2"), url(../font/opensans/opensans-italic.woff) format("woff"), url(../font/opensans/opensans-italic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-italic.woff2) format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: swap
@@ -88,7 +88,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-light.woff2) format("woff2"), url(../font/opensans/opensans-light.woff) format("woff"), url(../font/opensans/opensans-light.ttf) format("truetype");
+    src: url(../font/opensans/opensans-light.woff2) format("woff2");
     font-weight: 300;
     font-style: normal;
     font-display: swap
@@ -96,7 +96,7 @@
 
 @font-face {
     font-family: Open Sans;
-    src: url(../font/opensans/opensans-lightitalic.woff2) format("woff2"), url(../font/opensans/opensans-lightitalic.woff) format("woff"), url(../font/opensans/opensans-lightitalic.ttf) format("truetype");
+    src: url(../font/opensans/opensans-lightitalic.woff2) format("woff2");
     font-weight: 300;
     font-style: italic;
     font-display: swap
@@ -104,7 +104,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-ExtraBold.woff2) format("woff2"), url(../font/firasans/FiraSans-ExtraBold.woff) format("woff"), url(../font/firasans/FiraSans-ExtraBold.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-ExtraBold.woff2) format("woff2");
     font-weight: 800;
     font-style: normal;
     font-display: swap
@@ -112,7 +112,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-ExtraBoldItalic.woff2) format("woff2"), url(../font/firasans/FiraSans-ExtraBoldItalic.woff) format("woff"), url(../font/firasans/FiraSans-ExtraBoldItalic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-ExtraBoldItalic.woff2) format("woff2");
     font-weight: 800;
     font-style: italic;
     font-display: swap
@@ -120,7 +120,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-Bold.woff2) format("woff2"), url(../font/firasans/FiraSans-Bold.woff) format("woff"), url(../font/firasans/FiraSans-Bold.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-Bold.woff2) format("woff2");
     font-weight: 700;
     font-style: normal;
     font-display: swap
@@ -128,7 +128,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-BoldItalic.woff2) format("woff2"), url(../font/firasans/FiraSans-BoldItalic.woff) format("woff"), url(../font/firasans/FiraSans-BoldItalic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-BoldItalic.woff2) format("woff2");
     font-weight: 700;
     font-style: italic;
     font-display: swap
@@ -136,7 +136,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-SemiBold.woff2) format("woff2"), url(../font/firasans/FiraSans-SemiBold.woff) format("woff"), url(../font/firasans/FiraSans-SemiBold.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-SemiBold.woff2) format("woff2");
     font-weight: 600;
     font-style: normal;
     font-display: swap
@@ -144,7 +144,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-SemiBoldItalic.woff2) format("woff2"), url(../font/firasans/FiraSans-SemiBoldItalic.woff) format("woff"), url(../font/firasans/FiraSans-SemiBoldItalic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-SemiBoldItalic.woff2) format("woff2");
     font-weight: 600;
     font-style: italic;
     font-display: swap
@@ -152,7 +152,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-Medium.woff2) format("woff2"), url(../font/firasans/FiraSans-Medium.woff) format("woff"), url(../font/firasans/FiraSans-Medium.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-Medium.woff2) format("woff2");
     font-weight: 500;
     font-style: normal;
     font-display: swap
@@ -160,7 +160,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-MediumItalic.woff2) format("woff2"), url(../font/firasans/FiraSans-MediumItalic.woff) format("woff"), url(../font/firasans/FiraSans-MediumItalic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-MediumItalic.woff2) format("woff2");
     font-weight: 500;
     font-style: italic;
     font-display: swap
@@ -168,7 +168,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-Regular.woff2) format("woff2"), url(../font/firasans/FiraSans-Regular.woff) format("woff"), url(../font/firasans/FiraSans-Regular.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-Regular.woff2) format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap
@@ -176,7 +176,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-Italic.woff2) format("woff2"), url(../font/firasans/FiraSans-Italic.woff) format("woff"), url(../font/firasans/FiraSans-Italic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-Italic.woff2) format("woff2");
     font-weight: 400;
     font-style: italic;
     font-display: swap
@@ -184,7 +184,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-Light.woff2) format("woff2"), url(../font/firasans/FiraSans-Light.woff) format("woff"), url(../font/firasans/FiraSans-Light.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-Light.woff2) format("woff2");
     font-weight: 300;
     font-style: normal;
     font-display: swap
@@ -192,7 +192,7 @@
 
 @font-face {
     font-family: Fira Sans;
-    src: url(../font/firasans/FiraSans-LightItalic.woff2) format("woff2"), url(../font/firasans/FiraSans-LightItalic.woff) format("woff"), url(../font/firasans/FiraSans-LightItalic.ttf) format("truetype");
+    src: url(../font/firasans/FiraSans-LightItalic.woff2) format("woff2");
     font-weight: 300;
     font-style: italic;
     font-display: swap
@@ -200,7 +200,7 @@
 
 @font-face {
     font-family: ign;
-    src: url(../font/icomoon/ign.woff2?8uv042) format("woff2"), url(../font/icomoon/ign.ttf?8uv042) format("truetype"), url(../font/icomoon/ign.woff?8uv042) format("woff"), url(../font/icomoon/ign.svg?8uv042#ign) format("svg");
+    src: url(../font/icomoon/ign.woff2?8uv042) format("woff2");
     font-weight: 400;
     font-style: normal;
     font-display: swap

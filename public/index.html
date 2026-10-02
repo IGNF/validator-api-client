@@ -9,17 +9,13 @@
     <!-- TODO: Définir le nom de l'application selon une variable d'environnement. -->
     <title>IGN - Validateur</title>
 
+    <!-- Chemins relatifs (css, img...) résolus depuis la racine quelle que soit la route -->
+    <base href="/">
+
     <link rel="icon" href="img/favicon.ico">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css"
-        integrity="sha512-P5MgMn1jBN01asBgU0z60Qk4QxiXo86+wlFahKrsQf37c9cro517WzVSPPV1tDKzhku2iJ2FVgL67wG03SGnNA=="
-        crossorigin="anonymous" />
-
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme/dist/select2-bootstrap4.min.css">
-
+    <!-- style-carto.css embarque Bootstrap 4 -->
     <link rel="stylesheet" href="css/style-carto.css"/>
-    <link rel="stylesheet" href="css/app.css"/>
 
 </head>
 
@@ -29,18 +25,6 @@
 
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.11.8/umd/popper.min.js"
-        integrity="sha512-TPh2Oxlg1zp+kz3nFA0C5vVC6leG/6mm1z9+mA81MI5eaUVqasPLO8Cuk4gMF4gUfP5etR73rgU/8PNMsSesoQ=="
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"
-        integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg=="
-        crossorigin="anonymous"></script>
-
-    <script src="/dist/runtime.validator-client.js"></script>
-    <script src="/dist/vendors.validator-client.js"></script>
     <script src="/dist/validator-client.js"></script>
     <script>
         /*
@@ -52,7 +36,9 @@
         validator.setValidatorSpecsUrl("/proxy/spec");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
-            targetElement: document.getElementById('main')
+            targetElement: document.getElementById('main'),
+            // URLs sans "#" : server.js renvoie index.html pour toutes les routes
+            basename: '/'
         });
     </script>
 </body>

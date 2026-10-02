@@ -15,8 +15,16 @@ describe('standards', () => {
         expect(gpuNames.sort()).toEqual(gpuStandards.map((standard) => standard.name).sort());
     });
 
+    test('SUP standards are grouped by servitude family', () => {
+        const categoryOf = (name) => standards.find((standard) => standard.name === name).category;
+        expect(categoryOf('cnig_SUP_A1_2013')).toMatch(/^GPU - SUP_A - /);
+        expect(categoryOf('cnig_SUP_AC4bis_2016')).toMatch(/^GPU - SUP_AC - /);
+        expect(categoryOf('cnig_SUP_EL10_2013')).toMatch(/^GPU - SUP_EL - /);
+        expect(categoryOf('cnig_SUP_INT1_2016')).toMatch(/^GPU - SUP_INT - /);
+    });
+
     test('GPU standards are naturally sorted within their category', () => {
-        const sup = standards.filter((standard) => standard.category.startsWith('GPU - SUP'));
+        const sup = standards.filter((standard) => standard.category.startsWith('GPU - SUP_A - '));
         const names = sup.map((standard) => standard.name);
         expect(names.indexOf('cnig_SUP_A2_2013')).toBeLessThan(names.indexOf('cnig_SUP_A10_2016'));
     });

@@ -2,6 +2,9 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
+// sticky footer, bundled so that it also applies when the client is embedded in validator-api
+import './Footer.css';
+
 class Footer extends React.Component {
     render() {
         const year = new Date().getFullYear();

@@ -4,6 +4,7 @@ import ValidationReport from './ValidationReport';
 
 import getValidationById from '../api/getValidationById';
 
+import DocumentInfo from './DocumentInfo';
 import PageTitle from './PageTitle';
 import ValidationActions from './ValidationActions';
 import ValidationProperties from './ValidationProperties';
@@ -61,6 +62,7 @@ function Validation() {
             <div className="container-content">
                 <ValidationProperties validation={validation} />
                 <ValidationActions validation={validation} />
+                <DocumentInfo documentInfo={validation.document_info} />
                 <ValidationReport validation={validation} />
             </div>
         </div>

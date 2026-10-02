@@ -4,7 +4,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 module.exports = {
     entry: ['./src/index.js'],
     output: {
-        filename: (pathData) => pathData.chunk.name === 'main' ? 'validator-client.js' : '[name].validator-client.js',
+        filename: 'validator-client.js',
         chunkFilename: '[name].validator-client.js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
@@ -25,20 +25,10 @@ module.exports = {
         }]
     },
     optimization: {
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all',
-            cacheGroups: {
-                // Give the synchronous vendor bundle a stable name since it's referenced
-                // by a hardcoded <script> tag in public/index.html. Async chunks (e.g. the
-                // lazy-loaded swagger-ui-dist bundle) are left to webpack's default grouping.
-                defaultVendors: {
-                    test: /[\\/]node_modules[\\/]/,
-                    name: 'vendors',
-                    chunks: 'initial',
-                },
-            },
-        },
+        // Single entry point (validator-client.js, including the webpack runtime and the synchronous
+        // dependencies) so that integrations only need one <script> tag. Lazy-loaded chunks
+        // (swagger-ui) get stable names from their webpackChunkName comment and are not split further.
+        splitChunks: false,
         minimizer: [new TerserPlugin({
             extractComments: false,
         })],

@@ -13,7 +13,7 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             defaultSrc: ["'self'"],
-            scriptSrc: ["'self'", "'unsafe-inline'", 'https://cdnjs.cloudflare.com'],
+            scriptSrc: ["'self'", "'unsafe-inline'"],
             styleSrc: ["'self'", 'https:', "'unsafe-inline'"],
             connectSrc: ["'self'", VALIDATOR_API_ORIGIN],
         },

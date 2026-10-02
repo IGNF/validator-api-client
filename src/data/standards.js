@@ -43,13 +43,26 @@ const gpuDocumentTypes = [
 
 const byNaturalName = (a, b) => a.name.localeCompare(b.name, undefined, { numeric: true });
 
-const gpuCategories = gpuDocumentTypes.map(function ({ type, label }) {
-    return {
-        label: `GPU - ${type} - ${label}`,
-        standards: gpuStandards
-            .filter((standard) => standard.name.split('_')[1] === type)
-            .sort(byNaturalName)
-    };
+/*
+ * SUP family from the servitude code (e.g. "cnig_SUP_AC4bis_2016" -> "AC", "cnig_SUP_EL10_2013" -> "EL").
+ */
+const supFamily = (standard) => standard.name.split('_')[2].match(/^[A-Z]+/i)[0];
+
+const gpuCategories = gpuDocumentTypes.flatMap(function ({ type, label }) {
+    const typeStandards = gpuStandards
+        .filter((standard) => standard.name.split('_')[1] === type)
+        .sort(byNaturalName);
+
+    if (type !== 'SUP') {
+        return [{ label: `GPU - ${type} - ${label}`, standards: typeStandards }];
+    }
+
+    // SUP are numerous: one group per servitude family (SUP_A, SUP_AC, SUP_EL...)
+    const families = [...new Set(typeStandards.map(supFamily))].sort();
+    return families.map((family) => ({
+        label: `GPU - SUP_${family} - ${label}`,
+        standards: typeStandards.filter((standard) => supFamily(standard) === family)
+    }));
 });
 
 /*

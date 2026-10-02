@@ -10,8 +10,8 @@ class Swagger extends React.Component {
     componentDidMount() {
         // Dynamically import bundle and css so webpack code-splits them
         Promise.all([
-            import('swagger-ui-dist/swagger-ui-bundle.js'),
-            import('swagger-ui-dist/swagger-ui.css')
+            import(/* webpackChunkName: "swagger-ui" */ 'swagger-ui-dist/swagger-ui-bundle.js'),
+            import(/* webpackChunkName: "swagger-ui-css" */ 'swagger-ui-dist/swagger-ui.css')
         ]).then(([mod]) => {
             const SwaggerUI = mod.default || mod;
             SwaggerUI({

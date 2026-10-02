@@ -6,6 +6,21 @@ import config from '../config';
 import deleteValidationById from '../api/deleteValidationById';
 import getAvailableDownloads from '../api/getAvailableDownloads';
 
+import "./ValidationActions.css";
+
+/**
+ * Lien stylé en bouton, avec icône
+ */
+function ActionLink({ href, icon, external, children }) {
+    const target = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+    return (
+        <a className="btn btn-sm btn--ghost btn--primary" href={href} {...target}>
+            <span className={`icon-${icon}`} aria-hidden="true"></span>
+            {children}
+        </a>
+    );
+}
+
 /**
  * Affichage des actions possibles sur la validation
  */
@@ -13,6 +28,8 @@ function ValidationActions({ validation }) {
     const navigate = useNavigate();
     // source and normalized data downloads can be disabled by the API
     const [downloads, setDownloads] = useState({ source: false, normalized: false });
+    const [deleteError, setDeleteError] = useState(null);
+    const [deleting, setDeleting] = useState(false);
 
     useEffect(() => {
         let cancelled = false;
@@ -26,24 +43,26 @@ function ValidationActions({ validation }) {
         };
     }, []);
 
-    if (validation.status !== 'finished') {
+    const finished = validation.status === 'finished';
+    if (!finished && validation.status !== 'error') {
         return null;
     }
 
     const uid = validation.uid;
-
-    const csvLink = `${config.validatorApiUrl}/validations/${uid}/results.csv`;
-    const sourceLink = `${config.validatorApiUrl}/validations/${uid}/files/source`;
-    const normalizedLink = `${config.validatorApiUrl}/validations/${uid}/files/normalized`;
+    const baseUrl = `${config.validatorApiUrl}/validations/${uid}`;
 
     function onClickDelete() {
         if (!window.confirm('Confirmer la suppression?')) {
-            return false;
+            return;
         }
+        setDeleting(true);
+        setDeleteError(null);
         deleteValidationById(uid).then(() => {
             navigate('/');
         }).catch((error) => {
             console.log(error);
+            setDeleteError(error.message || 'La suppression a échoué');
+            setDeleting(false);
         });
     }
 
@@ -53,18 +72,30 @@ function ValidationActions({ validation }) {
                 <tr>
                     <td className="col-2">Actions</td>
                     <td>
-                        <a href={csvLink}>Télécharger le rapport au format CSV</a><br />
-                        {downloads.source && (
-                            <><a href={sourceLink}>Télécharger les fichiers sources</a><br /></>
-                        )}
-                        {downloads.normalized && (
-                            <><a href={normalizedLink}>Télécharger les fichiers normalisés</a><br /></>
-                        )}
+                        <div className="validation-actions">
+                            {finished && (
+                                <>
+                                    <ActionLink href={`${baseUrl}/results.csv`} icon="download">Rapport CSV</ActionLink>
+                                    <ActionLink href={`${baseUrl}/results.pdf`} icon="download" external>Rapport PDF</ActionLink>
+                                </>
+                            )}
+                            {finished && downloads.source && (
+                                <ActionLink href={`${baseUrl}/files/source`} icon="download">Fichiers sources</ActionLink>
+                            )}
+                            {finished && downloads.normalized && (
+                                <ActionLink href={`${baseUrl}/files/normalized`} icon="download">Fichiers normalisés</ActionLink>
+                            )}
+                            <ActionLink href={`${baseUrl}/logs`} icon="external-link" external>Logs du validateur</ActionLink>
 
-                        <a href="#" onClick={onClickDelete}>
-                            <span className="icon-trash"></span>
-                            Supprimer la validation
-                        </a>
+                            <button type="button" className="btn btn-sm btn--ghost btn--danger validation-actions__delete"
+                                onClick={onClickDelete} disabled={deleting}>
+                                <span className="icon-close" aria-hidden="true"></span>
+                                {deleting ? 'Suppression...' : 'Supprimer'}
+                            </button>
+                        </div>
+                        {deleteError && (
+                            <div className="alert alert-danger mt-2">{deleteError}</div>
+                        )}
                     </td>
                 </tr>
             </tbody>
@@ -73,4 +104,3 @@ function ValidationActions({ validation }) {
 }
 
 export default ValidationActions;
-

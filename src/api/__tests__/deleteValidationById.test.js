@@ -3,6 +3,7 @@ import deleteValidationById from '../deleteValidationById';
 describe('deleteValidationById', () => {
     beforeEach(() => {
         global.fetch = jest.fn();
+        jest.spyOn(console, 'log').mockImplementation(() => {});
     });
 
     it('resolves when the API confirms deletion with a 204', async () => {
@@ -19,12 +20,21 @@ describe('deleteValidationById', () => {
         );
     });
 
-    it('throws the response body when the deletion is not confirmed', async () => {
+    it('throws the message returned by the API when the deletion is not confirmed', async () => {
         global.fetch.mockResolvedValue({
-            status: 404,
-            text: () => Promise.resolve('not found'),
+            status: 409,
+            text: () => Promise.resolve(JSON.stringify({ message: 'Validation is being processed, retry later' })),
         });
 
-        await expect(deleteValidationById('missing')).rejects.toBe('not found');
+        await expect(deleteValidationById('abc')).rejects.toThrow('Validation is being processed, retry later');
+    });
+
+    it('throws the HTTP status when the error body is not JSON', async () => {
+        global.fetch.mockResolvedValue({
+            status: 502,
+            text: () => Promise.resolve('Bad Gateway'),
+        });
+
+        await expect(deleteValidationById('abc')).rejects.toThrow('Erreur HTTP 502');
     });
 });
