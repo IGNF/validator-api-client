@@ -12,6 +12,14 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_CC_2017/files.json"
     },
     {
+        "name": "cnig_CC_2022",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_CC_2022/files.json"
+    },
+    {
+        "name": "cnig_CC_2024",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_CC_2024/files.json"
+    },
+    {
         "name": "cnig_PLU_2013",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLU_2013/files.json"
     },
@@ -24,12 +32,28 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLU_2017/files.json"
     },
     {
+        "name": "cnig_PLU_2022",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLU_2022/files.json"
+    },
+    {
+        "name": "cnig_PLU_2024",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLU_2024/files.json"
+    },
+    {
         "name": "cnig_PLUi_2014",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLUi_2014/files.json"
     },
     {
         "name": "cnig_PLUi_2017",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLUi_2017/files.json"
+    },
+    {
+        "name": "cnig_PLUi_2022",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLUi_2022/files.json"
+    },
+    {
+        "name": "cnig_PLUi_2024",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PLUi_2024/files.json"
     },
     {
         "name": "cnig_POS_2013",
@@ -44,6 +68,14 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_POS_2017/files.json"
     },
     {
+        "name": "cnig_POS_2022",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_POS_2022/files.json"
+    },
+    {
+        "name": "cnig_POS_2024",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_POS_2024/files.json"
+    },
+    {
         "name": "cnig_PSMV_2014",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PSMV_2014/files.json"
     },
@@ -52,12 +84,28 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PSMV_2017/files.json"
     },
     {
+        "name": "cnig_PSMV_2019",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PSMV_2019/files.json"
+    },
+    {
+        "name": "cnig_PSMV_2022",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_PSMV_2022/files.json"
+    },
+    {
         "name": "cnig_SCoT_2013",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SCoT_2013/files.json"
     },
     {
         "name": "cnig_SCoT_2018",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SCoT_2018/files.json"
+    },
+    {
+        "name": "cnig_SCoT_2021",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SCoT_2021/files.json"
+    },
+    {
+        "name": "cnig_SCoT_2024",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SCoT_2024/files.json"
     },
     {
         "name": "cnig_SUP_A10_2016",
@@ -252,16 +300,8 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_EL11_2016/files.json"
     },
     {
-        "name": "cnig_SUP_EL1_2013",
-        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_EL1_2013/files.json"
-    },
-    {
         "name": "cnig_SUP_EL12_2013",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_EL12_2013/files.json"
-    },
-    {
-        "name": "cnig_SUP_EL2_2013",
-        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_EL2_2013/files.json"
     },
     {
         "name": "cnig_SUP_EL2bis_2013",
@@ -328,16 +368,16 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_EL9_2016/files.json"
     },
     {
+        "name": "cnig_SUP_I10_2016",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_I10_2016/files.json"
+    },
+    {
         "name": "cnig_SUP_I1_2013",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_I1_2013/files.json"
     },
     {
         "name": "cnig_SUP_I1_2016",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_I1_2016/files.json"
-    },
-    {
-        "name": "cnig_SUP_I1bis_2013",
-        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_I1bis_2013/files.json"
     },
     {
         "name": "cnig_SUP_I2_2013",
@@ -468,6 +508,14 @@
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_PM6_2016/files.json"
     },
     {
+        "name": "cnig_SUP_PM7_2016",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_PM7_2016/files.json"
+    },
+    {
+        "name": "cnig_SUP_PM8_2016",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_PM8_2016/files.json"
+    },
+    {
         "name": "cnig_SUP_PT1_2013",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_PT1_2013/files.json"
     },
@@ -534,6 +582,10 @@
     {
         "name": "cnig_SUP_T5_2016",
         "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_T5_2016/files.json"
+    },
+    {
+        "name": "cnig_SUP_T5bis_2016",
+        "url": "https://ignf.github.io/validator-config-gpu/config/cnig_SUP_T5bis_2016/files.json"
     },
     {
         "name": "cnig_SUP_T6_2013",

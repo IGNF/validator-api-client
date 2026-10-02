@@ -55,7 +55,7 @@ describe('ValidationActions', () => {
         renderActions();
 
         expect(await screen.findByText('Rapport PDF')).toHaveAttribute(
-            'href', expect.stringContaining('/validations/abc/results.pdf')
+            'href', expect.stringContaining('/validations/abc/report?print=1')
         );
         expect(screen.getByText('Logs du validateur')).toHaveAttribute(
             'href', expect.stringContaining('/validations/abc/logs')

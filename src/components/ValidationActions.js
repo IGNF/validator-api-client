@@ -76,7 +76,7 @@ function ValidationActions({ validation }) {
                             {finished && (
                                 <>
                                     <ActionLink href={`${baseUrl}/results.csv`} icon="download">Rapport CSV</ActionLink>
-                                    <ActionLink href={`${baseUrl}/results.pdf`} icon="download" external>Rapport PDF</ActionLink>
+                                    <ActionLink href={`${baseUrl}/report?print=1`} icon="download" external>Rapport PDF</ActionLink>
                                 </>
                             )}
                             {finished && downloads.source && (

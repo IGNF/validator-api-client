@@ -29,7 +29,7 @@ dgprStandards.forEach(function (standard) {
 });
 
 /*
- * GPU document types (from the standard name, e.g. "cnig_PLUi_2017"), in display order.
+ * GPU document types (from the standard name, e.g. "cnig_PLUi_2017", "GPU_MEC_2025"), in display order.
  */
 const gpuDocumentTypes = [
     { type: 'PLU', label: 'Plan local d\'urbanisme' },
@@ -38,6 +38,7 @@ const gpuDocumentTypes = [
     { type: 'CC', label: 'Carte communale' },
     { type: 'PSMV', label: 'Plan de sauvegarde et de mise en valeur' },
     { type: 'SCoT', label: 'Schéma de cohérence territoriale' },
+    { type: 'MEC', label: 'Mise en compatibilité' },
     { type: 'SUP', label: 'Servitudes d\'utilité publique' }
 ];
 
