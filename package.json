@@ -27,6 +27,7 @@
   "private": true,
   "devDependencies": {
     "@babel/core": "^8.0.6",
+    "@babel/plugin-transform-dynamic-import": "^8.0.1",
     "@babel/plugin-transform-modules-commonjs": "^8.0.1",
     "@babel/preset-react": "^8.0.1",
     "@testing-library/dom": "^10.4.2",
@@ -40,6 +41,7 @@
     "helmet": "^8.3.0",
     "jest": "^30.5.2",
     "jest-environment-jsdom": "^30.5.2",
+    "js-yaml": "^5.4.2",
     "marked": "^18.0.14",
     "react": "^19.3.0",
     "react-data-table-component": "^8.11.0",

@@ -3,8 +3,31 @@ import getAvailableDownloads, { resetAvailableDownloads } from '../getAvailableD
 const SPECS_WITH_DOWNLOADS = `
 paths:
   /api/validations/{uid}/results.csv:
+    get:
+      summary: "Rapport"
   /api/validations/{uid}/files/source:
+    get:
+      summary: "Télécharger les données de source"
   /api/validations/{uid}/files/normalized:
+    get:
+      summary: "Télécharger les données normalisées"
+`;
+
+const SPECS_WITH_DISABLED_DOWNLOADS = `
+paths:
+  /api/validations/{uid}/results.csv:
+    get:
+      summary: "Rapport"
+  /api/validations/{uid}/files/source:
+    get:
+      summary: "[Désactivé] Télécharger les données de source"
+      deprecated: true
+      x-disabled: true
+  /api/validations/{uid}/files/normalized:
+    get:
+      summary: "[Désactivé] Télécharger les données normalisées"
+      deprecated: true
+      x-disabled: true
 `;
 
 describe('getAvailableDownloads', () => {
@@ -20,7 +43,13 @@ describe('getAvailableDownloads', () => {
         await expect(getAvailableDownloads()).resolves.toEqual({ source: true, normalized: true });
     });
 
-    it('disables downloads removed from the API specification', async () => {
+    it('disables downloads flagged as disabled in the API specification', async () => {
+        global.fetch.mockResolvedValue({ ok: true, text: () => Promise.resolve(SPECS_WITH_DISABLED_DOWNLOADS) });
+
+        await expect(getAvailableDownloads()).resolves.toEqual({ source: false, normalized: false });
+    });
+
+    it('disables downloads removed from the API specification (older API versions)', async () => {
         global.fetch.mockResolvedValue({ ok: true, text: () => Promise.resolve('paths:\n  /api/validations/{uid}/results.csv:\n') });
 
         await expect(getAvailableDownloads()).resolves.toEqual({ source: false, normalized: false });

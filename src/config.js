@@ -3,8 +3,8 @@
  */
 const config = {
     validatorApiUrl: 'http://localhost:8000/api',
-    // Use local proxy to avoid CORS in the demo client
-    validatorSpecsUrl: '/proxy/spec'
+    // Proxied by server.js in the demo client (avoids CORS), same path as validator-api
+    validatorSpecsUrl: '/api/validator-api.yml'
 }
 
 export default config;

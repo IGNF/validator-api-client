@@ -5,11 +5,18 @@ const NO_DOWNLOAD = { source: false, normalized: false };
 let cache = null;
 
 /**
+ * A route is enabled if it is documented and not flagged with "x-disabled".
+ */
+function isEnabled(pathItem) {
+    return Boolean(pathItem && pathItem.get && !pathItem.get['x-disabled']);
+}
+
+/**
  * Returns which data downloads are enabled by the API.
  *
- * validator-api removes the download routes from its OpenAPI specification when
- * DATA_DOWNLOAD_ENABLED is off (they then answer 403), so their presence in the
- * specification is checked. Downloads are considered disabled if it can't be read.
+ * validator-api flags the download routes with "x-disabled" in its OpenAPI specification
+ * when DATA_DOWNLOAD_ENABLED is off (they then answer 403). Older versions removed them
+ * from the specification. Downloads are considered disabled if it can't be read.
  *
  * @returns {Promise<{source: boolean, normalized: boolean}>}
  */
@@ -22,10 +29,14 @@ function getAvailableDownloads() {
                 }
                 return response.text();
             })
-            .then((specs) => ({
-                source: specs.includes('/files/source'),
-                normalized: specs.includes('/files/normalized'),
-            }))
+            .then((text) => import(/* webpackChunkName: "js-yaml" */ 'js-yaml').then(({ load }) => load(text)))
+            .then((specs) => {
+                const paths = specs.paths || {};
+                return {
+                    source: isEnabled(paths['/api/validations/{uid}/files/source']),
+                    normalized: isEnabled(paths['/api/validations/{uid}/files/normalized']),
+                };
+            })
             .catch((error) => {
                 console.log('Fail to read API specification, downloads are disabled', error);
                 return NO_DOWNLOAD;

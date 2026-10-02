@@ -53,14 +53,15 @@ function proxyUpstream(url, res, redirectsLeft = 1) {
     });
 }
 
-app.get('/proxy/spec', (req, res) => {
+// Same paths as validator-api, so that the specification URL displayed by swagger-ui is the usual one
+app.get('/api/validator-api.yml', (req, res) => {
     proxyUpstream(SPEC_TARGET, res);
 });
 
-// Relative $refs inside the spec resolve against this proxy's own URL, landing here.
-app.get('/proxy/*subpath', (req, res) => {
+// Relative $refs inside the spec (e.g. "./schema/validator-arguments.json") resolve here.
+app.get('/api/schema/*subpath', (req, res) => {
     const subpath = req.params.subpath.join('/');
-    proxyUpstream(`${VALIDATOR_API_ORIGIN}/api/${subpath}`, res);
+    proxyUpstream(`${VALIDATOR_API_ORIGIN}/api/schema/${subpath}`, res);
 });
 
 // Serve the SPA index for any non-static GET route without using route patterns

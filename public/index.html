@@ -33,7 +33,7 @@
          */
         validator.setValidatorApiUrl("https://127.0.0.1:8001/api");
         // Spec servie via le proxy de server.js (évite CORS et le certificat auto-signé)
-        validator.setValidatorSpecsUrl("/proxy/spec");
+        validator.setValidatorSpecsUrl("/api/validator-api.yml");
         // Note : on pourra toujours ajouter des options par la suite
         validator.createDemoApplication({
             targetElement: document.getElementById('main'),
