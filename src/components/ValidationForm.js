@@ -1,7 +1,12 @@
 import React from 'react';
 
 import config from '../config';
+import AccessRequired from './AccessRequired';
+import AuthContext from './AuthContext';
+import Loading from './Loading';
+import UploadProgress from './UploadProgress';
 import readJsonResponse from '../api/readJsonResponse';
+import uploadDataset from '../api/uploadDataset';
 import { getFilenameError } from '../data/datasetName';
 import standards from '../data/standards';
 
@@ -28,6 +33,8 @@ const standardGroups = standards.reduce(function (groups, standard, index) {
  * Formulaire de création d'une nouvelle validation.
  */
 class ValidationForm extends React.Component {
+    static contextType = AuthContext;
+
     constructor(props) {
         super(props);
 
@@ -37,7 +44,10 @@ class ValidationForm extends React.Component {
             standardIndex: 0,
             uid: null,
             error: null,
-            patience: false
+            patience: false,
+            // progress of the request (see renderProgress) : 'upload', 'arguments' or null
+            step: null,
+            uploadPercent: 0
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -69,7 +79,10 @@ class ValidationForm extends React.Component {
 
         let uid = null;
         this.setState({
-            patience: true
+            patience: true,
+            error: null,
+            step: 'upload',
+            uploadPercent: 0
         });
         try {
             const validation = await readJsonResponse(await this.postFile());
@@ -77,11 +90,13 @@ class ValidationForm extends React.Component {
         } catch (e) {
             this.setState({
                 error: `Problème dans l'envoi du fichier : ${e.message}`,
-                patience: false
+                patience: false,
+                step: null
             });
             return;
         }
 
+        this.setState({ step: 'arguments' });
         try {
             await readJsonResponse(await this.patchValidation(uid));
             this.setState({
@@ -91,7 +106,8 @@ class ValidationForm extends React.Component {
         } catch (e) {
             this.setState({
                 error: `Problème dans l'envoi des paramètres : ${e.message}`,
-                patience: false
+                patience: false,
+                step: null
             });
             return;
         }
@@ -123,19 +139,30 @@ class ValidationForm extends React.Component {
     }
 
     /**
-     * Create the validation sending the file.
-     * @returns {Promise<Response>}
+     * Create the validation sending the file (with the upload progress).
+     * @returns {Promise<{ok: boolean, status: number, json: function}>}
      */
     postFile() {
-        const url = `${config.validatorApiUrl}/validations/`;
-
-        const formData = new FormData();
-        formData.append('dataset', this.state.file);
-
-        return fetch(url, {
-            method: 'POST',
-            body: formData,
+        return uploadDataset(this.state.file, (uploadPercent) => {
+            this.setState({ uploadPercent });
         });
+    }
+
+    /**
+     * Progress of the request : upload of the file, then waiting for the server.
+     */
+    renderProgress() {
+        const { step, uploadPercent } = this.state;
+        if (step === 'upload' && uploadPercent < 100) {
+            return <UploadProgress label="Téléversement de l'archive..." percent={uploadPercent} />;
+        }
+        if (step === 'upload') {
+            return <UploadProgress label="Réception de l'archive par le serveur..." />;
+        }
+        if (step === 'arguments') {
+            return <UploadProgress label="Envoi des paramètres de la validation..." />;
+        }
+        return null;
     }
 
     /**
@@ -170,6 +197,17 @@ class ValidationForm extends React.Component {
             return (
                 <Navigate to={`/validation/${this.state.uid}`} />
             );
+        }
+
+        /*
+         * authentication required to create a validation
+         */
+        const auth = this.context;
+        if (auth.loading) {
+            return <Loading />;
+        }
+        if (auth.enabled && !auth.authenticated) {
+            return <AccessRequired title="Connexion requise" />;
         }
 
         /*
@@ -223,6 +261,7 @@ class ValidationForm extends React.Component {
                         <button type="submit" name="archive" className="btn btn--plain btn--primary btn-width--lg" disabled={this.state.patience}>
                             {this.state.patience ? 'Téléversement en cours...' : 'Valider'}
                         </button>
+                        {this.renderProgress()}
                     </div>
                 </form>
             </div>

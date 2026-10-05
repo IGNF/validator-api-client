@@ -1,4 +1,5 @@
 import config from '../config';
+import { getErrorMessage } from './readJsonResponse';
 
 /**
  * Deletes a validation, throwing an Error with the message returned by the API
@@ -11,13 +12,13 @@ async function deleteValidationById(uid){
     });
     let data = await response.text();
     if ( response.status != 204 ){
-        let message = `Erreur HTTP ${response.status}`;
+        let json = null;
         try {
-            message = JSON.parse(data).message || message;
+            json = JSON.parse(data);
         } catch (e) {
             // body is not JSON
         }
-        throw new Error(message);
+        throw new Error(getErrorMessage(response.status, json));
     }
     return data;
 }

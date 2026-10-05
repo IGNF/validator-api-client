@@ -35,4 +35,4 @@ validator.createDemoApplication({
 
 Le serveur doit alors renvoyer la page du démonstrateur pour toutes ses routes (`/about`, `/legal-notice`, `/api`, `/validation/{uid}`), et les chemins relatifs vers css/img doivent rester valides depuis ces routes (ex : `<base href="/">`). Les anciennes URLs en `#/...` sont redirigées automatiquement.
 
-
+* Authentification : si validator-api a l'authentification OIDC activée, le démonstrateur affiche la connexion (voir `GET /api/me`). Il s'appuie sur le cookie de session de validator-api : la page doit être servie **sur la même origine que l'API** (ex : `https://yourinstance/` et `https://yourinstance/api`), éventuellement derrière un reverse proxy qui relaie aussi `/login`, `/login_check` et `/logout`.

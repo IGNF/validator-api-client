@@ -36,4 +36,13 @@ describe('deleteValidationById', () => {
 
         await expect(deleteValidationById('abc')).rejects.toThrow('Erreur HTTP 502');
     });
+
+    it('throws an explicit message when the user is not logged in', async () => {
+        global.fetch.mockResolvedValue({
+            status: 401,
+            text: () => Promise.resolve(JSON.stringify({ message: 'Authentication required' })),
+        });
+
+        await expect(deleteValidationById('abc')).rejects.toThrow('Vous devez vous connecter pour effectuer cette action');
+    });
 });

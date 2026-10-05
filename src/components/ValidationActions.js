@@ -49,11 +49,16 @@ function ValidationActions({ validation }) {
         };
     }, [finished]);
 
-    if (!finished && validation.status !== 'error') {
+    const uid = validation.uid;
+    // only the owner and the admins can delete the validation and download its data (can_edit is missing with older APIs)
+    const canEdit = validation.can_edit !== false;
+    const hasLogs = finished || validation.status === 'error';
+    // a validation can't be deleted while it is processed (409)
+    const canDelete = canEdit && validation.status !== 'processing';
+
+    if (!hasLogs && !canDelete) {
         return null;
     }
-
-    const uid = validation.uid;
     const baseUrl = `${config.validatorApiUrl}/validations/${uid}`;
 
     function onClickDelete() {
@@ -84,19 +89,23 @@ function ValidationActions({ validation }) {
                                     <ActionLink href={`${baseUrl}/report?print=1`} icon="download" external>Rapport PDF</ActionLink>
                                 </>
                             )}
-                            {finished && downloads.source && (
+                            {finished && canEdit && downloads.source && (
                                 <ActionLink href={`${baseUrl}/files/source`} icon="download">Fichiers sources</ActionLink>
                             )}
-                            {finished && downloads.normalized && (
+                            {finished && canEdit && downloads.normalized && (
                                 <ActionLink href={`${baseUrl}/files/normalized`} icon="download">Fichiers normalisés</ActionLink>
                             )}
-                            <ActionLink href={`${baseUrl}/logs`} icon="external-link" external>Logs du validateur</ActionLink>
+                            {hasLogs && (
+                                <ActionLink href={`${baseUrl}/logs`} icon="external-link" external>Logs du validateur</ActionLink>
+                            )}
 
-                            <button type="button" className="btn btn-sm btn--ghost btn--danger validation-actions__delete"
-                                onClick={onClickDelete} disabled={deleting}>
-                                <span className="icon-close" aria-hidden="true"></span>
-                                {deleting ? 'Suppression...' : 'Supprimer'}
-                            </button>
+                            {canDelete && (
+                                <button type="button" className="btn btn-sm btn--ghost btn--danger validation-actions__delete"
+                                    onClick={onClickDelete} disabled={deleting}>
+                                    <span className="icon-close" aria-hidden="true"></span>
+                                    {deleting ? 'Suppression...' : 'Supprimer'}
+                                </button>
+                            )}
                         </div>
                         {deleteError && (
                             <div className="alert alert-danger mt-2">{deleteError}</div>

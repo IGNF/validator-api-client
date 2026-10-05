@@ -48,14 +48,28 @@ describe('ValidationActions', () => {
         expect(screen.getByText('Fichiers normalisés')).toBeInTheDocument();
     });
 
-    it('renders nothing for unfinished validations', async () => {
+    it('only offers the deletion of an unfinished validation', async () => {
         getAvailableDownloads.mockClear();
         getAvailableDownloads.mockResolvedValue({ source: true, normalized: true });
 
-        const { container } = await renderActions({ validation: { uid: 'abc', status: 'pending' } });
+        await renderActions({ validation: { uid: 'abc', status: 'archived', can_edit: true } });
+
+        expect(screen.getByText('Supprimer')).toBeInTheDocument();
+        expect(screen.queryByText('Logs du validateur')).not.toBeInTheDocument();
+        expect(screen.queryByText('Rapport CSV')).not.toBeInTheDocument();
+        expect(getAvailableDownloads).not.toHaveBeenCalled();
+    });
+
+    it('renders nothing for an unfinished validation of another user', async () => {
+        const { container } = await renderActions({ validation: { uid: 'abc', status: 'pending', can_edit: false } });
 
         expect(container).toBeEmptyDOMElement();
-        expect(getAvailableDownloads).not.toHaveBeenCalled();
+    });
+
+    it('renders nothing for a validation being processed', async () => {
+        const { container } = await renderActions({ validation: { uid: 'abc', status: 'processing', can_edit: true } });
+
+        expect(container).toBeEmptyDOMElement();
     });
 
     it('offers the reports and the logs of a finished validation', async () => {
@@ -92,5 +106,24 @@ describe('ValidationActions', () => {
         fireEvent.click(await screen.findByText('Supprimer'));
 
         expect(await screen.findByText('Validation is being processed, retry later')).toBeInTheDocument();
+    });
+
+    it('hides the deletion to the users who are not the owner', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+
+        await renderActions({ validation: { uid: 'abc', status: 'finished', can_edit: false } });
+
+        expect(await screen.findByText('Rapport CSV')).toBeInTheDocument();
+        expect(screen.queryByText('Supprimer')).not.toBeInTheDocument();
+    });
+
+    it('hides the data downloads to the users who are not the owner', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: true, normalized: true });
+
+        await renderActions({ validation: { uid: 'abc', status: 'finished', can_edit: false } });
+
+        expect(await screen.findByText('Rapport CSV')).toBeInTheDocument();
+        expect(screen.queryByText('Fichiers sources')).not.toBeInTheDocument();
+        expect(screen.queryByText('Fichiers normalisés')).not.toBeInTheDocument();
     });
 });

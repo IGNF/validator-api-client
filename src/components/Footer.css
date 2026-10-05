@@ -8,3 +8,8 @@
 .body-wrapper > .footer {
     margin-top: auto;
 }
+
+/* direct content of the wrapper (ex : messages outside of a page) on the whole width */
+.body-wrapper > .container-content {
+    width: 100%;
+}

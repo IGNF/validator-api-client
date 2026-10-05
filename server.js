@@ -65,6 +65,51 @@ app.get('/api/schema/*subpath', (req, res) => {
     proxyUpstream(`${VALIDATOR_API_ORIGIN}/api/schema/${subpath}`, res);
 });
 
+// Proxy the API and the OIDC login routes of validator-api : the browser only sees this origin, so that the
+// session cookie set by validator-api (users logged in with OIDC) is sent with the API requests, as when the
+// client is served by validator-api. X-Forwarded-* let validator-api generate its URLs (ex : OIDC redirect URI
+// http://localhost:3000/login_check) for this origin (127.0.0.1 is in its TRUSTED_PROXIES).
+// ("/api" alone is the documentation page of this application ; "_wdt" and "_profiler" : Symfony debug toolbar in dev)
+const PROXIED_PATHS = /^\/(api\/|login$|login_check$|logout$|_dev\/login$|_wdt\/|_profiler\/)/;
+const HOP_BY_HOP_HEADERS = ['connection', 'keep-alive', 'proxy-connection', 'transfer-encoding', 'upgrade', 'host'];
+
+app.use(function (req, res, next) {
+    if (!PROXIED_PATHS.test(req.path)) return next();
+
+    const target = new URL(req.originalUrl, VALIDATOR_API_ORIGIN);
+    const client = target.protocol === 'https:' ? https : http;
+    const headers = Object.assign({}, req.headers);
+    HOP_BY_HOP_HEADERS.forEach((name) => delete headers[name]);
+    const host = req.headers.host || `localhost:${port}`;
+    Object.assign(headers, {
+        'x-forwarded-for': req.socket.remoteAddress,
+        'x-forwarded-host': host,
+        'x-forwarded-proto': req.protocol,
+        'x-forwarded-port': host.includes(':') ? host.split(':').pop() : (req.protocol === 'https' ? '443' : '80'),
+    });
+    const options = { method: req.method, headers };
+    if (target.protocol === 'https:') {
+        options.agent = insecureAgent;
+    }
+
+    const upstreamRequest = client.request(target, options, (upstream) => {
+        res.status(upstream.statusCode);
+        Object.entries(upstream.headers).forEach(([name, value]) => {
+            if (!HOP_BY_HOP_HEADERS.includes(name)) {
+                res.setHeader(name, value);
+            }
+        });
+        upstream.pipe(res);
+    });
+    upstreamRequest.on('error', (err) => {
+        console.error('Error proxying', target.toString(), err);
+        if (!res.headersSent) {
+            res.status(502).send('Failed to reach validator-api');
+        }
+    });
+    req.pipe(upstreamRequest);
+});
+
 // Serve the SPA index for any non-static GET route without using route patterns
 app.use(function (req, res, next) {
     if (req.method !== 'GET') return next();

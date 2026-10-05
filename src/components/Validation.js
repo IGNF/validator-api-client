@@ -9,7 +9,8 @@ import PageTitle from './PageTitle';
 import ValidationActions from './ValidationActions';
 import ValidationProperties from './ValidationProperties';
 
-const STATUS_COMPLETED = ['finished', 'error'];
+// statuses that won't change without an action of the user : no more polling
+const STATUS_COMPLETED = ['finished', 'error', 'archived', 'waiting_for_args'];
 
 function Validation() {
     const { uid } = useParams();
