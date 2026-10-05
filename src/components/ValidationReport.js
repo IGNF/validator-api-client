@@ -4,6 +4,28 @@ import DataTable from 'react-data-table-component';
 
 import ValidationError from './ValidationError';
 
+import './ValidationReport.css';
+
+/**
+ * Chemin complet du fichier, avec un retour à la ligne possible après chaque "/".
+ */
+export function FilePath({ path }) {
+    if (!path) {
+        return null;
+    }
+    const parts = path.split('/');
+    return (
+        <span className="validation-report__file" title={path}>
+            {parts.map((part, index) => (
+                <React.Fragment key={index}>
+                    {part}
+                    {index < parts.length - 1 && <>/<wbr /></>}
+                </React.Fragment>
+            ))}
+        </span>
+    );
+}
+
 class ValidationReport extends React.Component {
     constructor(props) {
         super(props);
@@ -38,8 +60,10 @@ class ValidationReport extends React.Component {
             {
                 name: 'Fichier',
                 selector: row => row.file,
+                cell: row => <FilePath path={row.file} />,
                 sortable: true,
-                grow: 2
+                wrap: true,
+                grow: 3
             },
             {
                 name: 'Code',

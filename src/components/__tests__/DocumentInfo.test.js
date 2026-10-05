@@ -50,6 +50,19 @@ describe('DocumentInfo', () => {
         expect(screen.getByText('Autres fichiers (1)')).toBeInTheDocument();
     });
 
+    it('renders the tables without extent', () => {
+        render(<DocumentInfo documentInfo={{
+            name: 'doc',
+            files: [
+                { type: 'table', modelName: 'ZONE_URBA', path: 'ZONE_URBA.dbf', totalFeatures: 3, boundingBox: [1.11111, 2.22222, 3.33333, 4.44444] },
+            ],
+        }} />);
+
+        const headers = Array.from(document.querySelectorAll('table.table-striped thead th')).map((th) => th.textContent);
+        expect(headers).toEqual(['Table', 'Modèle de fichier', 'Entités']);
+        expect(screen.queryByText(/1\.1111, 2\.2222/)).not.toBeInTheDocument();
+    });
+
     it('renders the metadata and offers the raw JSON', () => {
         render(<DocumentInfo documentInfo={{
             name: 'doc',

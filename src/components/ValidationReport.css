@@ -1,0 +1,5 @@
+/* full file path, wrapped after the "/" (<wbr>), and inside a very long name as a last resort */
+.validation-report__file {
+    white-space: normal;
+    overflow-wrap: anywhere;
+}

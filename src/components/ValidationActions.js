@@ -6,6 +6,8 @@ import config from '../config';
 import deleteValidationById from '../api/deleteValidationById';
 import getAvailableDownloads from '../api/getAvailableDownloads';
 
+import { useAuth } from './AuthContext';
+
 import "./ValidationActions.css";
 
 /**
@@ -26,6 +28,7 @@ function ActionLink({ href, icon, external, children }) {
  */
 function ValidationActions({ validation }) {
     const navigate = useNavigate();
+    const auth = useAuth();
     // source and normalized data downloads can be disabled by the API
     const [downloads, setDownloads] = useState({ source: false, normalized: false });
     const [deleteError, setDeleteError] = useState(null);
@@ -52,7 +55,9 @@ function ValidationActions({ validation }) {
     const uid = validation.uid;
     // only the owner and the admins can delete the validation and download its data (can_edit is missing with older APIs)
     const canEdit = validation.can_edit !== false;
-    const hasLogs = finished || validation.status === 'error';
+    // validator logs : admins only when the authentication is enabled
+    const canReadLogs = !auth.enabled || (auth.authenticated && auth.user.is_admin);
+    const hasLogs = (finished || validation.status === 'error') && canReadLogs;
     // a validation can't be deleted while it is processed (409)
     const canDelete = canEdit && validation.status !== 'processing';
 

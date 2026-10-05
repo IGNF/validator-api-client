@@ -59,7 +59,7 @@ function Properties({ rows }) {
 }
 
 /**
- * Tables de données avec leurs comptages et emprises (sous-tables pour les GeoPackage)
+ * Tables de données avec leurs comptages (sous-tables pour les GeoPackage)
  */
 function DataTables({ files }) {
     if (files.length === 0) {
@@ -69,10 +69,9 @@ function DataTables({ files }) {
         <table className="table table-sm table-striped">
             <thead>
                 <tr>
-                    <th>Fichier</th>
+                    <th>Table</th>
                     <th>Modèle de fichier</th>
                     <th className="text-right">Entités</th>
-                    <th>Emprise</th>
                 </tr>
             </thead>
             <tbody>
@@ -84,14 +83,12 @@ function DataTables({ files }) {
                             <td className="text-right">
                                 {file.totalFeatures === undefined || file.totalFeatures === null ? '' : formatCount(file.totalFeatures)}
                             </td>
-                            <td><Extent boundingBox={file.boundingBox} /></td>
                         </tr>
                         {Object.entries(file.tables || {}).map(([tableName, stats]) => (
                             <tr key={`${file.path}/${tableName}`} className="document-info__subtable">
                                 <td>{tableName}</td>
                                 <td></td>
                                 <td className="text-right">{formatCount(stats.totalFeatures)}</td>
-                                <td><Extent boundingBox={stats.boundingBox} /></td>
                             </tr>
                         ))}
                     </React.Fragment>

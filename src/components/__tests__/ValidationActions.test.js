@@ -2,6 +2,7 @@ import React from 'react';
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
+import AuthContext from '../AuthContext';
 import ValidationActions from '../ValidationActions';
 import deleteValidationById from '../../api/deleteValidationById';
 import getAvailableDownloads from '../../api/getAvailableDownloads';
@@ -125,5 +126,31 @@ describe('ValidationActions', () => {
         expect(await screen.findByText('Rapport CSV')).toBeInTheDocument();
         expect(screen.queryByText('Fichiers sources')).not.toBeInTheDocument();
         expect(screen.queryByText('Fichiers normalisés')).not.toBeInTheDocument();
+    });
+
+    it('offers the validator logs to the admins only when the authentication is enabled', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+        const auth = { loading: false, enabled: true, authenticated: true, user: { name: 'jdoe', is_admin: false }, loginUrl: '/login', logoutUrl: '/logout' };
+        const renderWith = async (value) => {
+            let result;
+            await act(async () => {
+                result = render(
+                    <MemoryRouter>
+                        <AuthContext.Provider value={value}>
+                            <ValidationActions validation={{ uid: 'abc', status: 'finished', can_edit: true }} />
+                        </AuthContext.Provider>
+                    </MemoryRouter>
+                );
+            });
+            return result;
+        };
+
+        const { unmount } = await renderWith(auth);
+        expect(screen.getByText('Rapport CSV')).toBeInTheDocument();
+        expect(screen.queryByText('Logs du validateur')).not.toBeInTheDocument();
+        unmount();
+
+        await renderWith({ ...auth, user: { name: 'admin', is_admin: true } });
+        expect(screen.getByText('Logs du validateur')).toBeInTheDocument();
     });
 });

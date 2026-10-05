@@ -1,6 +1,6 @@
 {
   "name": "@ignf/validator-client",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "Démonstrateur React pour IGNF/validator-api",
   "main": "dist/validator-client.js",
   "files": [
