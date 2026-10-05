@@ -1,0 +1,51 @@
+/* Bootstrap alerts, missing from the IGN theme (style-carto.css) */
+.alert {
+    position: relative;
+    margin-bottom: 1rem;
+    padding: .75rem 1rem;
+    border: 0;
+    border-left: 4px solid transparent;
+    border-radius: 0;
+}
+
+.alert-danger {
+    border-left-color: #dc3545;
+    background-color: #fdf0f1;
+    color: #a71d2a;
+}
+
+.alert-warning {
+    border-left-color: #f0ad4e;
+    background-color: #fdf6ec;
+    color: #6d4a0d;
+}
+
+.alert-info {
+    border-left-color: #3993f3;
+    background-color: #eef5fe;
+    color: #1a4f8b;
+}
+
+.alert-success {
+    border-left-color: #28a745;
+    background-color: #edf8f0;
+    color: #1d6b31;
+}
+
+.alert-dismissible {
+    padding-right: 3rem;
+}
+
+.alert-dismissible .close {
+    position: absolute;
+    top: 50%;
+    right: .5rem;
+    transform: translateY(-50%);
+    padding: .25rem .5rem;
+    font-size: .8rem;
+    line-height: 1;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+}

@@ -1,0 +1,36 @@
+.access-required {
+    max-width: 36rem;
+    margin: 2rem auto 3rem;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    border: 1px solid #dee2e6;
+    border-radius: .5rem;
+    background-color: #f8f9fa;
+}
+
+.access-required__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1.2rem;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    color: #fff;
+    background-color: #3993f3;
+}
+
+.access-required__title {
+    margin-bottom: 1.5rem;
+}
+
+.access-required__message {
+    margin-bottom: 1.8rem;
+}
+
+.access-required__note {
+    margin: 1.5rem 0 0;
+    font-size: .9rem;
+    color: #6c757d;
+}

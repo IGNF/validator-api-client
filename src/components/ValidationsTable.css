@@ -1,0 +1,49 @@
+.validations-table__filters {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: .8rem 1.5rem;
+    margin-bottom: 1.2rem;
+}
+
+.validations-table__filters label {
+    margin: 0 .6rem 0 0;
+}
+
+.validations-table__filters select {
+    width: auto;
+    display: inline-block;
+}
+
+/* active owner filter, removable */
+.validations-table__chip {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .25rem .4rem .25rem .8rem;
+    border-radius: 1rem;
+    background-color: #e7f1fe;
+    color: #1a5fb4;
+}
+
+.validations-table__chip button {
+    border: 0;
+    background: transparent;
+    color: inherit;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.validations-table__owner {
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #3993f3;
+    text-align: left;
+    cursor: pointer;
+}
+
+.validations-table__owner:hover, .validations-table__owner:focus {
+    text-decoration: underline;
+}
+
