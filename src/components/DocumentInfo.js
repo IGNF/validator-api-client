@@ -19,15 +19,10 @@ function Extent({ boundingBox }) {
         return null;
     }
     const [xmin, ymin, xmax, ymax] = boundingBox;
-    const mapUrl = `https://www.openstreetmap.org/?minlon=${xmin}&minlat=${ymin}&maxlon=${xmax}&maxlat=${ymax}&box=yes`;
     const format = (value) => Number(value).toFixed(4);
     return (
         <span className="document-info__extent">
             {format(xmin)}, {format(ymin)} → {format(xmax)}, {format(ymax)}
-            {' '}
-            <a href={mapUrl} target="_blank" rel="noopener noreferrer" title="Voir l'emprise sur une carte">
-                <span className="icon-map" aria-hidden="true"></span> carte
-            </a>
         </span>
     );
 }

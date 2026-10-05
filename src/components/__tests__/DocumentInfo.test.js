@@ -47,9 +47,6 @@ describe('DocumentInfo', () => {
         expect(screen.getByText('idurba')).toBeInTheDocument();
         expect(screen.getByText('zone')).toBeInTheDocument();
         expect(screen.getByText(/2\.9161, 46\.9345 → 3\.0798, 47\.0850/)).toBeInTheDocument();
-        expect(screen.getAllByText('carte')[0].closest('a')).toHaveAttribute(
-            'href', expect.stringContaining('minlon=2.91614')
-        );
         expect(screen.getByText('Autres fichiers (1)')).toBeInTheDocument();
     });
 
