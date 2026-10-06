@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './StatusBadge.css';
+
 class StatusBadge extends React.Component {
     constructor(props) {
         super(props);

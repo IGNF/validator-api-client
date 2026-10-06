@@ -10,7 +10,7 @@ describe('DocumentInfo', () => {
         expect(container).toBeEmptyDOMElement();
     });
 
-    it('renders the document model, title and files', () => {
+    it('renders the title and files, but not the name and model displayed with the validation', () => {
         render(<DocumentInfo documentInfo={{
             name: '50545_CC_20140101',
             documentModel: { name: 'cnig_CC_2014' },
@@ -21,14 +21,14 @@ describe('DocumentInfo', () => {
             ],
         }} />);
 
-        expect(screen.getByText('50545_CC_20140101')).toBeInTheDocument();
-        expect(screen.getByText('cnig_CC_2014')).toBeInTheDocument();
+        expect(screen.queryByText('50545_CC_20140101')).not.toBeInTheDocument();
+        expect(screen.queryByText('cnig_CC_2014')).not.toBeInTheDocument();
         expect(screen.getByText('Carte Communale de Saint-Romphaire')).toBeInTheDocument();
         expect(screen.getByText('DOC_URBA.dbf')).toBeInTheDocument();
         expect(screen.getByText('Pieces_ecrites/reglement.pdf')).toBeInTheDocument();
     });
 
-    it('renders counts, extents, GeoPackage tables and tags', () => {
+    it('renders counts, GeoPackage tables and tags', () => {
         render(<DocumentInfo documentInfo={{
             name: '30014_PLU_20171013',
             documentExtent: [2.91614, 46.9345337, 3.0797908, 47.0850234],
@@ -46,7 +46,6 @@ describe('DocumentInfo', () => {
         expect(screen.getByText('entités').previousSibling.textContent.replace(/\s/g, '')).toBe('1227');
         expect(screen.getByText('idurba')).toBeInTheDocument();
         expect(screen.getByText('zone')).toBeInTheDocument();
-        expect(screen.getByText(/2\.9161, 46\.9345 → 3\.0798, 47\.0850/)).toBeInTheDocument();
         expect(screen.getByText('Autres fichiers (1)')).toBeInTheDocument();
     });
 
@@ -63,7 +62,7 @@ describe('DocumentInfo', () => {
         expect(screen.queryByText(/1\.1111, 2\.2222/)).not.toBeInTheDocument();
     });
 
-    it('renders the metadata and offers the raw JSON', () => {
+    it('renders the metadata', () => {
         render(<DocumentInfo documentInfo={{
             name: 'doc',
             files: [],
@@ -78,6 +77,5 @@ describe('DocumentInfo', () => {
         expect(screen.getByText('Un résumé')).toBeInTheDocument();
         expect(screen.getByText('EPSG:2154')).toBeInTheDocument();
         expect(screen.getByText('Service WMS')).toHaveAttribute('href', 'https://example.org/wms');
-        expect(screen.getByText('document-info.json').closest('a')).toHaveAttribute('download', 'document-info.json');
     });
 });

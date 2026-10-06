@@ -3,3 +3,11 @@
     white-space: normal;
     overflow-wrap: anywhere;
 }
+
+/* number of results per level, above the report */
+.validation-report__summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    font-size: 1.6rem;
+}

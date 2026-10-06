@@ -1,0 +1,25 @@
+/* Account actions (validations / administration, login / logout) at the right end of the header */
+.header-principal__account {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-left: 1rem;
+    padding-left: 2rem;
+    border-left: .1rem solid #dde1e6;
+}
+
+.header-principal__account .btn {
+    white-space: nowrap;
+}
+
+@media (max-width:61.98em) {
+    /* the account links are in the mobile menu */
+    .header-principal__account {
+        display: none;
+    }
+
+    /* mobile menu below the header (the toggler stays visible to close it) */
+    .navbar--mobile .navbar-collapse {
+        top: 7.1rem;
+    }
+}

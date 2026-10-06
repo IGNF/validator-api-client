@@ -11,11 +11,11 @@ gpuStandards.forEach(function (standard) {
 import naviforestStandards from './naviforest-standards.json';
 
 import planPreventionRisqueStandards from './ppr-standards.json';
-planPreventionRisqueStandards.forEach(function (standard) {
-    if (standard.name == "Canalisations") {
-        standard.defaultArguments = { 'delete-data': true };
-    }
-})
+
+import canalisationsStandards from './canalisations-standards.json';
+canalisationsStandards.forEach(function (standard) {
+    standard.defaultArguments = { 'delete-data': true };
+});
 
 import dgprStandards from './dgpr-standard.json';
 dgprStandards.forEach(function (standard) {
@@ -71,6 +71,7 @@ const gpuCategories = gpuDocumentTypes.flatMap(function ({ type, label }) {
  */
 const categories = [
     { label: 'PPR - Plans de prévention des risques', standards: planPreventionRisqueStandards },
+    { label: 'Canalisations', standards: canalisationsStandards },
     { label: 'DGPR - Directive inondation', standards: dgprStandards },
     { label: 'PCRS - Plan corps de rue simplifié', standards: pcrsStandards },
     { label: 'Naviforest', standards: naviforestStandards },

@@ -26,6 +26,36 @@ export function FilePath({ path }) {
     );
 }
 
+// zip pre-validation errors (file, code, message) have no level : they are errors
+const levelOf = row => row.level || 'ERROR';
+
+const SUMMARY_LEVELS = [
+    { level: 'ERROR', singular: 'erreur', plural: 'erreurs', className: 'badge-danger' },
+    { level: 'WARNING', singular: 'avertissement', plural: 'avertissements', className: 'badge-warning' },
+    { level: 'INFO', singular: 'info', plural: 'infos', className: 'badge-secondary' }
+];
+
+/**
+ * Nombre d'anomalies par niveau (ex : "12 erreurs", "34 avertissements", "5 infos").
+ */
+export function ReportSummary({ results }) {
+    if (results.length === 0) {
+        return <p className="validation-report__summary">Aucune anomalie</p>;
+    }
+    return (
+        <p className="validation-report__summary">
+            {SUMMARY_LEVELS.map(({ level, singular, plural, className }) => {
+                const count = results.filter((row) => levelOf(row) === level).length;
+                return count > 0 && (
+                    <span key={level} className={`badge ${className}`}>
+                        {count} {count > 1 ? plural : singular}
+                    </span>
+                );
+            })}
+        </p>
+    );
+}
+
 class ValidationReport extends React.Component {
     constructor(props) {
         super(props);
@@ -52,7 +82,7 @@ class ValidationReport extends React.Component {
 
     render() {
 
-        if (this.props.validation.results === null) {
+        if (!Array.isArray(this.props.validation.results)) {
             return null;
         }
 
@@ -80,9 +110,6 @@ class ValidationReport extends React.Component {
             }
         ];
 
-        // zip pre-validation errors (file, code, message) have no level : they are errors
-        const levelOf = row => row.level || 'ERROR';
-
         const conditionalRowStyles = [
             {
                 when: row => levelOf(row) === 'WARNING',
@@ -101,6 +128,7 @@ class ValidationReport extends React.Component {
         return (
             <div>
                 <ValidationError error={this.state.selected} closeErrorPopup={this.closeErrorPopup} />
+                <ReportSummary results={this.props.validation.results} />
                 <div className="card mb-2">
                     <DataTable title="Rapport de validation"
                         data={this.props.validation.results}

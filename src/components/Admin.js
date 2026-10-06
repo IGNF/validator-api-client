@@ -24,7 +24,7 @@ function Admin() {
             </AccessRequired>
         );
     } else {
-        content = <ValidationsTable showOwner />;
+        content = <ValidationsTable showOwner showModel />;
     }
 
     return (

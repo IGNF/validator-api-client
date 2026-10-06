@@ -18,8 +18,11 @@ const ADMIN = { ...ANONYMOUS, authenticated: true, user: { name: 'admin', is_adm
 
 const PAGE = {
     items: [
-        { uid: 'abc', dataset_name: 'PLU_2026', owner: 'sub-1', owner_name: 'jdoe', status: 'finished', date_creation: '2026-10-05T10:00:00+02:00', date_finish: null, can_edit: true },
-        { uid: 'def', dataset_name: 'old', owner: null, owner_name: null, status: 'archived', date_creation: '2026-01-01T10:00:00+01:00', date_finish: null, can_edit: true },
+        { uid: 'abc', dataset_name: 'PLU_2026', owner: 'sub-1', owner_name: 'jdoe', status: 'finished', date_creation: '2026-10-05T10:00:00+02:00', date_finish: null, can_edit: true,
+            results: [{ level: 'WARNING', file: 'a.shp', code: 'X', message: 'warning' }],
+            arguments: { model: 'https://ignf.github.io/validator-config-dgpr/config/Canalisations/files.json' } },
+        { uid: 'def', dataset_name: 'old', owner: null, owner_name: null, status: 'archived', date_creation: '2026-01-01T10:00:00+01:00', date_finish: null, can_edit: true,
+            arguments: { model: 'https://example.org/unknown/files.json' }, document_info: { documentModel: { name: 'unknown_2020' } } },
     ],
     total: 2,
     page: 1,
@@ -85,6 +88,22 @@ describe('Admin', () => {
         expect(listValidations).toHaveBeenCalledWith({ page: 1, limit: 20, status: '' });
     });
 
+    it('lists the validations with their result', async () => {
+        await renderPage(Admin, ADMIN);
+
+        expect(await screen.findByText('Valide avec avertissements')).toBeInTheDocument();
+        // not finished : no result
+        expect(screen.queryByText('Non valide')).not.toBeInTheDocument();
+    });
+
+    it('lists the validations with their model', async () => {
+        await renderPage(Admin, ADMIN);
+
+        // from the standards, then from the document info
+        expect(await screen.findByText('Données transporteur')).toHaveAttribute('title', PAGE.items[0].arguments.model);
+        expect(screen.getByText('unknown_2020')).toBeInTheDocument();
+    });
+
     it('filters the validations by status', async () => {
         await renderPage(Admin, ADMIN);
 
@@ -140,6 +159,7 @@ describe('MyValidations', () => {
 
         expect(await screen.findByText('PLU_2026')).toBeInTheDocument();
         expect(screen.queryByText('Propriétaire')).not.toBeInTheDocument();
+        expect(screen.queryByText('Modèle')).not.toBeInTheDocument();
         expect(screen.getByText('Nouvelle validation')).toHaveAttribute('href', '/');
     });
 

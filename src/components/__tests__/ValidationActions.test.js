@@ -13,14 +13,14 @@ jest.mock('../../api/getAvailableDownloads');
 const validation = { uid: 'abc', status: 'finished' };
 
 /**
- * Renders the actions and waits for the available downloads to be read.
+ * Renders the actions row (inside a table) and waits for the available downloads to be read.
  */
 async function renderActions(props) {
     let result;
     await act(async () => {
         result = render(
             <MemoryRouter>
-                <ValidationActions validation={validation} {...props} />
+                <table><tbody><ValidationActions validation={validation} {...props} /></tbody></table>
             </MemoryRouter>
         );
     });
@@ -64,13 +64,13 @@ describe('ValidationActions', () => {
     it('renders nothing for an unfinished validation of another user', async () => {
         const { container } = await renderActions({ validation: { uid: 'abc', status: 'pending', can_edit: false } });
 
-        expect(container).toBeEmptyDOMElement();
+        expect(container.querySelector('tr')).toBeNull();
     });
 
     it('renders nothing for a validation being processed', async () => {
         const { container } = await renderActions({ validation: { uid: 'abc', status: 'processing', can_edit: true } });
 
-        expect(container).toBeEmptyDOMElement();
+        expect(container.querySelector('tr')).toBeNull();
     });
 
     it('offers the reports and the logs of a finished validation', async () => {
@@ -95,6 +95,22 @@ describe('ValidationActions', () => {
         expect(screen.getByText('Supprimer')).toBeInTheDocument();
         expect(screen.queryByText('Rapport CSV')).not.toBeInTheDocument();
         expect(screen.queryByText('Fichiers sources')).not.toBeInTheDocument();
+    });
+
+    it('offers the document-info.json when the document info is available', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+
+        await renderActions({ validation: { uid: 'abc', status: 'finished', document_info: { name: 'doc' } } });
+
+        expect(screen.getByText('document-info.json').closest('a')).toHaveAttribute('download', 'document-info.json');
+    });
+
+    it('hides the document-info.json without document info', async () => {
+        getAvailableDownloads.mockResolvedValue({ source: false, normalized: false });
+
+        await renderActions();
+
+        expect(screen.queryByText('document-info.json')).not.toBeInTheDocument();
     });
 
     it('displays the deletion error returned by the API', async () => {
@@ -137,7 +153,7 @@ describe('ValidationActions', () => {
                 result = render(
                     <MemoryRouter>
                         <AuthContext.Provider value={value}>
-                            <ValidationActions validation={{ uid: 'abc', status: 'finished', can_edit: true }} />
+                            <table><tbody><ValidationActions validation={{ uid: 'abc', status: 'finished', can_edit: true }} /></tbody></table>
                         </AuthContext.Provider>
                     </MemoryRouter>
                 );

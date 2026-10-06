@@ -1,7 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
-import { FilePath } from '../ValidationReport';
+import { FilePath, ReportSummary } from '../ValidationReport';
 
 describe('FilePath', () => {
     it('renders the full path with a line break opportunity after each "/"', () => {
@@ -17,5 +17,26 @@ describe('FilePath', () => {
         const { container } = render(<FilePath path={null} />);
 
         expect(container).toBeEmptyDOMElement();
+    });
+});
+
+describe('ReportSummary', () => {
+    it('counts the results by level', () => {
+        render(<ReportSummary results={[
+            { level: 'ERROR' }, { level: 'ERROR' },
+            // zip pre-validation errors have no level
+            { code: 'NO_FILE' },
+            { level: 'WARNING' },
+        ]} />);
+
+        expect(screen.getByText('3 erreurs')).toHaveClass('badge-danger');
+        expect(screen.getByText('1 avertissement')).toHaveClass('badge-warning');
+        expect(screen.queryByText(/info/)).not.toBeInTheDocument();
+    });
+
+    it('tells when there is no result', () => {
+        render(<ReportSummary results={[]} />);
+
+        expect(screen.getByText('Aucune anomalie')).toBeInTheDocument();
     });
 });

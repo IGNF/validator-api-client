@@ -14,7 +14,7 @@ const formatCount = (value) => value.toLocaleString('fr-FR');
 /**
  * Emprise [xmin, ymin, xmax, ymax] en longitude/latitude (WGS84)
  */
-function Extent({ boundingBox }) {
+export function Extent({ boundingBox }) {
     if (!Array.isArray(boundingBox) || boundingBox.length !== 4) {
         return null;
     }
@@ -184,17 +184,10 @@ function DocumentInfo({ documentInfo }) {
     const title = documentInfo.metadata && documentInfo.metadata.title;
     const tags = Object.entries(documentInfo.tags || {});
 
-    const jsonUrl = 'data:application/json;charset=utf-8,' + encodeURIComponent(JSON.stringify(documentInfo, null, 2));
-
     return (
         <div className="card mb-2 document-info">
             <div className="card-body">
-                <div className="document-info__header">
-                    <h2 className="h5 card-title">Informations sur le document</h2>
-                    <a className="btn btn-sm btn--ghost btn--primary" href={jsonUrl} download="document-info.json">
-                        <span className="icon-download" aria-hidden="true"></span> document-info.json
-                    </a>
-                </div>
+                <h2 className="h5 card-title">Informations sur le document</h2>
 
                 <div className="document-info__stats">
                     <Stat value={tables.length} label={tables.length > 1 ? 'tables' : 'table'} />
@@ -203,12 +196,10 @@ function DocumentInfo({ documentInfo }) {
                     <Stat value={files.length} label={files.length > 1 ? 'fichiers' : 'fichier'} />
                 </div>
 
+                {/* name, model and extent are displayed with the validation properties */}
                 <Properties rows={[
-                    ['Nom', documentInfo.name],
-                    ['Modèle', documentInfo.documentModel && documentInfo.documentModel.name],
                     ['Titre', title],
-                    ...tags.map(([key, value]) => [key, value]),
-                    ['Emprise', documentInfo.documentExtent && <Extent boundingBox={documentInfo.documentExtent} />]
+                    ...tags.map(([key, value]) => [key, value])
                 ]} />
 
                 <DataTables files={tables} />

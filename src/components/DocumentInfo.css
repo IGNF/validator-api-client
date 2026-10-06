@@ -1,18 +1,5 @@
-.document-info__header {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: .8rem;
+.document-info .card-title {
     margin-bottom: 1rem;
-}
-
-.document-info__header .card-title {
-    margin-bottom: 0;
-}
-
-.document-info__header .btn [class^="icon-"] {
-    margin-right: .6rem;
 }
 
 .document-info__stats {
