@@ -4,6 +4,17 @@
     overflow-wrap: anywhere;
 }
 
+/* object of the errors of the validation database controls (ex : SIN_1000) */
+.validation-report__feature {
+    display: block;
+    color: #5c6773;
+}
+
+/* error code, wrapped after the "_" (<wbr>) */
+.validation-report__code {
+    white-space: normal;
+}
+
 /* number of results per level, above the report */
 .validation-report__summary {
     display: flex;

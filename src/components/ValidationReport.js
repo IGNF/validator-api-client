@@ -26,6 +26,55 @@ export function FilePath({ path }) {
     );
 }
 
+/**
+ * Code d'erreur, avec un retour à la ligne possible après chaque "_"
+ * (ex : DGPR_ISO_HT_FUSION_NOT_SURFACE_INOND).
+ */
+export function ErrorCode({ code }) {
+    if (!code) {
+        return null;
+    }
+    const parts = code.split('_');
+    return (
+        <span className="validation-report__code">
+            {parts.map((part, index) => (
+                <React.Fragment key={index}>
+                    {part}
+                    {index < parts.length - 1 && <>_<wbr /></>}
+                </React.Fragment>
+            ))}
+        </span>
+    );
+}
+
+/**
+ * Les contrôles sur la base de validation (unicité, références, DGPR...) rattachent l'erreur
+ * au dossier du document ("TRI_BEZIERS/") : la table (fileModel) est alors plus précise.
+ */
+const isDirectory = (file) => !file || file.endsWith('/');
+
+export function locationOf(row) {
+    if (isDirectory(row.file) && row.fileModel) {
+        return row.fileModel;
+    }
+    return row.file;
+}
+
+/**
+ * Fichier, ou table et objet pour les erreurs des contrôles sur la base de validation
+ */
+export function ResultLocation({ row }) {
+    if (!isDirectory(row.file) || !row.fileModel) {
+        return <FilePath path={row.file} />;
+    }
+    return (
+        <span className="validation-report__file" title={row.file}>
+            {row.fileModel}
+            {row.featureId && <span className="validation-report__feature">objet {row.featureId}</span>}
+        </span>
+    );
+}
+
 // zip pre-validation errors (file, code, message) have no level : they are errors
 const levelOf = row => row.level || 'ERROR';
 
@@ -88,9 +137,9 @@ class ValidationReport extends React.Component {
 
         const columns = [
             {
-                name: 'Fichier',
-                selector: row => row.file,
-                cell: row => <FilePath path={row.file} />,
+                name: 'Fichier / table',
+                selector: row => locationOf(row),
+                cell: row => <ResultLocation row={row} />,
                 sortable: true,
                 wrap: true,
                 grow: 3
@@ -98,8 +147,10 @@ class ValidationReport extends React.Component {
             {
                 name: 'Code',
                 selector: row => row.code,
+                cell: row => <ErrorCode code={row.code} />,
                 sortable: true,
-                grow: 2
+                wrap: true,
+                grow: 3
             },
             {
                 name: 'Message',

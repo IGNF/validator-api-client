@@ -24,6 +24,9 @@ dgprStandards.forEach(function (standard) {
         'dgpr-tolerance': 10,
         'dgpr-simplify': 2,
         'dgpr-safe-simplify': true,
+        // inclusion and graph topology controls disabled (validator-cli.jar >= 4.6.2)
+        'dgpr-skip-inclusion': true,
+        'dgpr-skip-graph-topology': true,
         'encoding': 'LATIN1'
     };
 });
