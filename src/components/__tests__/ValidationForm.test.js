@@ -9,8 +9,11 @@ import uploadDataset from '../../api/uploadDataset';
 
 jest.mock('../../api/uploadDataset');
 
-function selectFile(name) {
+function selectFile(name, size) {
     const file = new File(['PK'], name, { type: 'application/zip' });
+    if (size !== undefined) {
+        Object.defineProperty(file, 'size', { value: size });
+    }
     fireEvent.change(document.getElementById('fileInput'), { target: { files: [file] } });
 }
 
@@ -44,6 +47,18 @@ describe('ValidationForm', () => {
 
         expect(uploadDataset).not.toHaveBeenCalled();
         expect(screen.getByText(/^Nom de fichier invalide/)).toBeInTheDocument();
+    });
+
+    it('does not upload a file larger than the maximum size', () => {
+        renderForm();
+
+        expect(screen.getByText('Archive .zip de 300 Mo maximum.')).toBeInTheDocument();
+
+        selectFile('PLU_2026.zip', 512 * 1024 * 1024);
+        expect(screen.getByText(/^Fichier trop volumineux \(512 Mo\)/)).toBeInTheDocument();
+
+        fireEvent.submit(document.querySelector('form'));
+        expect(uploadDataset).not.toHaveBeenCalled();
     });
 
     it('displays the error returned by the API and does not send the parameters', async () => {

@@ -29,6 +29,13 @@ const validator = {
     },
 
     /**
+     * @param {number} maxUploadSize maximum size of the uploaded file in bytes
+     */
+    setMaxUploadSize(maxUploadSize) {
+        config.maxUploadSize = maxUploadSize;
+    },
+
+    /**
      * Create full react application.
      * @param {object} options
      * @param {HTMLElement} options.targetElement

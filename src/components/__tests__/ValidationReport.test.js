@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import { ErrorCode, FilePath, ReportSummary, ResultLocation, locationOf } from '../ValidationReport';
+import ValidationReport, { ErrorCode, FilePath, ReportSummary, ResultLocation, locationOf } from '../ValidationReport';
 
 describe('FilePath', () => {
     it('renders the full path with a line break opportunity after each "/"', () => {
@@ -37,11 +37,12 @@ describe('ResultLocation', () => {
         featureId: 'SIN_1000',
     };
 
-    it('renders the table and the object of the errors attached to the document directory', () => {
-        render(<ResultLocation row={databaseError} />);
+    it('renders the table of the errors attached to the document directory', () => {
+        const { container } = render(<ResultLocation row={databaseError} />);
 
         expect(screen.getByText('N_prefixTri_INONDABLE_suffixInond_S_ddd')).toHaveAttribute('title', 'TRI_BEZIERS/');
-        expect(screen.getByText('objet SIN_1000')).toBeInTheDocument();
+        // the feature id has its own column
+        expect(container.textContent).toBe('N_prefixTri_INONDABLE_suffixInond_S_ddd');
         expect(locationOf(databaseError)).toBe('N_prefixTri_INONDABLE_suffixInond_S_ddd');
     });
 
@@ -57,6 +58,30 @@ describe('ResultLocation', () => {
         const { container } = render(<ResultLocation row={{ file: 'TRI_BEZIERS/', fileModel: '' }} />);
 
         expect(container.textContent).toBe('TRI_BEZIERS/');
+    });
+});
+
+describe('ValidationReport', () => {
+    beforeAll(() => {
+        // used by react-data-table-component, missing in jsdom
+        window.matchMedia = window.matchMedia || (() => ({
+            matches: false, addListener() {}, removeListener() {}, addEventListener() {}, removeEventListener() {}
+        }));
+    });
+
+    it('renders the id of the feature in a dedicated column', () => {
+        const validation = {
+            results: [
+                { level: 'ERROR', file: 'TRI_BEZIERS/', fileModel: 'N_TRI_S', featureId: 'SIN_1000', code: 'DGPR_A', message: 'erreur base' },
+                { level: 'WARNING', file: 'PLU/ZONE_URBA.dbf', fileModel: 'ZONE_URBA', featureId: '12', code: 'PLU_B', message: 'erreur fichier' },
+                { code: 'NO_FILE', message: 'erreur zip' },
+            ]
+        };
+        render(<ValidationReport validation={validation} />);
+
+        expect(screen.getByText('Objet')).toBeInTheDocument();
+        expect(screen.getByText('SIN_1000')).toHaveClass('validation-report__feature');
+        expect(screen.getByText('12')).toHaveClass('validation-report__feature');
     });
 });
 

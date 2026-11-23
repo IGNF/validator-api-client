@@ -61,7 +61,7 @@ export function locationOf(row) {
 }
 
 /**
- * Fichier, ou table et objet pour les erreurs des contrôles sur la base de validation
+ * Fichier, ou table pour les erreurs des contrôles sur la base de validation
  */
 export function ResultLocation({ row }) {
     if (!isDirectory(row.file) || !row.fileModel) {
@@ -70,7 +70,6 @@ export function ResultLocation({ row }) {
     return (
         <span className="validation-report__file" title={row.file}>
             {row.fileModel}
-            {row.featureId && <span className="validation-report__feature">objet {row.featureId}</span>}
         </span>
     );
 }
@@ -143,6 +142,14 @@ class ValidationReport extends React.Component {
                 sortable: true,
                 wrap: true,
                 grow: 3
+            },
+            {
+                name: 'Objet',
+                selector: row => row.featureId || '',
+                cell: row => row.featureId && <span className="validation-report__feature">{row.featureId}</span>,
+                sortable: true,
+                wrap: true,
+                grow: 1
             },
             {
                 name: 'Code',

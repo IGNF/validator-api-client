@@ -4,10 +4,10 @@
     overflow-wrap: anywhere;
 }
 
-/* object of the errors of the validation database controls (ex : SIN_1000) */
+/* id of the feature concerned by the error (ex : SIN_1000) */
 .validation-report__feature {
-    display: block;
-    color: #5c6773;
+    white-space: normal;
+    overflow-wrap: anywhere;
 }
 
 /* error code, wrapped after the "_" (<wbr>) */

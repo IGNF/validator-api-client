@@ -7,7 +7,7 @@ import Loading from './Loading';
 import UploadProgress from './UploadProgress';
 import readJsonResponse from '../api/readJsonResponse';
 import uploadDataset from '../api/uploadDataset';
-import { getFilenameError } from '../data/datasetName';
+import { formatSize, getFileSizeError, getFilenameError } from '../data/datasetName';
 import standards from '../data/standards';
 
 import projections from '../data/projection.json';
@@ -28,6 +28,16 @@ const standardGroups = standards.reduce(function (groups, standard, index) {
     group.options.push({ standard, index });
     return groups;
 }, []);
+
+/**
+ * Error message if the file can't be accepted by the API (name or size), null otherwise.
+ *
+ * @param {File} file
+ * @returns {string|null}
+ */
+function getFileError(file) {
+    return getFilenameError(file.name) || getFileSizeError(file.size, config.maxUploadSize);
+}
 
 /**
  * Formulaire de création d'une nouvelle validation.
@@ -69,10 +79,10 @@ class ValidationForm extends React.Component {
             return;
         }
 
-        const filenameError = getFilenameError(this.state.file.name);
-        if (filenameError) {
+        const fileError = getFileError(this.state.file);
+        if (fileError) {
             this.setState({
-                error: filenameError
+                error: fileError
             });
             return;
         }
@@ -128,10 +138,10 @@ class ValidationForm extends React.Component {
 
     onChangeFile(event) {
         const file = event.target.files[0];
-        // warn as soon as the file is selected if its name will be rejected by the API
+        // warn as soon as the file is selected if it will be rejected by the API
         this.setState({
             file: file,
-            error: file ? getFilenameError(file.name) : null
+            error: file ? getFileError(file) : null
         });
         if (this.fileLabelRef && this.fileLabelRef.current) {
             this.fileLabelRef.current.textContent = file ? file.name : 'Choisissez une archive sur votre ordinateur...';
@@ -256,6 +266,9 @@ class ValidationForm extends React.Component {
                             Choisissez une archive sur votre ordinateur...
                         </label>
                     </div>
+                    {config.maxUploadSize && (
+                        <p className="form-text text-muted">Archive .zip de {formatSize(config.maxUploadSize)} maximum.</p>
+                    )}
 
                     <div className="form-group text-center">
                         <button type="submit" name="archive" className="btn btn--plain btn--primary btn-width--lg" disabled={this.state.patience}>

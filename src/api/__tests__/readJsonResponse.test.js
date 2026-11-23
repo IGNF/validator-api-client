@@ -20,6 +20,12 @@ describe('readJsonResponse', () => {
         await expect(readJsonResponse(response)).rejects.toThrow('Erreur HTTP 502');
     });
 
+    it('tells that the file is too large (413)', async () => {
+        const response = { ok: false, status: 413, json: () => Promise.reject(new SyntaxError('Unexpected token <')) };
+
+        await expect(readJsonResponse(response)).rejects.toThrow('Le fichier est trop volumineux pour être envoyé au serveur');
+    });
+
     it('notifies the application when the session expired (401)', async () => {
         const listener = jest.fn();
         window.addEventListener(UNAUTHORIZED_EVENT, listener);

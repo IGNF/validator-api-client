@@ -16,6 +16,10 @@ export function getErrorMessage(status, data) {
     if (status === 403) {
         return `Action non autorisée${message ? ` (${message})` : ''}`;
     }
+    if (status === 413) {
+        // refused by the server or the proxy (HTML body) before reaching the API
+        return 'Le fichier est trop volumineux pour être envoyé au serveur';
+    }
     return message || `Erreur HTTP ${status}`;
 }
 

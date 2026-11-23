@@ -15,6 +15,30 @@ export function getDatasetName(filename) {
 }
 
 /**
+ * Size in MB, as displayed to the user ("300 Mo").
+ *
+ * @param {number} size in bytes
+ * @returns {string}
+ */
+export function formatSize(size) {
+    return `${Math.round(size / (1024 * 1024))} Mo`;
+}
+
+/**
+ * Returns an error message if the file is larger than the maximum size accepted by the API, null otherwise.
+ *
+ * @param {number} size in bytes
+ * @param {number} maxSize in bytes
+ * @returns {string|null}
+ */
+export function getFileSizeError(size, maxSize) {
+    if (maxSize && size > maxSize) {
+        return `Fichier trop volumineux (${formatSize(size)}) : la taille maximale acceptée est de ${formatSize(maxSize)}.`;
+    }
+    return null;
+}
+
+/**
  * Returns an error message if the file name can't be accepted by the API, null otherwise.
  *
  * @param {string} filename
